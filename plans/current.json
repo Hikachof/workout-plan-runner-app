@@ -1,0 +1,479 @@
+{
+  "schemaVersion": "1.0",
+  "planId": "plan-2026-06-28-week1",
+  "title": "2026/6/28 週メニュー",
+  "version": 1,
+  "createdAt": "2026-06-28T00:00:00+09:00",
+  "startDate": "2026-06-28",
+  "endDate": "2026-07-04",
+  "unit": "kg",
+  "dailyTaskTemplate": [
+    {
+      "taskId": "daily-chinning",
+      "name": "チンニング",
+      "target": "10回前後 × 3セット",
+      "metrics": ["reps", "sets"],
+      "memo": "週間メニューとは別の日課"
+    },
+    {
+      "taskId": "daily-hanging-knee-up",
+      "name": "ハンギングニーアップ",
+      "target": "10回 × 3セット",
+      "metrics": ["reps", "sets", "legRaiseAngle", "topHoldSeconds", "noSwing", "loweringSpeed", "posteriorPelvicTilt"],
+      "memo": "回数だけでなくフォーム強度も確認"
+    },
+    {
+      "taskId": "daily-plank",
+      "name": "プランク",
+      "target": "100秒 × 1〜2セット",
+      "metrics": ["seconds", "sets"],
+      "memo": "日課として管理"
+    }
+  ],
+  "sessions": [
+    {
+      "sessionPlanId": "sp-2026-06-28-day4",
+      "dayNumber": "Day4",
+      "dayName": "上半身ボリューム",
+      "scheduledDate": "2026-06-28",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "チンニングは日課側で管理。",
+      "exercises": [
+        {
+          "exerciseId": "flat-db-press",
+          "name": "フラットダンベルプレス",
+          "plannedWeight": 25,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 25, "reps": "10" },
+            { "setNumber": 2, "weight": 25, "reps": "10" },
+            { "setNumber": 3, "weight": 25, "reps": "10" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["肩甲骨を寄せる", "下ろしを丁寧に"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        },
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 22,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 22, "reps": "10" },
+            { "setNumber": 2, "weight": 22, "reps": "10" },
+            { "setNumber": 3, "weight": 22, "reps": "10" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["上胸に乗せる"],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": ""
+        },
+        {
+          "exerciseId": "chest-supported-db-row",
+          "name": "チェストサポートダンベルロー",
+          "plannedWeight": 25,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 25, "reps": "10" },
+            { "setNumber": 2, "weight": 25, "reps": "10" },
+            { "setNumber": 3, "weight": 25, "reps": "できれば実施" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["胸をベンチにつける", "反動を使わない"],
+          "optional": false,
+          "shortVersionPriority": 3,
+          "memo": "2〜3セット"
+        },
+        {
+          "exerciseId": "side-raise",
+          "name": "サイドレイズ",
+          "plannedWeight": 7,
+          "weightType": "per_dumbbell",
+          "plannedReps": "20",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 7, "reps": "20" },
+            { "setNumber": 2, "weight": 7, "reps": "20" },
+            { "setNumber": 3, "weight": 7, "reps": "20" }
+          ],
+          "restSeconds": 75,
+          "formCues": ["反動を抑える", "肩をすくめない"],
+          "optional": false,
+          "shortVersionPriority": 4,
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-rear-raise",
+          "name": "ライイングリアレイズ",
+          "plannedWeight": 7,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 7, "reps": "10" },
+            { "setNumber": 2, "weight": 7, "reps": "10" },
+            { "setNumber": 3, "weight": 7, "reps": "10" }
+          ],
+          "restSeconds": 75,
+          "formCues": ["リアに乗せる"],
+          "optional": false,
+          "shortVersionPriority": 5,
+          "memo": ""
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-06-29-day5",
+      "dayNumber": "Day5",
+      "dayName": "腕・前腕",
+      "scheduledDate": "2026-06-29",
+      "weekdayHint": "月曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-curl",
+          "name": "インクラインダンベルカール",
+          "plannedWeight": 10,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 10, "reps": "10" },
+            { "setNumber": 2, "weight": 10, "reps": "10" },
+            { "setNumber": 3, "weight": 10, "reps": "10" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["反動を使わない", "肘を前に出しすぎない"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        },
+        {
+          "exerciseId": "incline-hammer-curl",
+          "name": "インクラインハンマーカール",
+          "plannedWeight": 10,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 10, "reps": "10" },
+            { "setNumber": 2, "weight": 10, "reps": "10" },
+            { "setNumber": 3, "weight": 10, "reps": "10" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["手首を固定", "下ろしを丁寧に"],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-db-triceps-extension",
+          "name": "ライイングダンベルトライセプスエクステンション",
+          "plannedWeight": 11.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 11.5, "reps": "10" },
+            { "setNumber": 2, "weight": 11.5, "reps": "10" },
+            { "setNumber": 3, "weight": 11.5, "reps": "10" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["肘の位置を固定", "痛みがあれば中止"],
+          "optional": false,
+          "shortVersionPriority": 3,
+          "memo": ""
+        },
+        {
+          "exerciseId": "close-grip-pushup",
+          "name": "クローズグリッププッシュアップ",
+          "plannedWeight": null,
+          "weightType": "bodyweight",
+          "plannedReps": "30-35",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": null, "reps": "30-35" },
+            { "setNumber": 2, "weight": null, "reps": "できれば実施" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["肩が痛い場合は省略"],
+          "optional": true,
+          "shortVersionPriority": 5,
+          "memo": "1〜2セット"
+        },
+        {
+          "exerciseId": "db-wrist-curl",
+          "name": "ダンベルリストカール",
+          "plannedWeight": 7,
+          "weightType": "per_dumbbell",
+          "plannedReps": "20",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": 7, "reps": "20" },
+            { "setNumber": 2, "weight": 7, "reps": "20" }
+          ],
+          "restSeconds": 60,
+          "formCues": ["可動域を丁寧に"],
+          "optional": true,
+          "shortVersionPriority": 4,
+          "memo": "リバースリストカールは行わない"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-06-30-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-06-30",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "休息日。日課だけ実施可能。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-07-01-day1",
+      "dayNumber": "Day1",
+      "dayName": "肩・上胸",
+      "scheduledDate": "2026-07-01",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8-9",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 23.5, "reps": "8-9" },
+            { "setNumber": 2, "weight": 23.5, "reps": "8-9" },
+            { "setNumber": 3, "weight": 23.5, "reps": "8-9" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["肩甲骨を寄せる", "下ろしを雑にしない"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        },
+        {
+          "exerciseId": "db-shoulder-press",
+          "name": "ダンベルショルダープレス",
+          "plannedWeight": 14.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "13",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 14.5, "reps": "13" },
+            { "setNumber": 2, "weight": 14.5, "reps": "13" },
+            { "setNumber": 3, "weight": 14.5, "reps": "13" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["腰を反らしすぎない"],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": ""
+        },
+        {
+          "exerciseId": "side-raise",
+          "name": "サイドレイズ",
+          "plannedWeight": 7,
+          "weightType": "per_dumbbell",
+          "plannedReps": "20",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 7, "reps": "20" },
+            { "setNumber": 2, "weight": 7, "reps": "20" },
+            { "setNumber": 3, "weight": 7, "reps": "20" }
+          ],
+          "restSeconds": 75,
+          "formCues": ["反動を抑える", "肩をすくめない"],
+          "optional": false,
+          "shortVersionPriority": 3,
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-rear-raise",
+          "name": "ライイングリアレイズ",
+          "plannedWeight": 7,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 7, "reps": "10" },
+            { "setNumber": 2, "weight": 7, "reps": "10" },
+            { "setNumber": 3, "weight": 7, "reps": "10" }
+          ],
+          "restSeconds": 75,
+          "formCues": ["肩甲骨で引きすぎない", "リアに乗せる"],
+          "optional": false,
+          "shortVersionPriority": 4,
+          "memo": ""
+        },
+        {
+          "exerciseId": "pushup",
+          "name": "プッシュアップ",
+          "plannedWeight": null,
+          "weightType": "bodyweight",
+          "plannedReps": "30前後",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": null, "reps": "30前後" },
+            { "setNumber": 2, "weight": null, "reps": "できれば実施" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["省略可"],
+          "optional": true,
+          "shortVersionPriority": 5,
+          "memo": "省略する場合あり"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-07-02-day2",
+      "dayNumber": "Day2",
+      "dayName": "背中",
+      "scheduledDate": "2026-07-02",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "チンニング、ハンギングニーアップ、プランクは日課側で管理。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 31,
+          "weightType": "single_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 31, "reps": "10" },
+            { "setNumber": 2, "weight": 31, "reps": "10" },
+            { "setNumber": 3, "weight": 31, "reps": "10" }
+          ],
+          "restSeconds": 120,
+          "formCues": ["体幹を固定", "引き切る"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        },
+        {
+          "exerciseId": "db-pullover",
+          "name": "ダンベルプルオーバー",
+          "plannedWeight": 17.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "15",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": 17.5, "reps": "15" },
+            { "setNumber": 2, "weight": 17.5, "reps": "15" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["肩に違和感があれば浅くする"],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": ""
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-07-03-day3",
+      "dayNumber": "Day3",
+      "dayName": "脚・尻",
+      "scheduledDate": "2026-07-03",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "脚種目は8〜10回程度の高負荷寄りで管理。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 41,
+          "weightType": "single_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 41, "reps": "10" },
+            { "setNumber": 2, "weight": 41, "reps": "10" },
+            { "setNumber": 3, "weight": 41, "reps": "10" }
+          ],
+          "restSeconds": 150,
+          "formCues": ["深さを一定にする", "腰が丸まりすぎない"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        },
+        {
+          "exerciseId": "bulgarian-squat",
+          "name": "ブルガリアンスクワット",
+          "plannedWeight": 15,
+          "weightType": "left_right_total",
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "setTargets": [
+            { "setNumber": 1, "weight": 15, "reps": "10" },
+            { "setNumber": 2, "weight": 15, "reps": "10" },
+            { "setNumber": 3, "weight": 15, "reps": "10" }
+          ],
+          "restSeconds": 150,
+          "formCues": ["左右差を記録", "膝の違和感に注意"],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": "左右合計重量"
+        },
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "plannedWeight": 62,
+          "weightType": "both_hands_total",
+          "plannedReps": "10",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": 62, "reps": "10" },
+            { "setNumber": 2, "weight": 62, "reps": "10" }
+          ],
+          "restSeconds": 150,
+          "formCues": ["ハムに乗せる", "腰を丸めない"],
+          "optional": false,
+          "shortVersionPriority": 3,
+          "memo": "将来的に3セットを目標"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-07-04-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-07-04",
+      "weekdayHint": "土曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "休息日。日課だけ実施可能。",
+      "exercises": []
+    }
+  ]
+}

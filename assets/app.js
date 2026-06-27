@@ -1,7 +1,9 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "workout-plan-runner-v1";
+  const STORAGE_KEY = "workout-runner-state-v2";
+  const PLAN_URL = "./plans/current.json";
+
   const state = loadState();
   let activeSession = null;
   let activeStartedAt = null;
@@ -11,75 +13,31 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-  const samplePlanUrl = "./samples/workout_plan.sample.json";
-  const fallbackSamplePlan = {
-    schemaVersion: "1.0",
-    planId: "sample-pwa-plan",
-    version: 1,
-    createdAt: nowString(),
-    startDate: todayString(),
-    endDate: todayString(),
-    unit: "kg",
-    dailyTaskTemplate: [
-      { taskId: "daily-chinning", name: "チンニング", target: "10回前後 × 3セット", metrics: ["reps", "sets"], memo: "" },
-      { taskId: "daily-hanging-knee-up", name: "ハンギングニーアップ", target: "10回 × 3セット", metrics: ["reps", "sets"], memo: "" },
-      { taskId: "daily-plank", name: "プランク", target: "100秒 × 1〜2セット", metrics: ["seconds", "sets"], memo: "" }
-    ],
-    sessions: [
-      {
-        sessionPlanId: "sample-day1",
-        dayNumber: "Sample",
-        dayName: "動作確認",
-        scheduledDate: todayString(),
-        weekdayHint: "",
-        scheduleStatus: "planned",
-        isRestDay: false,
-        dailyTasksEnabled: true,
-        notes: "PWA確認用の汎用サンプル",
-        exercises: [
-          {
-            exerciseId: "sample-dumbbell-press",
-            name: "サンプルダンベルプレス",
-            plannedWeight: 10,
-            weightType: "per_dumbbell",
-            plannedReps: "10",
-            plannedSets: 2,
-            setTargets: [
-              { setNumber: 1, weight: 10, reps: "10" },
-              { setNumber: 2, weight: 10, reps: "10" }
-            ],
-            restSeconds: 90,
-            formCues: ["フォームを安定させる", "無理をしない"],
-            optional: false,
-            shortVersionPriority: 1,
-            memo: ""
-          }
-        ]
-      }
-    ]
-  };
-
   document.addEventListener("DOMContentLoaded", init);
 
-  function init() {
+  async function init() {
     bindEvents();
     renderAll();
     registerServiceWorker();
+    await refreshPlan({ silent: true });
   }
 
   function bindEvents() {
-    $$(".tab").forEach((button) => {
-      button.addEventListener("click", () => switchTab(button.dataset.tab));
+    $$(".nav-button").forEach((button) => {
+      button.addEventListener("click", () => switchPanel(button.dataset.tab));
     });
 
-    $("#plan-file-input").addEventListener("change", importPlanFile);
+    $("#refresh-plan").addEventListener("click", () => refreshPlan({ silent: false }));
     $("#export-history").addEventListener("click", exportHistory);
-    $("#load-sample-plan").addEventListener("click", loadSamplePlan);
-    $("#finish-session").addEventListener("click", finishSession);
-    $("#clear-history").addEventListener("click", clearHistory);
-    $("#install-help").addEventListener("click", () => {
-      showToast("Safariの共有メニューから「ホーム画面に追加」を選んでください。");
+    $("#start-today").addEventListener("click", () => {
+      const session = findTodaySession() || findNextSession();
+      if (!session || session.isRestDay) {
+        showToast("開始できるメニューがありません。");
+        return;
+      }
+      startSession(session.sessionPlanId, "as_planned");
     });
+    $("#finish-session").addEventListener("click", finishSession);
     $$(".timer-actions [data-timer]").forEach((button) => {
       button.addEventListener("click", () => startTimer(Number(button.dataset.timer)));
     });
@@ -88,20 +46,23 @@
 
   function loadState() {
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || emptyState();
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (saved) return normalizeState(saved);
     } catch {
-      return emptyState();
+      // Ignore corrupt state and rebuild below.
     }
+    return normalizeState({});
   }
 
-  function emptyState() {
+  function normalizeState(value) {
     return {
-      plan: null,
-      history: {
+      plan: value.plan || null,
+      history: value.history || {
         schemaVersion: "1.0",
         exportedAt: nowString(),
         sessions: []
-      }
+      },
+      lastSyncAt: value.lastSyncAt || null
     };
   }
 
@@ -109,94 +70,142 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }
 
-  function switchTab(tab) {
-    $$(".tab").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
-    $$(".panel").forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === tab));
+  async function refreshPlan({ silent }) {
+    setSyncStatus("計画を確認中");
+    try {
+      const response = await fetch(`${PLAN_URL}?t=${Date.now()}`, {
+        cache: "no-store"
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const plan = await response.json();
+      validatePlan(plan);
+
+      if (isNewPlan(plan, state.plan)) {
+        state.plan = plan;
+        state.lastSyncAt = nowString();
+        saveState();
+        renderAll();
+        setSyncStatus("最新計画を読み込みました");
+        if (!silent) showToast("最新計画に更新しました。");
+      } else {
+        state.lastSyncAt = nowString();
+        saveState();
+        setSyncStatus("計画は最新です");
+        if (!silent) showToast("計画は最新です。");
+      }
+    } catch (error) {
+      setSyncStatus(state.plan ? "オフライン: 保存済み計画を使用" : "計画を取得できません");
+      if (!silent) showToast(`計画更新に失敗しました: ${error.message}`);
+    }
+  }
+
+  function validatePlan(plan) {
+    if (!plan || typeof plan !== "object") throw new Error("計画JSONが不正です。");
+    if (!plan.schemaVersion) throw new Error("schemaVersionがありません。");
+    if (!plan.planId) throw new Error("planIdがありません。");
+    if (!Array.isArray(plan.sessions) || !plan.sessions.length) throw new Error("sessionsが空です。");
+  }
+
+  function isNewPlan(next, current) {
+    if (!current) return true;
+    if (next.planId !== current.planId) return true;
+    return Number(next.version || 0) > Number(current.version || 0);
+  }
+
+  function switchPanel(panelName) {
+    $$(".nav-button").forEach((button) => button.classList.toggle("active", button.dataset.tab === panelName));
+    $$(".panel").forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === panelName));
   }
 
   function renderAll() {
-    renderHome();
-    renderPlan();
-    renderHistory();
+    renderOverview();
+    renderToday();
     renderRun();
   }
 
-  function renderHome() {
-    const status = $("#plan-status");
-    const nextCard = $("#next-session-card");
-    const daily = $("#daily-tasks");
+  function renderOverview() {
+    const plan = state.plan;
+    const title = $("#overview-title");
+    const meta = $("#overview-meta");
+    const range = $("#plan-range");
+    const list = $("#overview-list");
 
-    if (!state.plan) {
-      status.innerHTML = `<h2>計画未読み込み</h2><p class="muted">ファイル画面から workout_plan.json を読み込んでください。</p>`;
-      nextCard.innerHTML = `<div class="empty">次に実行するメニューはありません。</div>`;
-      daily.innerHTML = "";
+    if (!plan) {
+      title.textContent = "計画未取得";
+      meta.textContent = "更新ボタンで最新計画を取得してください。";
+      range.textContent = "";
+      list.innerHTML = emptyMarkup("計画がまだありません。");
       return;
     }
 
-    status.innerHTML = `
-      <div class="section-head">
-        <div>
-          <h2>${escapeHtml(state.plan.planId)}</h2>
-          <p class="muted">${escapeHtml(state.plan.startDate)} - ${escapeHtml(state.plan.endDate)} / version ${state.plan.version}</p>
-        </div>
-      </div>
-    `;
+    title.textContent = plan.title || plan.planId;
+    meta.textContent = `Version ${plan.version} / ${plan.planId}`;
+    range.textContent = `${formatDate(plan.startDate)} - ${formatDate(plan.endDate)}`;
 
-    const next = findNextSession();
-    if (!next) {
-      nextCard.innerHTML = `<div class="empty">未実施のメニューはありません。</div>`;
-    } else {
-      nextCard.innerHTML = `
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Next</p>
-            <h2>${escapeHtml(next.dayNumber)} ${escapeHtml(next.dayName)}</h2>
-            <p class="muted">${escapeHtml(next.scheduledDate)} ${escapeHtml(next.weekdayHint || "")}</p>
+    list.innerHTML = plan.sessions.map((session) => {
+      const isToday = session.scheduledDate === todayString();
+      const done = isSessionDone(session.sessionPlanId);
+      const exercises = session.exercises || [];
+      const className = ["schedule-card", isToday ? "today" : "", done ? "done" : ""].join(" ");
+      const tag = session.isRestDay ? "休息" : `${exercises.length}種目`;
+      return `
+        <article class="${className}">
+          <div class="schedule-top">
+            <div>
+              <h3>${escapeHtml(session.dayNumber)} ${escapeHtml(session.dayName)}</h3>
+              <p class="muted">${formatDate(session.scheduledDate)} ${escapeHtml(session.weekdayHint || "")}</p>
+            </div>
+            <span class="tag ${session.isRestDay ? "rest" : ""}">${done ? "完了" : escapeHtml(tag)}</span>
           </div>
-          <button class="primary-button" data-start="${escapeHtml(next.sessionPlanId)}" type="button">開始</button>
-        </div>
-        <div class="pill-row">${next.exercises.map((exercise) => `<span class="pill">${escapeHtml(exercise.name)}</span>`).join("")}</div>
+          <div class="tag-row">
+            ${exercises.map((exercise) => `<span class="tag">${escapeHtml(exercise.name)}</span>`).join("")}
+          </div>
+        </article>
       `;
-      $("[data-start]", nextCard).addEventListener("click", () => startSession(next.sessionPlanId, "as_planned"));
-    }
-
-    daily.innerHTML = `<div class="daily-list">${(state.plan.dailyTaskTemplate || []).map((task) => `
-      <div class="daily-item">
-        <strong>${escapeHtml(task.name)}</strong>
-        <span class="muted">${escapeHtml(task.target)}</span>
-      </div>
-    `).join("")}</div>`;
+    }).join("");
   }
 
-  function renderPlan() {
-    const planList = $("#plan-list");
-    if (!state.plan) {
-      planList.innerHTML = `<div class="empty">計画JSONを読み込んでください。</div>`;
+  function renderToday() {
+    const session = findTodaySession() || findNextSession();
+    const title = $("#today-title");
+    const meta = $("#today-meta");
+    const list = $("#today-list");
+    const daily = $("#today-daily");
+    const startButton = $("#start-today");
+
+    if (!state.plan || !session) {
+      title.textContent = "今日のメニューは未取得";
+      meta.textContent = "最新計画を更新してください。";
+      list.innerHTML = emptyMarkup("表示できるメニューがありません。");
+      daily.innerHTML = "";
+      startButton.disabled = true;
       return;
     }
 
-    planList.innerHTML = `<div class="session-list">${state.plan.sessions.map((session) => `
-      <article class="session-item">
-        <div class="section-head">
-          <div>
-            <strong>${escapeHtml(session.dayNumber)} ${escapeHtml(session.dayName)}</strong>
-            <p class="muted">${escapeHtml(session.scheduledDate)} ${escapeHtml(session.weekdayHint || "")}</p>
-          </div>
-          ${session.isRestDay ? `<span class="pill">休息</span>` : `<span class="pill">${session.exercises.length}種目</span>`}
-        </div>
-        <div>${session.exercises.map((exercise) => `<p class="muted">・${escapeHtml(exercise.name)} ${weightText(exercise)} ${escapeHtml(exercise.plannedReps)}回 × ${exercise.plannedSets}</p>`).join("")}</div>
-        ${session.isRestDay ? "" : `
-          <div class="session-actions">
-            <button data-start="${escapeHtml(session.sessionPlanId)}" data-mode="as_planned" type="button">予定どおり</button>
-            <button data-start="${escapeHtml(session.sessionPlanId)}" data-mode="short" type="button">短縮版</button>
-          </div>
-        `}
-      </article>
-    `).join("")}</div>`;
+    title.textContent = `${session.dayNumber} ${session.dayName}`;
+    meta.textContent = `${formatDate(session.scheduledDate)} ${session.weekdayHint || ""}`;
+    startButton.disabled = Boolean(session.isRestDay);
+    startButton.textContent = session.isRestDay ? "今日は休息日" : "今日のメニューを開始";
 
-    $$("[data-start]", planList).forEach((button) => {
-      button.addEventListener("click", () => startSession(button.dataset.start, button.dataset.mode));
-    });
+    if (session.isRestDay) {
+      list.innerHTML = emptyMarkup("今日は休息日です。日課だけ確認してください。");
+    } else {
+      list.innerHTML = `<div class="exercise-list">${session.exercises.map((exercise, index) => `
+        <article class="today-exercise">
+          <div class="schedule-top">
+            <div>
+              <p class="eyebrow">${String(index + 1).padStart(2, "0")}</p>
+              <h3>${escapeHtml(exercise.name)}</h3>
+              <p class="muted">${weightText(exercise)} / ${escapeHtml(exercise.plannedReps)}回 × ${exercise.plannedSets}</p>
+            </div>
+            <span class="tag">休憩 ${exercise.restSeconds || 90}秒</span>
+          </div>
+        </article>
+      `).join("")}</div>`;
+    }
+
+    daily.innerHTML = renderDailyCards(state.plan.dailyTaskTemplate || []);
   }
 
   function renderRun() {
@@ -211,9 +220,8 @@
     empty.classList.add("hidden");
     active.classList.remove("hidden");
     $("#active-title").textContent = `${activeSession.dayNumber} ${activeSession.dayName}`;
-    $("#active-meta").textContent = `${activeSession.executionMode} / ${activeSession.performedAt}`;
+    $("#active-meta").textContent = `開始 ${formatDateTime(activeSession.performedAt)}`;
     $("#session-notes").value = activeSession.notes || "";
-    $("#session-fatigue").value = activeSession.fatigue || "";
 
     renderRunDailyTasks();
     renderRunExercises();
@@ -221,12 +229,13 @@
 
   function renderRunDailyTasks() {
     const root = $("#run-daily-tasks");
-    root.innerHTML = `<div class="daily-list">${activeSession.dailyTasks.map((task, index) => `
-      <label class="daily-item">
+    root.innerHTML = activeSession.dailyTasks.map((task, index) => `
+      <label class="daily-card">
         <span>${escapeHtml(task.name)}</span>
         <input data-daily="${index}" type="checkbox" ${task.completed ? "checked" : ""}>
       </label>
-    `).join("")}</div>`;
+    `).join("");
+
     $$("[data-daily]", root).forEach((input) => {
       input.addEventListener("change", () => {
         activeSession.dailyTasks[Number(input.dataset.daily)].completed = input.checked;
@@ -238,97 +247,63 @@
     const list = $("#exercise-run-list");
     const template = $("#exercise-template");
     list.innerHTML = "";
-    activeSession.exercises.forEach((exercise, exerciseIndex) => {
+
+    activeSession.exercises.forEach((exercise) => {
       const card = template.content.firstElementChild.cloneNode(true);
       $(".exercise-name", card).textContent = exercise.name;
       $(".exercise-weight", card).textContent = weightTypeLabel(exercise.weightType);
       $(".exercise-target", card).textContent = `${weightValueText(exercise.plannedWeight)} / ${exercise.plannedReps}回 × ${exercise.plannedSets}`;
-      $(".form-cues", card).innerHTML = (exercise.formCues || []).map((cue) => `<span class="pill">${escapeHtml(cue)}</span>`).join("");
-      $(".exercise-memo", card).value = exercise.memo || "";
-      $(".exercise-memo", card).addEventListener("input", (event) => {
-        exercise.memo = event.target.value;
-      });
+      $(".form-cues", card).innerHTML = (exercise.formCues || []).map((cue) => `<span class="cue">${escapeHtml(cue)}</span>`).join("");
+
       $(".skip-exercise", card).addEventListener("click", () => {
         exercise.status = "skipped";
-        exercise.sets.forEach((set) => set.completed = false);
+        exercise.sets.forEach((set) => { set.completed = false; });
         renderRunExercises();
       });
       $(".complete-exercise", card).addEventListener("click", () => {
         exercise.status = "completed";
-        exercise.sets.forEach((set) => set.completed = true);
+        exercise.sets.forEach((set) => { set.completed = true; });
         renderRunExercises();
       });
       $(".add-set", card).addEventListener("click", () => {
         addSet(exercise);
         renderRunExercises();
       });
-      renderSetRows($(".sets", card), exercise, exerciseIndex);
+
+      renderSetRows($(".sets", card), exercise);
       list.appendChild(card);
     });
   }
 
-  function renderSetRows(root, exercise, exerciseIndex) {
+  function renderSetRows(root, exercise) {
     const template = $("#set-template");
-    exercise.sets.forEach((set, setIndex) => {
+    exercise.sets.forEach((set) => {
       const row = template.content.firstElementChild.cloneNode(true);
-      $(".set-title", row).textContent = `Set ${set.setNumber}`;
+      $(".set-label", row).textContent = `Set ${set.setNumber}`;
       $(".set-weight", row).value = set.actualWeight ?? "";
       $(".set-reps", row).value = set.actualReps ?? "";
-      $(".set-rir", row).value = set.rir ?? "";
-      $(".set-form", row).value = set.formRating ?? "";
-      $(".set-complete", row).textContent = set.completed ? "済" : "完了";
-      $(".set-complete", row).classList.toggle("primary-button", set.completed);
+      const completeButton = $(".set-complete", row);
+      completeButton.textContent = set.completed ? "済" : "完了";
+      completeButton.classList.toggle("completed", set.completed);
 
-      bindNumber(row, ".set-weight", (value) => set.actualWeight = value);
-      bindInteger(row, ".set-reps", (value) => set.actualReps = value);
-      bindInteger(row, ".set-rir", (value) => set.rir = value);
-      bindInteger(row, ".set-form", (value) => set.formRating = value);
-      $(".set-complete", row).addEventListener("click", () => {
+      bindNumber(row, ".set-weight", (value) => { set.actualWeight = value; });
+      bindInteger(row, ".set-reps", (value) => { set.actualReps = value; });
+      completeButton.addEventListener("click", () => {
         set.completed = !set.completed;
-        if (set.completed) startTimer(90);
+        if (set.completed) startTimer(exercise.restSeconds || 90);
         renderRunExercises();
       });
       root.appendChild(row);
     });
   }
 
-  function bindNumber(root, selector, setter) {
-    $(selector, root).addEventListener("input", (event) => {
-      const value = event.target.value === "" ? null : Number(event.target.value);
-      setter(Number.isFinite(value) ? value : null);
-    });
-  }
-
-  function bindInteger(root, selector, setter) {
-    $(selector, root).addEventListener("input", (event) => {
-      const value = event.target.value === "" ? null : parseInt(event.target.value, 10);
-      setter(Number.isFinite(value) ? value : null);
-    });
-  }
-
-  function renderHistory() {
-    const root = $("#history-list");
-    const sessions = state.history.sessions || [];
-    if (!sessions.length) {
-      root.innerHTML = `<div class="empty">履歴はありません。</div>`;
-      return;
-    }
-    root.innerHTML = `<div class="history-list">${sessions.map((session) => `
-      <article class="history-item">
-        <strong>${escapeHtml(session.dayNumber)} ${escapeHtml(session.dayName)}</strong>
-        <span class="muted">${escapeHtml(session.performedAt)} / ${Math.round((session.durationSeconds || 0) / 60)}分</span>
-        <div class="pill-row">${session.exercises.map((exercise) => `<span class="pill">${escapeHtml(exercise.name)} ${exercise.sets.filter((set) => set.completed).length}set</span>`).join("")}</div>
-        ${session.notes ? `<p class="muted">${escapeHtml(session.notes)}</p>` : ""}
-      </article>
-    `).join("")}</div>`;
-  }
-
   function startSession(sessionPlanId, mode) {
     const sessionPlan = state.plan?.sessions.find((session) => session.sessionPlanId === sessionPlanId);
-    if (!state.plan || !sessionPlan) {
-      showToast("対象の計画が見つかりません。");
+    if (!state.plan || !sessionPlan || sessionPlan.isRestDay) {
+      showToast("開始できるメニューがありません。");
       return;
     }
+
     activeStartedAt = new Date();
     activeSession = {
       sessionId: `session-${compactNowString()}`,
@@ -352,7 +327,8 @@
       skippedExerciseIds: [],
       notes: ""
     };
-    switchTab("run");
+
+    switchPanel("run");
     renderAll();
   }
 
@@ -364,6 +340,7 @@
         weight: exercise.plannedWeight,
         reps: exercise.plannedReps
       }));
+
     return {
       exerciseId: exercise.exerciseId,
       name: exercise.name,
@@ -371,6 +348,7 @@
       plannedWeight: exercise.plannedWeight,
       plannedReps: exercise.plannedReps,
       plannedSets: exercise.plannedSets,
+      restSeconds: exercise.restSeconds || 90,
       status: "planned",
       formCues: exercise.formCues || [],
       sets: targets.map((target) => ({
@@ -408,65 +386,20 @@
   function finishSession() {
     if (!activeSession) return;
     activeSession.notes = $("#session-notes").value.trim();
-    activeSession.fatigue = $("#session-fatigue").value ? Number($("#session-fatigue").value) : null;
     activeSession.durationSeconds = activeStartedAt ? Math.max(0, Math.round((new Date() - activeStartedAt) / 1000)) : 0;
     activeSession.skippedExerciseIds = activeSession.exercises
       .filter((exercise) => exercise.status === "skipped")
       .map((exercise) => exercise.exerciseId);
+
     state.history.exportedAt = nowString();
     state.history.sessions.unshift(activeSession);
     activeSession = null;
     activeStartedAt = null;
     stopTimer();
     saveState();
-    switchTab("history");
+    switchPanel("overview");
     renderAll();
-    showToast("実績を保存しました。");
-  }
-
-  async function importPlanFile(event) {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    try {
-      const plan = JSON.parse(await file.text());
-      validatePlan(plan);
-      state.plan = plan;
-      saveState();
-      renderAll();
-      switchTab("home");
-      showToast("計画JSONを読み込みました。");
-    } catch (error) {
-      showToast(`読み込み失敗: ${error.message}`);
-    } finally {
-      event.target.value = "";
-    }
-  }
-
-  async function loadSamplePlan() {
-    try {
-      const response = await fetch(samplePlanUrl);
-      if (!response.ok) throw new Error("サンプル計画を取得できません。");
-      const plan = await response.json();
-      validatePlan(plan);
-      state.plan = plan;
-      saveState();
-      renderAll();
-      switchTab("home");
-      showToast("サンプル計画を読み込みました。");
-    } catch (error) {
-      state.plan = fallbackSamplePlan;
-      saveState();
-      renderAll();
-      switchTab("home");
-      showToast("内蔵サンプル計画を読み込みました。");
-    }
-  }
-
-  function validatePlan(plan) {
-    if (!plan || typeof plan !== "object") throw new Error("JSON形式が不正です。");
-    if (!plan.schemaVersion) throw new Error("schemaVersionがありません。");
-    if (!plan.planId) throw new Error("planIdがありません。");
-    if (!Array.isArray(plan.sessions) || !plan.sessions.length) throw new Error("sessionsが空です。");
+    showToast("保存しました。必要な時に記録出力してください。");
   }
 
   function exportHistory() {
@@ -477,23 +410,23 @@
     downloadJson("workout_history.json", payload);
   }
 
-  function clearHistory() {
-    if (!confirm("履歴を初期化しますか？")) return;
-    state.history = emptyState().history;
-    saveState();
-    renderAll();
+  function bindNumber(root, selector, setter) {
+    $(selector, root).addEventListener("input", (event) => {
+      const value = event.target.value === "" ? null : Number(event.target.value);
+      setter(Number.isFinite(value) ? value : null);
+    });
   }
 
-  function downloadJson(filename, payload) {
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(url);
+  function bindInteger(root, selector, setter) {
+    $(selector, root).addEventListener("input", (event) => {
+      const value = event.target.value === "" ? null : parseInt(event.target.value, 10);
+      setter(Number.isFinite(value) ? value : null);
+    });
+  }
+
+  function findTodaySession() {
+    const today = todayString();
+    return state.plan?.sessions.find((session) => session.scheduledDate === today) || null;
   }
 
   function findNextSession() {
@@ -501,7 +434,26 @@
     return state.plan?.sessions
       .filter((session) => !session.isRestDay && session.scheduledDate >= today)
       .sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate))[0]
-      || state.plan?.sessions.find((session) => !session.isRestDay);
+      || state.plan?.sessions.find((session) => !session.isRestDay)
+      || null;
+  }
+
+  function isSessionDone(sessionPlanId) {
+    return state.history.sessions.some((session) => session.sessionPlanId === sessionPlanId);
+  }
+
+  function renderDailyCards(tasks) {
+    if (!tasks.length) return emptyMarkup("日課はありません。");
+    return tasks.map((task) => `
+      <article class="daily-card">
+        <h3>${escapeHtml(task.name)}</h3>
+        <p class="muted">${escapeHtml(task.target)}</p>
+      </article>
+    `).join("");
+  }
+
+  function emptyMarkup(message) {
+    return `<div class="empty-state"><p>${escapeHtml(message)}</p></div>`;
   }
 
   function startTimer(seconds) {
@@ -531,6 +483,22 @@
     $("#timer-display").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   }
 
+  function setSyncStatus(message) {
+    $("#sync-status").textContent = message;
+  }
+
+  function downloadJson(filename, payload) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
   function weightText(exercise) {
     return `${weightValueText(exercise.plannedWeight)} / ${weightTypeLabel(exercise.weightType)}`;
   }
@@ -549,6 +517,20 @@
       bodyweight_plus: "自重+追加",
       none: "重量なし"
     }[value] || value;
+  }
+
+  function formatDate(value) {
+    if (!value) return "";
+    const [year, month, day] = value.split("-");
+    return `${Number(month)}/${Number(day)}`;
+  }
+
+  function formatDateTime(value) {
+    if (!value) return "";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value);
+    const pad = (number) => String(number).padStart(2, "0");
+    return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${pad(date.getMinutes())}`;
   }
 
   function nowString() {

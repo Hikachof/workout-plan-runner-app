@@ -1,12 +1,11 @@
-const CACHE_NAME = "workout-plan-runner-v3";
+const CACHE_NAME = "workout-plan-runner-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./assets/styles.css",
   "./assets/app.js",
-  "./icons/icon.svg",
-  "./samples/workout_plan.sample.json"
+  "./icons/icon.svg"
 ];
 
 self.addEventListener("install", (event) => {
@@ -27,6 +26,18 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  if (new URL(event.request.url).pathname.endsWith("/plans/current.json")) {
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put("./plans/current.json", copy));
+        return response;
+      }).catch(() => caches.match("./plans/current.json"))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => (
       cached || fetch(event.request).then((response) => {

@@ -1,7 +1,7 @@
 {
-  "name": "筋トレ実行",
-  "short_name": "筋トレ実行",
-  "description": "PC/Codexが作成した筋トレ計画をiPhoneで実行し、実績JSONを書き出すPWAです。",
+  "name": "筋トレ",
+  "short_name": "筋トレ",
+  "description": "PC/Codexが作成した筋トレ計画をiPhoneで実行するPWAです。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
