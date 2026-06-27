@@ -1,0 +1,18 @@
+{
+  "name": "筋トレ実行",
+  "short_name": "筋トレ実行",
+  "description": "PC/Codexが作成した筋トレ計画をiPhoneで実行し、実績JSONを書き出すPWAです。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f8",
+  "theme_color": "#0f766e",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

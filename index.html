@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="筋トレ実行">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>筋トレ実行</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Workout Plan Runner</p>
+        <h1>筋トレ実行</h1>
+      </div>
+      <button id="install-help" class="ghost-button" type="button">ホーム追加</button>
+    </header>
+
+    <nav class="tabs" aria-label="画面切り替え">
+      <button class="tab active" data-tab="home" type="button">ホーム</button>
+      <button class="tab" data-tab="run" type="button">実行</button>
+      <button class="tab" data-tab="plan" type="button">計画</button>
+      <button class="tab" data-tab="history" type="button">履歴</button>
+      <button class="tab" data-tab="files" type="button">ファイル</button>
+    </nav>
+
+    <main>
+      <section id="home-panel" class="panel active" data-panel="home">
+        <div class="card" id="plan-status"></div>
+        <div class="card" id="next-session-card"></div>
+        <div class="card">
+          <div class="section-head">
+            <h2>日課</h2>
+            <span class="muted">週間メニューとは別管理</span>
+          </div>
+          <div id="daily-tasks"></div>
+        </div>
+      </section>
+
+      <section id="run-panel" class="panel" data-panel="run">
+        <div id="run-empty" class="empty">ホームまたは計画から実行するDayを選んでください。</div>
+        <div id="run-active" class="hidden">
+          <div class="card run-summary">
+            <div>
+              <p class="eyebrow">Running</p>
+              <h2 id="active-title"></h2>
+              <p id="active-meta" class="muted"></p>
+            </div>
+            <button id="finish-session" class="primary-button" type="button">終了して保存</button>
+          </div>
+
+          <div class="card timer-card">
+            <div>
+              <p class="eyebrow">Rest Timer</p>
+              <div id="timer-display">00:00</div>
+            </div>
+            <div class="timer-actions">
+              <button data-timer="60" type="button">60秒</button>
+              <button data-timer="90" type="button">90秒</button>
+              <button data-timer="120" type="button">120秒</button>
+              <button id="timer-stop" type="button">停止</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-head">
+              <h2>日課チェック</h2>
+            </div>
+            <div id="run-daily-tasks"></div>
+          </div>
+
+          <div id="exercise-run-list"></div>
+
+          <div class="card">
+            <label>
+              セッション全体メモ
+              <textarea id="session-notes" rows="3" placeholder="疲労、痛み、時間不足など"></textarea>
+            </label>
+            <label>
+              疲労度 1〜5
+              <input id="session-fatigue" type="number" min="1" max="5" step="1" placeholder="3">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section id="plan-panel" class="panel" data-panel="plan">
+        <div id="plan-list"></div>
+      </section>
+
+      <section id="history-panel" class="panel" data-panel="history">
+        <div class="card">
+          <div class="section-head">
+            <h2>履歴</h2>
+            <button id="clear-history" class="ghost-button" type="button">履歴初期化</button>
+          </div>
+          <div id="history-list"></div>
+        </div>
+      </section>
+
+      <section id="files-panel" class="panel" data-panel="files">
+        <div class="card">
+          <h2>計画JSONを読み込む</h2>
+          <p class="muted">PC/Codexが作成した workout_plan.json を選択してください。</p>
+          <label class="file-label">
+            計画JSONを選択
+            <input id="plan-file-input" type="file" accept="application/json,.json">
+          </label>
+        </div>
+
+        <div class="card">
+          <h2>実績JSONを書き出す</h2>
+          <p class="muted">PC/Codexへ戻す workout_history.json を保存します。</p>
+          <button id="export-history" class="primary-button" type="button">実績JSONを書き出す</button>
+        </div>
+
+        <div class="card">
+          <h2>サンプル</h2>
+          <p class="muted">開発確認用に内蔵サンプル計画を読み込みます。</p>
+          <button id="load-sample-plan" class="secondary-button" type="button">サンプル計画を読み込む</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="exercise-template">
+    <article class="card exercise-card">
+      <div class="exercise-header">
+        <div>
+          <p class="eyebrow exercise-weight"></p>
+          <h2 class="exercise-name"></h2>
+          <p class="exercise-target muted"></p>
+        </div>
+        <button class="ghost-button skip-exercise" type="button">スキップ</button>
+      </div>
+      <div class="form-cues"></div>
+      <div class="sets"></div>
+      <div class="button-row">
+        <button class="secondary-button add-set" type="button">セット追加</button>
+        <button class="primary-button complete-exercise" type="button">種目完了</button>
+      </div>
+      <label>
+        種目メモ
+        <textarea class="exercise-memo" rows="2"></textarea>
+      </label>
+    </article>
+  </template>
+
+  <template id="set-template">
+    <div class="set-row">
+      <div class="set-title"></div>
+      <label>
+        重量
+        <input class="set-weight" type="number" step="0.5">
+      </label>
+      <label>
+        回数
+        <input class="set-reps" type="number" step="1">
+      </label>
+      <label>
+        RIR
+        <input class="set-rir" type="number" min="0" max="10" step="1">
+      </label>
+      <label>
+        フォーム
+        <input class="set-form" type="number" min="1" max="5" step="1">
+      </label>
+      <button class="set-complete" type="button">完了</button>
+    </div>
+  </template>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

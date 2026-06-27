@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "planId": "sample-pwa-plan",
+  "version": 1,
+  "createdAt": "2026-06-28T00:00:00+09:00",
+  "startDate": "2026-06-28",
+  "endDate": "2026-06-28",
+  "unit": "kg",
+  "dailyTaskTemplate": [
+    {
+      "taskId": "daily-sample",
+      "name": "サンプル日課",
+      "target": "10回 × 1セット",
+      "metrics": ["reps", "sets"],
+      "memo": "動作確認用"
+    }
+  ],
+  "sessions": [
+    {
+      "sessionPlanId": "sample-day",
+      "dayNumber": "Sample",
+      "dayName": "動作確認",
+      "scheduledDate": "2026-06-28",
+      "weekdayHint": "",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "PWA確認用の汎用サンプルです。",
+      "exercises": [
+        {
+          "exerciseId": "sample-dumbbell-press",
+          "name": "サンプルダンベルプレス",
+          "plannedWeight": 10,
+          "weightType": "per_dumbbell",
+          "plannedReps": "10",
+          "plannedSets": 2,
+          "setTargets": [
+            { "setNumber": 1, "weight": 10, "reps": "10" },
+            { "setNumber": 2, "weight": 10, "reps": "10" }
+          ],
+          "restSeconds": 90,
+          "formCues": ["フォームを安定させる", "無理をしない"],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": ""
+        }
+      ]
+    }
+  ]
+}
