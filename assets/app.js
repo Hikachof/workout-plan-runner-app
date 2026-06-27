@@ -709,7 +709,28 @@
 
   function registerServiceWorker() {
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      let reloadingForUpdate = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (reloadingForUpdate) return;
+        reloadingForUpdate = true;
+        window.location.reload();
+      });
+
+      navigator.serviceWorker.register("./service-worker.js").then((registration) => {
+        registration.update().catch(() => {});
+        if (registration.waiting && navigator.serviceWorker.controller) {
+          registration.waiting.postMessage({ type: "SKIP_WAITING" });
+        }
+        registration.addEventListener("updatefound", () => {
+          const worker = registration.installing;
+          if (!worker) return;
+          worker.addEventListener("statechange", () => {
+            if (worker.state === "installed" && navigator.serviceWorker.controller) {
+              worker.postMessage({ type: "SKIP_WAITING" });
+            }
+          });
+        });
+      }).catch(() => {});
     }
   }
 })();

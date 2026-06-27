@@ -1,4 +1,4 @@
-const CACHE_NAME = "workout-plan-runner-v8";
+const CACHE_NAME = "workout-plan-runner-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -24,6 +24,10 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+});
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
@@ -39,12 +43,18 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(event.request).then((cached) => (
-      cached || fetch(event.request).then((response) => {
+    fetch(event.request).then((response) => {
+      const copy = response.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+      return response;
+    }).catch(() => (
+      caches.match(event.request).then((cached) => (
+        cached || caches.match("./index.html").then((fallback) => fallback || fetch("./index.html").then((response) => {
         const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          caches.open(CACHE_NAME).then((cache) => cache.put("./index.html", copy));
         return response;
-      }).catch(() => caches.match("./index.html"))
+        }))
+      ))
     ))
   );
 });
