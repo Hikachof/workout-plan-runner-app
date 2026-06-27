@@ -3,6 +3,9 @@
 
   const STORAGE_KEY = "workout-runner-state-v2";
   const PLAN_URL = "./plans/current.json";
+  const FILE_TIMER_SOUNDS = {
+    t01: "./assets/sounds/T01.mp3"
+  };
 
   const state = loadState();
   let activeSession = null;
@@ -12,6 +15,8 @@
   let timerAlarmId = null;
   let timerAlarmStopId = null;
   let audioContext = null;
+  let fileAlarmAudio = null;
+  let fileAlarmSoundId = null;
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -48,6 +53,9 @@
     $("#timer-sound").value = state.timerSound;
     $("#timer-sound").addEventListener("change", (event) => {
       state.timerSound = event.target.value;
+      stopTimerAlarm();
+      fileAlarmAudio = null;
+      fileAlarmSoundId = null;
       saveState();
       primeTimerAudio();
     });
@@ -553,6 +561,7 @@
     if (context?.state === "suspended") {
       context.resume().catch(() => {});
     }
+    getFileAlarmAudio()?.load();
   }
 
   function getAudioContext() {
@@ -566,7 +575,7 @@
   function startTimerAlarm() {
     stopTimerAlarm();
     playAlarmBeep();
-    timerAlarmId = window.setInterval(playAlarmBeep, 760);
+    timerAlarmId = window.setInterval(playAlarmBeep, timerAlarmRepeatMs());
     timerAlarmStopId = window.setTimeout(stopTimerAlarm, 10000);
     updateTimerDisplay();
   }
@@ -576,10 +585,49 @@
     if (timerAlarmStopId) window.clearTimeout(timerAlarmStopId);
     timerAlarmId = null;
     timerAlarmStopId = null;
+    stopFileAlarmSound();
     updateTimerDisplay();
   }
 
   function playAlarmBeep() {
+    if (playFileAlarmSound()) return;
+    playGeneratedAlarmBeep();
+  }
+
+  function timerAlarmRepeatMs() {
+    return FILE_TIMER_SOUNDS[state.timerSound] ? 1100 : 760;
+  }
+
+  function getFileAlarmAudio() {
+    const src = FILE_TIMER_SOUNDS[state.timerSound];
+    if (!src) return null;
+    if (fileAlarmAudio && fileAlarmSoundId === state.timerSound) return fileAlarmAudio;
+    fileAlarmSoundId = state.timerSound;
+    fileAlarmAudio = new Audio(src);
+    fileAlarmAudio.preload = "auto";
+    return fileAlarmAudio;
+  }
+
+  function playFileAlarmSound() {
+    const audio = getFileAlarmAudio();
+    if (!audio) return false;
+
+    audio.pause();
+    audio.currentTime = 0;
+    const playPromise = audio.play();
+    if (playPromise?.catch) {
+      playPromise.catch(() => playGeneratedAlarmBeep());
+    }
+    return true;
+  }
+
+  function stopFileAlarmSound() {
+    if (!fileAlarmAudio) return;
+    fileAlarmAudio.pause();
+    fileAlarmAudio.currentTime = 0;
+  }
+
+  function playGeneratedAlarmBeep() {
     const context = getAudioContext();
     if (!context) return;
     if (context.state === "suspended") {
