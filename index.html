@@ -86,11 +86,21 @@
               <p class="eyebrow">TIMER</p>
               <div id="timer-display">00:00</div>
             </div>
-            <div class="timer-actions">
-              <button data-timer-add="10" type="button">+10秒</button>
-              <button data-timer-add="30" type="button">+30秒</button>
-              <button id="timer-reset" type="button">リセット</button>
-              <button id="timer-stop" type="button">停止</button>
+            <div class="timer-controls">
+              <label class="timer-sound-control" for="timer-sound">
+                音
+                <select id="timer-sound">
+                  <option value="standard">標準</option>
+                  <option value="low">低音</option>
+                  <option value="double">二連</option>
+                </select>
+              </label>
+              <div class="timer-actions">
+                <button data-timer-add="10" type="button">+10秒</button>
+                <button data-timer-add="30" type="button">+30秒</button>
+                <button id="timer-reset" type="button">リセット</button>
+                <button id="timer-stop" type="button">停止</button>
+              </div>
             </div>
           </section>
 

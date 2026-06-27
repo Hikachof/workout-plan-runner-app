@@ -313,6 +313,17 @@ h3 {
   gap: 8px;
 }
 
+.timer-controls {
+  display: grid;
+  gap: 8px;
+  min-width: min(100%, 190px);
+}
+
+.timer-sound-control {
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+}
+
 .exercise-card {
   display: grid;
   gap: 12px;
@@ -361,6 +372,7 @@ label {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   min-height: 42px;

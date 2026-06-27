@@ -20,6 +20,7 @@
 
   async function init() {
     bindEvents();
+    updateTimerDisplay();
     renderAll();
     registerServiceWorker();
     await refreshPlan({ silent: true });
@@ -44,8 +45,14 @@
     $$(".timer-actions [data-timer-add]").forEach((button) => {
       button.addEventListener("click", () => addTimerSeconds(Number(button.dataset.timerAdd)));
     });
+    $("#timer-sound").value = state.timerSound;
+    $("#timer-sound").addEventListener("change", (event) => {
+      state.timerSound = event.target.value;
+      saveState();
+      primeTimerAudio();
+    });
     $("#timer-reset").addEventListener("click", resetTimer);
-    $("#timer-stop").addEventListener("click", stopTimer);
+    $("#timer-stop").addEventListener("click", toggleTimer);
   }
 
   function loadState() {
@@ -66,7 +73,8 @@
         exportedAt: nowString(),
         sessions: []
       },
-      lastSyncAt: value.lastSyncAt || null
+      lastSyncAt: value.lastSyncAt || null,
+      timerSound: value.timerSound || "standard"
     };
   }
 
@@ -475,8 +483,10 @@
   function startCountdown() {
     primeTimerAudio();
     stopCountdown();
-    updateTimerDisplay();
-    if (timerRemaining <= 0) return;
+    if (timerRemaining <= 0) {
+      updateTimerDisplay();
+      return;
+    }
 
     timerId = window.setInterval(() => {
       timerRemaining = Math.max(0, timerRemaining - 1);
@@ -487,11 +497,28 @@
         showToast("TIMER終了です。");
       }
     }, 1000);
+    updateTimerDisplay();
   }
 
   function stopCountdown() {
     if (timerId) window.clearInterval(timerId);
     timerId = null;
+  }
+
+  function toggleTimer() {
+    if (timerAlarmId) {
+      stopTimerAlarm();
+      return;
+    }
+
+    if (timerId) {
+      stopTimer();
+      return;
+    }
+
+    if (timerRemaining > 0) {
+      startCountdown();
+    }
   }
 
   function stopTimer() {
@@ -511,6 +538,14 @@
     const seconds = timerRemaining % 60;
     $("#timer-display").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     $(".timer-card")?.classList.toggle("alarming", Boolean(timerAlarmId));
+    updateTimerControlState();
+  }
+
+  function updateTimerControlState() {
+    const button = $("#timer-stop");
+    const paused = timerRemaining > 0 && !timerId && !timerAlarmId;
+    button.textContent = paused ? "スタート" : "停止";
+    button.disabled = timerRemaining === 0 && !timerId && !timerAlarmId;
   }
 
   function primeTimerAudio() {
@@ -552,17 +587,42 @@
       return;
     }
 
+    for (const tone of timerSoundPattern()) {
+      scheduleTone(context, tone);
+    }
+  }
+
+  function timerSoundPattern() {
+    return {
+      low: [
+        { frequency: 440, startOffset: 0, duration: 0.32, volume: 0.2 }
+      ],
+      double: [
+        { frequency: 880, startOffset: 0, duration: 0.13, volume: 0.18 },
+        { frequency: 1175, startOffset: 0.18, duration: 0.13, volume: 0.16 }
+      ],
+      standard: [
+        { frequency: 880, startOffset: 0, duration: 0.25, volume: 0.18 }
+      ]
+    }[state.timerSound] || [
+      { frequency: 880, startOffset: 0, duration: 0.25, volume: 0.18 }
+    ];
+  }
+
+  function scheduleTone(context, tone) {
     const startAt = context.currentTime;
+    const toneStart = startAt + (tone.startOffset || 0);
+    const toneEnd = toneStart + tone.duration;
     const oscillator = context.createOscillator();
     const gain = context.createGain();
     oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(880, startAt);
-    gain.gain.setValueAtTime(0.0001, startAt);
-    gain.gain.exponentialRampToValueAtTime(0.18, startAt + 0.025);
-    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.24);
+    oscillator.frequency.setValueAtTime(tone.frequency, toneStart);
+    gain.gain.setValueAtTime(0.0001, toneStart);
+    gain.gain.exponentialRampToValueAtTime(tone.volume || 0.18, toneStart + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001, Math.max(toneStart + 0.03, toneEnd - 0.01));
     oscillator.connect(gain).connect(context.destination);
-    oscillator.start(startAt);
-    oscillator.stop(startAt + 0.25);
+    oscillator.start(toneStart);
+    oscillator.stop(toneEnd);
   }
 
   function setSyncStatus(message) {
