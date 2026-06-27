@@ -9,6 +9,9 @@
   let activeStartedAt = null;
   let timerId = null;
   let timerRemaining = 0;
+  let timerAlarmId = null;
+  let timerAlarmStopId = null;
+  let audioContext = null;
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -38,9 +41,10 @@
       startSession(session.sessionPlanId, "as_planned");
     });
     $("#finish-session").addEventListener("click", finishSession);
-    $$(".timer-actions [data-timer]").forEach((button) => {
-      button.addEventListener("click", () => startTimer(Number(button.dataset.timer)));
+    $$(".timer-actions [data-timer-add]").forEach((button) => {
+      button.addEventListener("click", () => addTimerSeconds(Number(button.dataset.timerAdd)));
     });
+    $("#timer-reset").addEventListener("click", resetTimer);
     $("#timer-stop").addEventListener("click", stopTimer);
   }
 
@@ -395,7 +399,7 @@
     state.history.sessions.unshift(activeSession);
     activeSession = null;
     activeStartedAt = null;
-    stopTimer();
+    resetTimer();
     saveState();
     switchPanel("overview");
     renderAll();
@@ -459,21 +463,46 @@
   function startTimer(seconds) {
     stopTimer();
     timerRemaining = seconds;
+    startCountdown();
+  }
+
+  function addTimerSeconds(seconds) {
+    stopTimerAlarm();
+    timerRemaining = Math.max(0, timerRemaining + seconds);
+    startCountdown();
+  }
+
+  function startCountdown() {
+    primeTimerAudio();
+    stopCountdown();
     updateTimerDisplay();
+    if (timerRemaining <= 0) return;
+
     timerId = window.setInterval(() => {
       timerRemaining = Math.max(0, timerRemaining - 1);
       updateTimerDisplay();
       if (timerRemaining === 0) {
-        stopTimer(false);
-        showToast("休憩終了です。");
+        stopCountdown();
+        startTimerAlarm();
+        showToast("TIMER終了です。");
       }
     }, 1000);
   }
 
-  function stopTimer(reset = true) {
+  function stopCountdown() {
     if (timerId) window.clearInterval(timerId);
     timerId = null;
-    if (reset) timerRemaining = 0;
+  }
+
+  function stopTimer() {
+    stopCountdown();
+    stopTimerAlarm();
+    updateTimerDisplay();
+  }
+
+  function resetTimer() {
+    stopTimer();
+    timerRemaining = 0;
     updateTimerDisplay();
   }
 
@@ -481,6 +510,59 @@
     const minutes = Math.floor(timerRemaining / 60);
     const seconds = timerRemaining % 60;
     $("#timer-display").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    $(".timer-card")?.classList.toggle("alarming", Boolean(timerAlarmId));
+  }
+
+  function primeTimerAudio() {
+    const context = getAudioContext();
+    if (context?.state === "suspended") {
+      context.resume().catch(() => {});
+    }
+  }
+
+  function getAudioContext() {
+    if (audioContext) return audioContext;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return null;
+    audioContext = new AudioContextClass();
+    return audioContext;
+  }
+
+  function startTimerAlarm() {
+    stopTimerAlarm();
+    playAlarmBeep();
+    timerAlarmId = window.setInterval(playAlarmBeep, 760);
+    timerAlarmStopId = window.setTimeout(stopTimerAlarm, 10000);
+    updateTimerDisplay();
+  }
+
+  function stopTimerAlarm() {
+    if (timerAlarmId) window.clearInterval(timerAlarmId);
+    if (timerAlarmStopId) window.clearTimeout(timerAlarmStopId);
+    timerAlarmId = null;
+    timerAlarmStopId = null;
+    updateTimerDisplay();
+  }
+
+  function playAlarmBeep() {
+    const context = getAudioContext();
+    if (!context) return;
+    if (context.state === "suspended") {
+      context.resume().catch(() => {});
+      return;
+    }
+
+    const startAt = context.currentTime;
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(880, startAt);
+    gain.gain.setValueAtTime(0.0001, startAt);
+    gain.gain.exponentialRampToValueAtTime(0.18, startAt + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.24);
+    oscillator.connect(gain).connect(context.destination);
+    oscillator.start(startAt);
+    oscillator.stop(startAt + 0.25);
   }
 
   function setSyncStatus(message) {

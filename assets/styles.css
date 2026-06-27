@@ -291,6 +291,15 @@ h3 {
   padding: 14px;
 }
 
+.timer-card.alarming {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.timer-card.alarming #timer-display {
+  color: #dc2626;
+}
+
 #timer-display {
   font-size: 44px;
   font-weight: 900;
