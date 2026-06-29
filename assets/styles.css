@@ -159,6 +159,31 @@ h3 {
   font-weight: 900;
 }
 
+.sync-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.token-control {
+  display: grid;
+  gap: 6px;
+}
+
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.inline-check input {
+  width: 20px;
+  min-height: 20px;
+  margin: 0;
+}
+
 .primary-button {
   color: #ffffff;
   background: var(--accent);
@@ -472,6 +497,10 @@ textarea {
 
   .top-actions {
     flex-direction: column;
+  }
+
+  .sync-actions {
+    grid-template-columns: 1fr;
   }
 
   .schedule-top,

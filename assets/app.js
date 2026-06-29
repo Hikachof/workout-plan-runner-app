@@ -3,6 +3,12 @@
 
   const STORAGE_KEY = "workout-runner-state-v2";
   const PLAN_URL = "./plans/current.json";
+  const GITHUB_SYNC = {
+    owner: "Hikachof",
+    repo: "workout-plan-runner-app",
+    branch: "main",
+    historyPath: "history/workout_history.json"
+  };
   const FILE_TIMER_SOUNDS = {
     t01: "./assets/sounds/T01.mp3"
   };
@@ -44,6 +50,14 @@
 
     $("#refresh-plan").addEventListener("click", () => refreshPlan({ silent: false }));
     $("#export-history").addEventListener("click", exportHistory);
+    $("#save-github-token").addEventListener("click", saveGitHubToken);
+    $("#clear-github-token").addEventListener("click", clearGitHubToken);
+    $("#sync-history-now").addEventListener("click", () => syncHistoryToGitHub({ silent: false }));
+    $("#auto-sync-history").addEventListener("change", (event) => {
+      state.githubSync.auto = event.target.checked;
+      saveState();
+      renderGitHubSync();
+    });
     $("#start-today").addEventListener("click", () => {
       const session = findTodaySession() || findNextSession();
       if (!session || session.isRestDay) {
@@ -88,7 +102,13 @@
         sessions: []
       },
       lastSyncAt: value.lastSyncAt || null,
-      timerSound: value.timerSound || "standard"
+      timerSound: value.timerSound || "standard",
+      githubSync: {
+        token: value.githubSync?.token || "",
+        auto: Boolean(value.githubSync?.auto),
+        lastSyncedAt: value.githubSync?.lastSyncedAt || null,
+        lastError: value.githubSync?.lastError || null
+      }
     };
   }
 
@@ -146,6 +166,7 @@
 
   function renderAll() {
     renderOverview();
+    renderGitHubSync();
     renderToday();
     renderRun();
   }
@@ -190,6 +211,59 @@
         </article>
       `;
     }).join("");
+  }
+
+  function renderGitHubSync() {
+    const tokenInput = $("#github-token-input");
+    const autoInput = $("#auto-sync-history");
+    const manualSyncButton = $("#sync-history-now");
+    const status = $("#github-sync-status");
+    if (!tokenInput || !autoInput || !manualSyncButton || !status) return;
+
+    tokenInput.value = "";
+    tokenInput.placeholder = state.githubSync.token ? "保存済み（変更時だけ入力）" : "fine-grained token";
+    autoInput.checked = state.githubSync.auto;
+    manualSyncButton.disabled = !state.githubSync.token;
+
+    if (state.githubSync.lastError) {
+      status.textContent = `同期失敗: ${state.githubSync.lastError}`;
+    } else if (state.githubSync.lastSyncedAt) {
+      status.textContent = `同期済み ${formatDateTime(state.githubSync.lastSyncedAt)}`;
+    } else if (state.githubSync.token) {
+      status.textContent = state.githubSync.auto ? "自動同期ON" : "手動同期のみ";
+    } else {
+      status.textContent = "未設定";
+    }
+  }
+
+  function setGitHubSyncStatus(message) {
+    const status = $("#github-sync-status");
+    if (status) status.textContent = message;
+  }
+
+  function saveGitHubToken() {
+    const input = $("#github-token-input");
+    const token = input.value.trim();
+    if (!token) {
+      showToast("GitHub tokenを入力してください。");
+      return;
+    }
+
+    state.githubSync.token = token;
+    state.githubSync.lastError = null;
+    saveState();
+    renderGitHubSync();
+    showToast("GitHub tokenをこの端末に保存しました。");
+  }
+
+  function clearGitHubToken() {
+    state.githubSync.token = "";
+    state.githubSync.auto = false;
+    state.githubSync.lastError = null;
+    state.githubSync.lastSyncedAt = null;
+    saveState();
+    renderGitHubSync();
+    showToast("GitHub同期設定を解除しました。");
   }
 
   function renderToday() {
@@ -535,7 +609,10 @@
     saveState();
     switchPanel("overview");
     renderAll();
-    showToast("保存しました。必要な時に記録出力してください。");
+    showToast(state.githubSync.auto && state.githubSync.token ? "保存しました。GitHubへ同期します。" : "保存しました。必要な時に記録出力してください。");
+    if (state.githubSync.auto && state.githubSync.token) {
+      syncHistoryToGitHub({ silent: true });
+    }
   }
 
   function exportHistory() {
@@ -544,6 +621,90 @@
       exportedAt: nowString()
     };
     downloadJson("workout_history.json", payload);
+  }
+
+  async function syncHistoryToGitHub({ silent }) {
+    if (!state.githubSync.token) {
+      showToast("GitHub tokenを保存してから同期してください。");
+      renderGitHubSync();
+      return;
+    }
+
+    setGitHubSyncStatus("GitHubへ同期中");
+    try {
+      const payload = {
+        ...state.history,
+        exportedAt: nowString()
+      };
+      const sha = await getGitHubFileSha(GITHUB_SYNC.historyPath);
+      const response = await fetch(gitHubContentsUrl(GITHUB_SYNC.historyPath), {
+        method: "PUT",
+        headers: gitHubHeaders(),
+        body: JSON.stringify({
+          message: `Sync workout history ${compactNowString()}`,
+          content: encodeBase64Utf8(JSON.stringify(payload, null, 2)),
+          branch: GITHUB_SYNC.branch,
+          ...(sha ? { sha } : {})
+        })
+      });
+      const data = await parseGitHubResponse(response);
+      if (!response.ok) throw new Error(gitHubErrorMessage(response, data));
+
+      state.history.exportedAt = payload.exportedAt;
+      state.githubSync.lastSyncedAt = nowString();
+      state.githubSync.lastError = null;
+      saveState();
+      renderGitHubSync();
+      if (!silent) showToast("GitHubへ同期しました。");
+    } catch (error) {
+      state.githubSync.lastError = error.message;
+      saveState();
+      renderGitHubSync();
+      showToast(`GitHub同期失敗: ${error.message}`);
+    }
+  }
+
+  async function getGitHubFileSha(path) {
+    const response = await fetch(`${gitHubContentsUrl(path)}?ref=${encodeURIComponent(GITHUB_SYNC.branch)}&t=${Date.now()}`, {
+      headers: gitHubHeaders()
+    });
+    const data = await parseGitHubResponse(response);
+    if (response.status === 404) return null;
+    if (!response.ok) throw new Error(gitHubErrorMessage(response, data));
+    return data.sha || null;
+  }
+
+  function gitHubContentsUrl(path) {
+    return `https://api.github.com/repos/${GITHUB_SYNC.owner}/${GITHUB_SYNC.repo}/contents/${path}`;
+  }
+
+  function gitHubHeaders() {
+    return {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${state.githubSync.token}`,
+      "X-GitHub-Api-Version": "2026-03-10"
+    };
+  }
+
+  async function parseGitHubResponse(response) {
+    try {
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
+
+  function gitHubErrorMessage(response, data) {
+    return data?.message ? `${response.status} ${data.message}` : `HTTP ${response.status}`;
+  }
+
+  function encodeBase64Utf8(text) {
+    const bytes = new TextEncoder().encode(text);
+    let binary = "";
+    bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte);
+    });
+    return btoa(binary);
   }
 
   function bindNumber(root, selector, setter) {

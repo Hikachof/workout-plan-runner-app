@@ -35,6 +35,26 @@
 
         <section class="section-block">
           <div class="section-heading">
+            <h2>GitHub同期</h2>
+            <span id="github-sync-status" class="sync-status">未設定</span>
+          </div>
+          <label class="token-control">
+            GitHub token
+            <input id="github-token-input" type="password" autocomplete="off" placeholder="fine-grained token">
+          </label>
+          <label class="inline-check">
+            <input id="auto-sync-history" type="checkbox">
+            終了保存時に自動同期
+          </label>
+          <div class="sync-actions">
+            <button id="save-github-token" class="secondary-button" type="button">トークン保存</button>
+            <button id="sync-history-now" class="primary-button" type="button">今すぐ同期</button>
+            <button id="clear-github-token" class="ghost-button" type="button">解除</button>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
             <h2>全体</h2>
             <span id="plan-range" class="muted"></span>
           </div>
