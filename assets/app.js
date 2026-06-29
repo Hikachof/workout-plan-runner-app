@@ -51,6 +51,7 @@
     $("#refresh-plan").addEventListener("click", () => refreshPlan({ silent: false }));
     $("#export-history").addEventListener("click", exportHistory);
     $("#save-github-token").addEventListener("click", saveGitHubToken);
+    $("#github-token-file").addEventListener("change", importGitHubTokenFile);
     $("#clear-github-token").addEventListener("click", clearGitHubToken);
     $("#sync-history-now").addEventListener("click", () => syncHistoryToGitHub({ silent: false }));
     $("#auto-sync-history").addEventListener("change", (event) => {
@@ -254,6 +255,27 @@
     saveState();
     renderGitHubSync();
     showToast("GitHub tokenをこの端末に保存しました。");
+  }
+
+  async function importGitHubTokenFile(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const tokenConfig = JSON.parse(await file.text());
+      const token = String(tokenConfig.token || tokenConfig.githubToken || tokenConfig.GITHUB_TOKEN || "").trim();
+      if (!token) throw new Error("tokenが見つかりません。");
+
+      state.githubSync.token = token;
+      state.githubSync.lastError = null;
+      saveState();
+      renderGitHubSync();
+      showToast("トークンJSONからGitHub tokenを保存しました。");
+    } catch (error) {
+      showToast(`トークンJSON読込失敗: ${error.message}`);
+    } finally {
+      event.target.value = "";
+    }
   }
 
   function clearGitHubToken() {

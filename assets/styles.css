@@ -161,8 +161,20 @@ h3 {
 
 .sync-actions {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
+}
+
+.file-button {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.file-button input {
+  display: none;
 }
 
 .token-control {
