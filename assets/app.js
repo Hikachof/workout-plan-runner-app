@@ -17,6 +17,12 @@
   let audioContext = null;
   let fileAlarmAudio = null;
   let fileAlarmSoundId = null;
+  const questClearDelayMs = 900;
+  const clearingDailyTaskKeys = new Set();
+  const hiddenDailyTaskKeys = new Set();
+  const clearingExerciseKeys = new Set();
+  const hiddenExerciseKeys = new Set();
+  const questClearTimers = new Map();
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -249,17 +255,47 @@
 
   function renderRunDailyTasks() {
     const root = $("#run-daily-tasks");
-    root.innerHTML = activeSession.dailyTasks.map((task, index) => `
-      <label class="daily-card">
+    if (!activeSession.dailyTasks.length) {
+      root.innerHTML = "";
+      return;
+    }
+
+    const visibleTasks = activeSession.dailyTasks
+      .map((task, index) => ({
+        task,
+        index,
+        taskKey: dailyTaskRunKey(task, index)
+      }))
+      .filter(({ taskKey }) => !hiddenDailyTaskKeys.has(taskKey));
+
+    if (!visibleTasks.length) {
+      root.innerHTML = `<div class="empty-state quest-complete"><p>日課クエストクリア！</p></div>`;
+      return;
+    }
+
+    root.innerHTML = visibleTasks.map(({ task, index, taskKey }) => {
+      const isClearing = clearingDailyTaskKeys.has(taskKey);
+      return `
+      <label class="daily-card${isClearing ? " is-clearing" : ""}">
         <span>${escapeHtml(task.name)}</span>
-        <input data-daily="${index}" type="checkbox" ${task.completed ? "checked" : ""}>
+        <input data-daily="${index}" type="checkbox" ${task.completed ? "checked" : ""} ${isClearing ? "disabled" : ""}>
+        ${isClearing ? `<span class="quest-clear-badge">クリア！</span>` : ""}
       </label>
-    `).join("");
+    `;
+    }).join("");
 
     $$("[data-daily]", root).forEach((input) => {
-      input.addEventListener("change", () => {
-        activeSession.dailyTasks[Number(input.dataset.daily)].completed = input.checked;
-      });
+      const handleDailyToggle = () => {
+        const taskIndex = Number(input.dataset.daily);
+        const task = activeSession.dailyTasks[taskIndex];
+        const wasCompleted = task.completed;
+        task.completed = input.checked;
+        if (task.completed && !wasCompleted) {
+          queueDailyTaskClear(dailyTaskRunKey(task, taskIndex));
+        }
+      };
+      input.addEventListener("click", handleDailyToggle);
+      input.addEventListener("change", handleDailyToggle);
     });
   }
 
@@ -268,8 +304,23 @@
     const template = $("#exercise-template");
     list.innerHTML = "";
 
-    activeSession.exercises.forEach((exercise) => {
+    const visibleExercises = activeSession.exercises
+      .map((exercise, exerciseIndex) => ({
+        exercise,
+        exerciseIndex,
+        exerciseKey: exerciseRunKey(exercise, exerciseIndex)
+      }))
+      .filter(({ exerciseKey }) => !hiddenExerciseKeys.has(exerciseKey));
+
+    if (!visibleExercises.length) {
+      list.innerHTML = `<div class="empty-state quest-complete"><p>全クエストクリア！「終了して保存」で履歴に残せます。</p></div>`;
+      return;
+    }
+
+    visibleExercises.forEach(({ exercise, exerciseKey }) => {
       const card = template.content.firstElementChild.cloneNode(true);
+      const isClearing = clearingExerciseKeys.has(exerciseKey);
+      card.classList.toggle("is-clearing", isClearing);
       $(".exercise-name", card).textContent = exercise.name;
       $(".exercise-weight", card).textContent = weightTypeLabel(exercise.weightType);
       $(".exercise-target", card).textContent = `${weightValueText(exercise.plannedWeight)} / ${exercise.plannedReps}回 × ${exercise.plannedSets}`;
@@ -281,21 +332,27 @@
         renderRunExercises();
       });
       $(".complete-exercise", card).addEventListener("click", () => {
-        exercise.status = "completed";
-        exercise.sets.forEach((set) => { set.completed = true; });
-        renderRunExercises();
+        completeExercise(exercise);
+        queueExerciseClear(exerciseKey);
       });
       $(".add-set", card).addEventListener("click", () => {
         addSet(exercise);
         renderRunExercises();
       });
 
-      renderSetRows($(".sets", card), exercise);
+      renderSetRows($(".sets", card), exercise, exerciseKey);
+      if (isClearing) {
+        $$("button, input, textarea", card).forEach((control) => { control.disabled = true; });
+        const clearBadge = document.createElement("div");
+        clearBadge.className = "quest-clear-badge";
+        clearBadge.textContent = "クリア！";
+        card.appendChild(clearBadge);
+      }
       list.appendChild(card);
     });
   }
 
-  function renderSetRows(root, exercise) {
+  function renderSetRows(root, exercise, exerciseKey) {
     const template = $("#set-template");
     exercise.sets.forEach((set) => {
       const row = template.content.firstElementChild.cloneNode(true);
@@ -311,10 +368,67 @@
       completeButton.addEventListener("click", () => {
         set.completed = !set.completed;
         if (set.completed) startTimer(exercise.restSeconds || 90);
+        if (isExerciseComplete(exercise)) {
+          completeExercise(exercise);
+          queueExerciseClear(exerciseKey);
+          return;
+        }
+        if (exercise.status === "completed") {
+          exercise.status = "planned";
+        }
         renderRunExercises();
       });
       root.appendChild(row);
     });
+  }
+
+  function completeExercise(exercise) {
+    exercise.status = "completed";
+    exercise.sets.forEach((set) => { set.completed = true; });
+  }
+
+  function isExerciseComplete(exercise) {
+    return exercise.sets.length > 0 && exercise.sets.every((set) => set.completed);
+  }
+
+  function queueExerciseClear(exerciseKey) {
+    queueQuestClear(exerciseKey, clearingExerciseKeys, hiddenExerciseKeys, renderRunExercises);
+  }
+
+  function queueDailyTaskClear(taskKey) {
+    queueQuestClear(taskKey, clearingDailyTaskKeys, hiddenDailyTaskKeys, renderRunDailyTasks);
+  }
+
+  function queueQuestClear(questKey, clearingKeys, hiddenKeys, render) {
+    if (hiddenKeys.has(questKey)) return;
+    clearingKeys.add(questKey);
+    if (questClearTimers.has(questKey)) {
+      window.clearTimeout(questClearTimers.get(questKey));
+    }
+    questClearTimers.set(questKey, window.setTimeout(() => {
+      clearingKeys.delete(questKey);
+      hiddenKeys.add(questKey);
+      questClearTimers.delete(questKey);
+      render();
+    }, questClearDelayMs));
+    render();
+  }
+
+  function dailyTaskRunKey(task, taskIndex) {
+    return `daily:${taskIndex}:${task.taskId || task.name}`;
+  }
+
+  function exerciseRunKey(exercise, exerciseIndex) {
+    return `exercise:${exerciseIndex}:${exercise.exerciseId || exercise.name}`;
+  }
+
+  function resetQuestClearState() {
+    questClearTimers.forEach((timer) => window.clearTimeout(timer));
+    questClearTimers.clear();
+    clearingDailyTaskKeys.clear();
+    hiddenDailyTaskKeys.clear();
+    clearingExerciseKeys.clear();
+    hiddenExerciseKeys.clear();
   }
 
   function startSession(sessionPlanId, mode) {
@@ -324,6 +438,7 @@
       return;
     }
 
+    resetQuestClearState();
     activeStartedAt = new Date();
     activeSession = {
       sessionId: `session-${compactNowString()}`,
@@ -413,6 +528,7 @@
 
     state.history.exportedAt = nowString();
     state.history.sessions.unshift(activeSession);
+    resetQuestClearState();
     activeSession = null;
     activeStartedAt = null;
     resetTimer();
