@@ -1,5 +1,586 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-06-29T00:00:00.000Z",
-  "sessions": []
+  "exportedAt": "2026-06-29T07:48:18.930Z",
+  "sessions": [
+    {
+      "sessionId": "session-20260629-151353",
+      "planId": "plan-2026-06-28-to-2026-07-11-production",
+      "sessionPlanId": "sp-2026-06-29-day5",
+      "performedAt": "2026-06-29T06:13:53.774Z",
+      "dayNumber": "Day5",
+      "dayName": "腕・前腕",
+      "executionMode": "as_planned",
+      "durationSeconds": 2882,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "incline-db-curl",
+          "name": "インクラインダンベルカール",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 10,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "反動を使わない",
+            "肘を前に出しすぎない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 8,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "incline-hammer-curl",
+          "name": "インクラインハンマーカール",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 10,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "手首を固定",
+            "下ろしを丁寧に"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 10,
+              "actualWeight": 10,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-db-triceps-extension",
+          "name": "ライイングダンベルトライセプスエクステンション",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 11.5,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "肘の位置を固定",
+            "痛みがあれば中止"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 11.5,
+              "actualWeight": 11.5,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 11.5,
+              "actualWeight": 11.5,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 11.5,
+              "actualWeight": 11.5,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "close-grip-pushup",
+          "name": "クローズグリッププッシュアップ",
+          "weightType": "bodyweight",
+          "plannedWeight": null,
+          "plannedReps": "30-35",
+          "plannedSets": 2,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "肩が痛い場合は省略"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": null,
+              "actualWeight": null,
+              "plannedReps": "30-35",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": null,
+              "actualWeight": null,
+              "plannedReps": "できれば実施",
+              "actualReps": null,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "1〜2セット"
+        },
+        {
+          "exerciseId": "db-wrist-curl",
+          "name": "ダンベルリストカール",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 7,
+          "plannedReps": "20",
+          "plannedSets": 2,
+          "restSeconds": 60,
+          "status": "completed",
+          "formCues": [
+            "可動域を丁寧に"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "リバースリストカールは行わない"
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
+    {
+      "sessionId": "session-20260628-184610",
+      "planId": "plan-2026-06-28-to-2026-07-11-production",
+      "sessionPlanId": "sp-2026-06-28-day4",
+      "performedAt": "2026-06-28T09:46:10.368Z",
+      "dayNumber": "Day4",
+      "dayName": "上半身ボリューム",
+      "executionMode": "as_planned",
+      "durationSeconds": 5,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": false,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": false,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "flat-db-press",
+          "name": "フラットダンベルプレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 25,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "planned",
+          "formCues": [
+            "肩甲骨を寄せる",
+            "下ろしを丁寧に"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 22,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "planned",
+          "formCues": [
+            "上胸に乗せる"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 22,
+              "actualWeight": 22,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 22,
+              "actualWeight": 22,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 22,
+              "actualWeight": 22,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "chest-supported-db-row",
+          "name": "チェストサポートダンベルロー",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 25,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "planned",
+          "formCues": [
+            "胸をベンチにつける",
+            "反動を使わない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 25,
+              "actualWeight": 25,
+              "plannedReps": "できれば実施",
+              "actualReps": null,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "2〜3セット"
+        },
+        {
+          "exerciseId": "side-raise",
+          "name": "サイドレイズ",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 7,
+          "plannedReps": "20",
+          "plannedSets": 3,
+          "restSeconds": 75,
+          "status": "planned",
+          "formCues": [
+            "反動を抑える",
+            "肩をすくめない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-rear-raise",
+          "name": "ライイングリアレイズ",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 7,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 75,
+          "status": "planned",
+          "formCues": [
+            "リアに乗せる"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    }
+  ]
 }
