@@ -1,7 +1,297 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-06-29T07:48:18.930Z",
+  "exportedAt": "2026-07-01T16:11:18.825Z",
   "sessions": [
+    {
+      "sessionId": "session-20260701-212321",
+      "planId": "plan-2026-06-28-to-2026-07-11-production",
+      "sessionPlanId": "sp-2026-07-01-day1",
+      "performedAt": "2026-07-01T12:23:21.433Z",
+      "dayNumber": "Day1",
+      "dayName": "肩・上胸",
+      "executionMode": "as_planned",
+      "durationSeconds": 13677,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 23.5,
+          "plannedReps": "8-9",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "completed",
+          "formCues": [
+            "肩甲骨を寄せる",
+            "下ろしを雑にしない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "8-9",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "8-9",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "8-9",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "db-shoulder-press",
+          "name": "ダンベルショルダープレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 14.5,
+          "plannedReps": "13",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "completed",
+          "formCues": [
+            "腰を反らしすぎない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "13",
+              "actualReps": 13,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "13",
+              "actualReps": 13,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "13",
+              "actualReps": 13,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "side-raise",
+          "name": "サイドレイズ",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 7,
+          "plannedReps": "20",
+          "plannedSets": 3,
+          "restSeconds": 75,
+          "status": "completed",
+          "formCues": [
+            "反動を抑える",
+            "肩をすくめない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "20",
+              "actualReps": 20,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "lying-rear-raise",
+          "name": "ライイングリアレイズ",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 7,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 75,
+          "status": "completed",
+          "formCues": [
+            "肩甲骨で引きすぎない",
+            "リアに乗せる"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 7,
+              "actualWeight": 7,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "pushup",
+          "name": "プッシュアップ",
+          "weightType": "bodyweight",
+          "plannedWeight": null,
+          "plannedReps": "30前後",
+          "plannedSets": 2,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "省略可"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": null,
+              "actualWeight": null,
+              "plannedReps": "30前後",
+              "actualReps": 30,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": null,
+              "actualWeight": null,
+              "plannedReps": "できれば実施",
+              "actualReps": null,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "省略する場合あり"
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
     {
       "sessionId": "session-20260629-151353",
       "planId": "plan-2026-06-28-to-2026-07-11-production",
