@@ -14,10 +14,14 @@
   };
 
   const state = loadState();
-  let activeSession = null;
-  let activeStartedAt = null;
+  let activeSession = state.activeSession || null;
+  let activeStartedAt = parseStoredDate(state.activeStartedAt);
+  if (activeSession && !activeStartedAt) {
+    activeStartedAt = parseStoredDate(activeSession.performedAt) || new Date();
+  }
   let timerId = null;
-  let timerRemaining = 0;
+  let timerRemaining = restoreTimerRemaining(state.timerRemaining, state.timerStartedAt);
+  const resumeTimerOnInit = Boolean(state.timerStartedAt && timerRemaining > 0);
   let timerAlarmId = null;
   let timerAlarmStopId = null;
   let audioContext = null;
@@ -37,10 +41,17 @@
 
   async function init() {
     bindEvents();
+    restoreQuestClearStateFromActiveSession();
+    if (activeSession) switchPanel("run");
     updateTimerDisplay();
     renderAll();
     registerServiceWorker();
     await refreshPlan({ silent: true });
+    if (activeSession) {
+      switchPanel("run");
+      renderAll();
+    }
+    if (resumeTimerOnInit) startCountdown();
   }
 
   function bindEvents() {
@@ -68,6 +79,11 @@
       startSession(session.sessionPlanId, "as_planned");
     });
     $("#finish-session").addEventListener("click", finishSession);
+    $("#session-notes").addEventListener("input", (event) => {
+      if (!activeSession) return;
+      activeSession.notes = event.target.value;
+      saveState();
+    });
     $$(".timer-actions [data-timer-add]").forEach((button) => {
       button.addEventListener("click", () => addTimerSeconds(Number(button.dataset.timerAdd)));
     });
@@ -82,6 +98,10 @@
     });
     $("#timer-reset").addEventListener("click", resetTimer);
     $("#timer-stop").addEventListener("click", toggleTimer);
+    window.addEventListener("pagehide", saveState);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") saveState();
+    });
   }
 
   function loadState() {
@@ -104,6 +124,10 @@
       },
       lastSyncAt: value.lastSyncAt || null,
       timerSound: value.timerSound || "standard",
+      timerRemaining: Math.max(0, Number(value.timerRemaining || 0)),
+      timerStartedAt: value.timerStartedAt || null,
+      activeSession: value.activeSession || null,
+      activeStartedAt: value.activeStartedAt || null,
       githubSync: {
         token: value.githubSync?.token || "",
         auto: Boolean(value.githubSync?.auto),
@@ -114,7 +138,25 @@
   }
 
   function saveState() {
+    state.activeSession = activeSession;
+    state.activeStartedAt = activeStartedAt ? activeStartedAt.toISOString() : null;
+    state.timerRemaining = Math.max(0, Math.round(timerRemaining));
+    state.timerStartedAt = timerId ? nowString() : null;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function parseStoredDate(value) {
+    if (!value) return null;
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+
+  function restoreTimerRemaining(remaining, startedAt) {
+    const base = Math.max(0, Number(remaining || 0));
+    const startedDate = parseStoredDate(startedAt);
+    if (!startedDate || base <= 0) return base;
+    const elapsedSeconds = Math.max(0, Math.round((new Date() - startedDate) / 1000));
+    return Math.max(0, base - elapsedSeconds);
   }
 
   async function refreshPlan({ silent }) {
@@ -388,6 +430,8 @@
         task.completed = input.checked;
         if (task.completed && !wasCompleted) {
           queueDailyTaskClear(dailyTaskRunKey(task, taskIndex));
+        } else {
+          saveState();
         }
       };
       input.addEventListener("click", handleDailyToggle);
@@ -425,6 +469,7 @@
       $(".skip-exercise", card).addEventListener("click", () => {
         exercise.status = "skipped";
         exercise.sets.forEach((set) => { set.completed = false; });
+        saveState();
         renderRunExercises();
       });
       $(".complete-exercise", card).addEventListener("click", () => {
@@ -433,6 +478,7 @@
       });
       $(".add-set", card).addEventListener("click", () => {
         addSet(exercise);
+        saveState();
         renderRunExercises();
       });
 
@@ -472,6 +518,7 @@
         if (exercise.status === "completed") {
           exercise.status = "planned";
         }
+        saveState();
         renderRunExercises();
       });
       root.appendChild(row);
@@ -505,8 +552,10 @@
       clearingKeys.delete(questKey);
       hiddenKeys.add(questKey);
       questClearTimers.delete(questKey);
+      saveState();
       render();
     }, questClearDelayMs));
+    saveState();
     render();
   }
 
@@ -525,6 +574,24 @@
     hiddenDailyTaskKeys.clear();
     clearingExerciseKeys.clear();
     hiddenExerciseKeys.clear();
+  }
+
+  function restoreQuestClearStateFromActiveSession() {
+    resetQuestClearState();
+    if (!activeSession) return;
+
+    activeSession.dailyTasks.forEach((task, taskIndex) => {
+      if (task.completed) {
+        hiddenDailyTaskKeys.add(dailyTaskRunKey(task, taskIndex));
+      }
+    });
+
+    activeSession.exercises.forEach((exercise, exerciseIndex) => {
+      if (exercise.status === "completed" || isExerciseComplete(exercise)) {
+        exercise.status = "completed";
+        hiddenExerciseKeys.add(exerciseRunKey(exercise, exerciseIndex));
+      }
+    });
   }
 
   function startSession(sessionPlanId, mode) {
@@ -559,6 +626,7 @@
       notes: ""
     };
 
+    saveState();
     switchPanel("run");
     renderAll();
   }
@@ -733,6 +801,7 @@
     $(selector, root).addEventListener("input", (event) => {
       const value = event.target.value === "" ? null : Number(event.target.value);
       setter(Number.isFinite(value) ? value : null);
+      saveState();
     });
   }
 
@@ -740,6 +809,7 @@
     $(selector, root).addEventListener("input", (event) => {
       const value = event.target.value === "" ? null : parseInt(event.target.value, 10);
       setter(Number.isFinite(value) ? value : null);
+      saveState();
     });
   }
 
@@ -792,6 +862,7 @@
     stopCountdown();
     if (timerRemaining <= 0) {
       updateTimerDisplay();
+      saveState();
       return;
     }
 
@@ -801,10 +872,12 @@
       if (timerRemaining === 0) {
         stopCountdown();
         startTimerAlarm();
+        saveState();
         showToast("TIMER終了です。");
       }
     }, 1000);
     updateTimerDisplay();
+    saveState();
   }
 
   function stopCountdown() {
@@ -815,6 +888,7 @@
   function toggleTimer() {
     if (timerAlarmId) {
       stopTimerAlarm();
+      saveState();
       return;
     }
 
@@ -832,12 +906,14 @@
     stopCountdown();
     stopTimerAlarm();
     updateTimerDisplay();
+    saveState();
   }
 
   function resetTimer() {
     stopTimer();
     timerRemaining = 0;
     updateTimerDisplay();
+    saveState();
   }
 
   function updateTimerDisplay() {
