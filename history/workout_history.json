@@ -1,7 +1,151 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-07-01T16:11:18.825Z",
+  "exportedAt": "2026-07-02T12:52:56.902Z",
   "sessions": [
+    {
+      "sessionId": "session-20260702-085056",
+      "planId": "plan-2026-06-28-to-2026-07-11-production",
+      "sessionPlanId": "sp-2026-07-02-day2",
+      "performedAt": "2026-07-01T23:50:56.875Z",
+      "dayNumber": "Day2",
+      "dayName": "背中",
+      "executionMode": "as_planned",
+      "durationSeconds": 46920,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "weightType": "single_dumbbell",
+          "plannedWeight": 31,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "completed",
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 31,
+              "actualWeight": 31,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 31,
+              "actualWeight": 31,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 31,
+              "actualWeight": 31,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "db-pullover",
+          "name": "ダンベルプルオーバー",
+          "weightType": "single_dumbbell",
+          "plannedWeight": 17.5,
+          "plannedReps": "15",
+          "plannedSets": 2,
+          "restSeconds": 90,
+          "status": "completed",
+          "formCues": [
+            "肩に違和感があれば浅くする"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 17.5,
+              "actualWeight": 17.5,
+              "plannedReps": "15",
+              "actualReps": 15,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 17.5,
+              "actualWeight": 17.5,
+              "plannedReps": "15",
+              "actualReps": 15,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 17.5,
+              "actualWeight": 17.5,
+              "plannedReps": "15",
+              "actualReps": 15,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
     {
       "sessionId": "session-20260701-212321",
       "planId": "plan-2026-06-28-to-2026-07-11-production",
