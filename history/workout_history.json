@@ -1,7 +1,193 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-07-02T12:52:56.902Z",
+  "exportedAt": "2026-07-03T13:42:44.929Z",
   "sessions": [
+    {
+      "sessionId": "session-20260703-121605",
+      "planId": "plan-2026-06-28-to-2026-07-11-production",
+      "sessionPlanId": "sp-2026-07-03-day3",
+      "performedAt": "2026-07-03T03:16:05.169Z",
+      "dayNumber": "Day3",
+      "dayName": "脚・尻",
+      "executionMode": "as_planned",
+      "durationSeconds": 37600,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "weightType": "single_dumbbell",
+          "plannedWeight": 41,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 150,
+          "status": "completed",
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 41,
+              "actualWeight": 41,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 41,
+              "actualWeight": 41,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 41,
+              "actualWeight": 41,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": ""
+        },
+        {
+          "exerciseId": "bulgarian-squat",
+          "name": "ブルガリアンスクワット",
+          "weightType": "left_right_total",
+          "plannedWeight": 15,
+          "plannedReps": "10",
+          "plannedSets": 3,
+          "restSeconds": 150,
+          "status": "planned",
+          "formCues": [
+            "左右差を記録",
+            "膝の違和感に注意"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 15,
+              "actualWeight": 15,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 15,
+              "actualWeight": 15,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 15,
+              "actualWeight": 15,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "左右合計重量"
+        },
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "weightType": "both_hands_total",
+          "plannedWeight": 62,
+          "plannedReps": "10",
+          "plannedSets": 2,
+          "restSeconds": 150,
+          "status": "planned",
+          "formCues": [
+            "ハムに乗せる",
+            "腰を丸めない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 62,
+              "actualWeight": 62,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 62,
+              "actualWeight": 62,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": false,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "将来的に3セットを目標"
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
     {
       "sessionId": "session-20260702-085056",
       "planId": "plan-2026-06-28-to-2026-07-11-production",
