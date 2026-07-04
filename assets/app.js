@@ -350,10 +350,19 @@
     title.textContent = `${session.dayNumber} ${session.dayName}`;
     meta.textContent = `${formatDate(session.scheduledDate)} ${session.weekdayHint || ""}`;
     const hasDailyTasks = hasRunnableDailyTasks(session);
+    const sessionRecord = findLatestSessionRecord(session.sessionPlanId);
     startButton.disabled = !canStartSession(session);
-    startButton.textContent = session.isRestDay
-      ? (hasDailyTasks ? "日課を開始" : "今日は休息日")
-      : "今日のメニューを開始";
+    startButton.textContent = sessionRecord
+      ? "もう一度実行"
+      : session.isRestDay
+        ? (hasDailyTasks ? "日課を開始" : "今日は休息日")
+        : "今日のメニューを開始";
+
+    if (sessionRecord) {
+      list.innerHTML = renderCompletedSessionSummary(sessionRecord, session);
+      daily.innerHTML = renderDailyResultCards(sessionRecord.dailyTasks || [], state.plan.dailyTaskTemplate || []);
+      return;
+    }
 
     if (session.isRestDay) {
       list.innerHTML = emptyMarkup(hasDailyTasks
@@ -709,7 +718,7 @@
     activeStartedAt = null;
     resetTimer();
     saveState();
-    switchPanel("overview");
+    switchPanel("today");
     renderAll();
     showToast(state.githubSync.auto && state.githubSync.token ? "保存しました。GitHubへ同期します。" : "保存しました。必要な時に記録出力してください。");
     if (state.githubSync.auto && state.githubSync.token) {
@@ -838,6 +847,16 @@
     return Boolean(session && (!session.isRestDay || hasRunnableDailyTasks(session)));
   }
 
+  function findSessionRecords(sessionPlanId) {
+    return (state.history.sessions || [])
+      .filter((session) => session.sessionPlanId === sessionPlanId)
+      .sort((a, b) => sessionTimeValue(b) - sessionTimeValue(a));
+  }
+
+  function findLatestSessionRecord(sessionPlanId) {
+    return findSessionRecords(sessionPlanId)[0] || null;
+  }
+
   function findNextSession() {
     const today = todayString();
     return state.plan?.sessions
@@ -848,7 +867,81 @@
   }
 
   function isSessionDone(sessionPlanId) {
-    return state.history.sessions.some((session) => session.sessionPlanId === sessionPlanId);
+    return Boolean(findLatestSessionRecord(sessionPlanId));
+  }
+
+  function renderCompletedSessionSummary(sessionRecord, sessionPlan) {
+    const records = findSessionRecords(sessionPlan.sessionPlanId);
+    const exercises = sessionRecord.exercises || [];
+    const completedDaily = (sessionRecord.dailyTasks || []).filter((task) => task.completed).length;
+    const dailyCount = (sessionRecord.dailyTasks || []).length;
+    const completedExerciseCount = exercises.filter((exercise) => exercise.status === "completed" || isExerciseComplete(exercise)).length;
+    const totalExerciseCount = exercises.length;
+    const runCount = records.length;
+    return `
+      <div class="result-summary">
+        <span class="tag result-done">実行済み</span>
+        <div>
+          <h3>${escapeHtml(formatDateTime(sessionRecord.performedAt))} に保存</h3>
+          <p class="muted">${[
+            formatDuration(sessionRecord.durationSeconds),
+            dailyCount ? `日課 ${completedDaily}/${dailyCount}` : "",
+            totalExerciseCount ? `種目 ${completedExerciseCount}/${totalExerciseCount}` : "筋トレ種目なし",
+            runCount > 1 ? `${runCount}回実行` : ""
+          ].filter(Boolean).join(" / ")}</p>
+        </div>
+      </div>
+      ${sessionRecord.notes ? `<div class="result-note">${escapeHtml(sessionRecord.notes)}</div>` : ""}
+      ${exercises.length ? `
+        <div class="result-list">
+          ${exercises.map((exercise, index) => renderExerciseResultCard(exercise, index)).join("")}
+        </div>
+      ` : emptyMarkup("筋トレ種目は休息。日課だけ実行済みです。")}
+    `;
+  }
+
+  function renderExerciseResultCard(exercise, index) {
+    const setLines = (exercise.sets || []).map((set) => `
+      <li class="${set.completed ? "completed" : ""}">
+        <span>Set ${set.setNumber}</span>
+        <strong>${escapeHtml(setResultText(set, exercise))}</strong>
+        <em>${set.completed ? "済" : "未完了"}</em>
+      </li>
+    `).join("");
+    return `
+      <article class="result-card">
+        <div class="schedule-top">
+          <div>
+            <p class="eyebrow">${String(index + 1).padStart(2, "0")}</p>
+            <h3>${escapeHtml(exercise.name)}</h3>
+            <p class="muted">${escapeHtml(weightTypeLabel(exercise.weightType))}</p>
+          </div>
+          <span class="tag ${exercise.status === "skipped" ? "rest" : "result-done"}">${exerciseResultLabel(exercise)}</span>
+        </div>
+        ${setLines ? `<ul class="set-result-list">${setLines}</ul>` : `<p class="muted">セット記録なし</p>`}
+        ${exercise.memo ? `<p class="result-note">${escapeHtml(exercise.memo)}</p>` : ""}
+      </article>
+    `;
+  }
+
+  function renderDailyResultCards(tasks, templateTasks) {
+    const taskMap = new Map(tasks.map((task) => [task.taskId || task.name, task]));
+    const source = templateTasks.length ? templateTasks : tasks;
+    if (!source.length) return emptyMarkup("日課はありません。");
+    return source.map((task) => {
+      const record = taskMap.get(task.taskId || task.name);
+      const completed = Boolean(record?.completed);
+      return `
+        <article class="daily-card result-daily ${completed ? "done" : ""}">
+          <div>
+            <h3>${escapeHtml(task.name)}</h3>
+            <p class="muted">${escapeHtml(task.target || "")}</p>
+          </div>
+          <span class="tag ${completed ? "result-done" : "rest"}">${completed ? "実行済み" : "未実行"}</span>
+          ${record?.memo ? `<p class="result-note">${escapeHtml(record.memo)}</p>` : ""}
+        </article>
+      `;
+    }).join("");
   }
 
   function renderDailyCards(tasks) {
@@ -1104,6 +1197,31 @@
     }[value] || value;
   }
 
+  function exerciseResultLabel(exercise) {
+    if (exercise.status === "skipped") return "スキップ";
+    if (exercise.status === "completed" || isExerciseComplete(exercise)) return "完了";
+    if ((exercise.sets || []).some((set) => set.completed)) return "一部完了";
+    return "記録";
+  }
+
+  function setResultText(set, exercise) {
+    const weight = set.actualWeight ?? set.plannedWeight ?? exercise.plannedWeight;
+    const reps = set.actualReps ?? set.plannedReps ?? exercise.plannedReps ?? "-";
+    const weightTextValue = weight === null || weight === undefined ? "自重" : `${weight}kg`;
+    return `${weightTextValue} × ${reps}回`;
+  }
+
+  function formatDuration(seconds) {
+    const totalSeconds = Math.max(0, Number(seconds || 0));
+    if (!totalSeconds) return "";
+    const minutes = Math.floor(totalSeconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    if (hours) return `所要 ${hours}時間${remainingMinutes ? `${remainingMinutes}分` : ""}`;
+    if (minutes) return `所要 ${minutes}分`;
+    return `所要 ${totalSeconds}秒`;
+  }
+
   function formatDate(value) {
     if (!value) return "";
     const [year, month, day] = value.split("-");
@@ -1116,6 +1234,11 @@
     if (Number.isNaN(date.getTime())) return String(value);
     const pad = (number) => String(number).padStart(2, "0");
     return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${pad(date.getMinutes())}`;
+  }
+
+  function sessionTimeValue(session) {
+    const date = new Date(session?.performedAt || 0);
+    return Number.isNaN(date.getTime()) ? 0 : date.getTime();
   }
 
   function nowString() {
