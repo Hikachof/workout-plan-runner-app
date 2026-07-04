@@ -72,7 +72,7 @@
     });
     $("#start-today").addEventListener("click", () => {
       const session = findTodaySession() || findNextSession();
-      if (!session || session.isRestDay) {
+      if (!canStartSession(session)) {
         showToast("開始できるメニューがありません。");
         return;
       }
@@ -349,11 +349,16 @@
 
     title.textContent = `${session.dayNumber} ${session.dayName}`;
     meta.textContent = `${formatDate(session.scheduledDate)} ${session.weekdayHint || ""}`;
-    startButton.disabled = Boolean(session.isRestDay);
-    startButton.textContent = session.isRestDay ? "今日は休息日" : "今日のメニューを開始";
+    const hasDailyTasks = hasRunnableDailyTasks(session);
+    startButton.disabled = !canStartSession(session);
+    startButton.textContent = session.isRestDay
+      ? (hasDailyTasks ? "日課を開始" : "今日は休息日")
+      : "今日のメニューを開始";
 
     if (session.isRestDay) {
-      list.innerHTML = emptyMarkup("今日は休息日です。日課だけ確認してください。");
+      list.innerHTML = emptyMarkup(hasDailyTasks
+        ? "今日は休息日です。日課だけ実行できます。"
+        : "今日は休息日です。日課だけ確認してください。");
     } else {
       list.innerHTML = `<div class="exercise-list">${session.exercises.map((exercise, index) => `
         <article class="today-exercise">
@@ -444,7 +449,8 @@
     const template = $("#exercise-template");
     list.innerHTML = "";
 
-    const visibleExercises = activeSession.exercises
+    const exercises = activeSession.exercises || [];
+    const visibleExercises = exercises
       .map((exercise, exerciseIndex) => ({
         exercise,
         exerciseIndex,
@@ -453,7 +459,10 @@
       .filter(({ exerciseKey }) => !hiddenExerciseKeys.has(exerciseKey));
 
     if (!visibleExercises.length) {
-      list.innerHTML = `<div class="empty-state quest-complete"><p>全クエストクリア！「終了して保存」で履歴に残せます。</p></div>`;
+      const message = exercises.length
+        ? "全クエストクリア！「終了して保存」で履歴に残せます。"
+        : "今日は日課だけです。「終了して保存」で履歴に残せます。";
+      list.innerHTML = `<div class="empty-state quest-complete"><p>${message}</p></div>`;
       return;
     }
 
@@ -580,13 +589,13 @@
     resetQuestClearState();
     if (!activeSession) return;
 
-    activeSession.dailyTasks.forEach((task, taskIndex) => {
+    (activeSession.dailyTasks || []).forEach((task, taskIndex) => {
       if (task.completed) {
         hiddenDailyTaskKeys.add(dailyTaskRunKey(task, taskIndex));
       }
     });
 
-    activeSession.exercises.forEach((exercise, exerciseIndex) => {
+    (activeSession.exercises || []).forEach((exercise, exerciseIndex) => {
       if (exercise.status === "completed" || isExerciseComplete(exercise)) {
         exercise.status = "completed";
         hiddenExerciseKeys.add(exerciseRunKey(exercise, exerciseIndex));
@@ -596,11 +605,14 @@
 
   function startSession(sessionPlanId, mode) {
     const sessionPlan = state.plan?.sessions.find((session) => session.sessionPlanId === sessionPlanId);
-    if (!state.plan || !sessionPlan || sessionPlan.isRestDay) {
+    if (!state.plan || !canStartSession(sessionPlan)) {
       showToast("開始できるメニューがありません。");
       return;
     }
 
+    const dailyTaskTemplate = hasRunnableDailyTasks(sessionPlan)
+      ? state.plan.dailyTaskTemplate || []
+      : [];
     resetQuestClearState();
     activeStartedAt = new Date();
     activeSession = {
@@ -613,14 +625,14 @@
       executionMode: mode,
       durationSeconds: 0,
       fatigue: null,
-      dailyTasks: (state.plan.dailyTaskTemplate || []).map((task) => ({
+      dailyTasks: dailyTaskTemplate.map((task) => ({
         taskId: task.taskId,
         name: task.name,
         completed: false,
         sets: [],
         memo: ""
       })),
-      exercises: sessionPlan.exercises.map(createCompletedExercise),
+      exercises: (sessionPlan.exercises || []).map(createCompletedExercise),
       addedExercises: [],
       skippedExerciseIds: [],
       notes: ""
@@ -686,7 +698,7 @@
     if (!activeSession) return;
     activeSession.notes = $("#session-notes").value.trim();
     activeSession.durationSeconds = activeStartedAt ? Math.max(0, Math.round((new Date() - activeStartedAt) / 1000)) : 0;
-    activeSession.skippedExerciseIds = activeSession.exercises
+    activeSession.skippedExerciseIds = (activeSession.exercises || [])
       .filter((exercise) => exercise.status === "skipped")
       .map((exercise) => exercise.exerciseId);
 
@@ -818,12 +830,20 @@
     return state.plan?.sessions.find((session) => session.scheduledDate === today) || null;
   }
 
+  function hasRunnableDailyTasks(session) {
+    return Boolean(session && session.dailyTasksEnabled !== false && (state.plan?.dailyTaskTemplate || []).length);
+  }
+
+  function canStartSession(session) {
+    return Boolean(session && (!session.isRestDay || hasRunnableDailyTasks(session)));
+  }
+
   function findNextSession() {
     const today = todayString();
     return state.plan?.sessions
-      .filter((session) => !session.isRestDay && session.scheduledDate >= today)
+      .filter((session) => canStartSession(session) && session.scheduledDate >= today)
       .sort((a, b) => a.scheduledDate.localeCompare(b.scheduledDate))[0]
-      || state.plan?.sessions.find((session) => !session.isRestDay)
+      || state.plan?.sessions.find((session) => canStartSession(session))
       || null;
   }
 

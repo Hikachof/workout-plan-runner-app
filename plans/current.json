@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "planId": "plan-2026-06-28-to-2026-07-11-production",
   "title": "2026/6/28-7/11 実行プラン",
-  "version": 2,
+  "version": 3,
   "createdAt": "2026-06-28T01:30:00+09:00",
   "startDate": "2026-06-28",
   "endDate": "2026-07-11",
@@ -39,6 +39,16 @@
       "target": "100秒 × 1〜2セット",
       "metrics": [
         "seconds",
+        "sets"
+      ],
+      "memo": "日課として管理"
+    },
+    {
+      "taskId": "daily-pushup",
+      "name": "プッシュアップ",
+      "target": "20〜30回 × 1〜2セット",
+      "metrics": [
+        "reps",
         "sets"
       ],
       "memo": "日課として管理"
