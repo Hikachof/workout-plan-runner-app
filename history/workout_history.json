@@ -1,7 +1,157 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-07-04T05:41:41.325Z",
+  "exportedAt": "2026-07-05T16:07:26.916Z",
   "sessions": [
+    {
+      "sessionId": "session-20260705-173505",
+      "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex",
+      "sessionPlanId": "sp-2026-07-05-day1",
+      "performedAt": "2026-07-05T08:35:05.033Z",
+      "dayNumber": "Day1",
+      "dayName": "プッシュA",
+      "executionMode": "as_planned",
+      "durationSeconds": 27142,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-pushup",
+          "name": "プッシュアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 23.5,
+          "plannedReps": "10-11",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "completed",
+          "formCues": [
+            "上胸に乗せる"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "11",
+              "actualReps": 11,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 23.5,
+              "actualWeight": 23.5,
+              "plannedReps": "10",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "直近23.5kg×10回×3セット達成。まず1セット目だけ+1回。"
+        },
+        {
+          "exerciseId": "db-shoulder-press",
+          "name": "ダンベルショルダープレス",
+          "weightType": "per_dumbbell",
+          "plannedWeight": 14.5,
+          "plannedReps": "13-14",
+          "plannedSets": 3,
+          "restSeconds": 120,
+          "status": "completed",
+          "formCues": [
+            "腰を反らしすぎない"
+          ],
+          "sets": [
+            {
+              "setNumber": 1,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "14",
+              "actualReps": 10,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 2,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "13",
+              "actualReps": 13,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            },
+            {
+              "setNumber": 3,
+              "plannedWeight": 14.5,
+              "actualWeight": 14.5,
+              "plannedReps": "13",
+              "actualReps": 13,
+              "completed": true,
+              "rir": null,
+              "formRating": null,
+              "pain": "",
+              "memo": ""
+            }
+          ],
+          "memo": "直近14.5kg×13回×3セット達成。1セット目だけ+1回。"
+        }
+      ],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
     {
       "sessionId": "session-20260704-111656",
       "planId": "plan-2026-06-28-to-2026-07-11-production",
