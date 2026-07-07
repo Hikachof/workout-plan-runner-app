@@ -1,7 +1,52 @@
 {
   "schemaVersion": "1.0",
-  "exportedAt": "2026-07-05T16:07:26.916Z",
+  "exportedAt": "2026-07-07T07:08:56.500Z",
   "sessions": [
+    {
+      "sessionId": "session-20260707-121947",
+      "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex",
+      "sessionPlanId": "sp-2026-07-07-rest",
+      "performedAt": "2026-07-07T03:19:47.554Z",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "executionMode": "as_planned",
+      "durationSeconds": 13749,
+      "fatigue": null,
+      "dailyTasks": [
+        {
+          "taskId": "daily-chinning",
+          "name": "チンニング",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-hanging-knee-up",
+          "name": "ハンギングニーアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-plank",
+          "name": "プランク",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        },
+        {
+          "taskId": "daily-pushup",
+          "name": "プッシュアップ",
+          "completed": true,
+          "sets": [],
+          "memo": ""
+        }
+      ],
+      "exercises": [],
+      "addedExercises": [],
+      "skippedExerciseIds": [],
+      "notes": ""
+    },
     {
       "sessionId": "session-20260705-173505",
       "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex",
