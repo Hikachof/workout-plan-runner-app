@@ -525,6 +525,7 @@
 
       bindNumber(row, ".set-weight", (value) => { set.actualWeight = value; });
       bindInteger(row, ".set-reps", (value) => { set.actualReps = value; });
+      bindSetSteppers(row, set, exercise);
       completeButton.addEventListener("click", () => {
         set.completed = !set.completed;
         if (set.completed) startTimer(exercise.restSeconds || 90);
@@ -832,6 +833,57 @@
       setter(Number.isFinite(value) ? value : null);
       saveState();
     });
+  }
+
+  function bindSetSteppers(root, set, exercise) {
+    $$("[data-step-target]", root).forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.stepTarget;
+        const delta = Number(button.dataset.stepDelta);
+        if (!Number.isFinite(delta)) return;
+
+        if (target === "weight") {
+          const input = $(".set-weight", root);
+          const fallback = set.actualWeight ?? set.plannedWeight ?? exercise.plannedWeight ?? 0;
+          const next = clampToStep(readNumber(input.value, fallback) + delta, 0.5);
+          set.actualWeight = next;
+          input.value = formatStepNumber(next, 0.5);
+        }
+
+        if (target === "reps") {
+          const input = $(".set-reps", root);
+          const fallback = firstFiniteNumber(set.actualReps, parseInt(set.plannedReps, 10), parseInt(exercise.plannedReps, 10), 0);
+          const next = Math.max(0, Math.round(readNumber(input.value, fallback) + delta));
+          set.actualReps = next;
+          input.value = String(next);
+        }
+
+        saveState();
+      });
+    });
+  }
+
+  function readNumber(value, fallback) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : Number(fallback) || 0;
+  }
+
+  function firstFiniteNumber(...values) {
+    for (const value of values) {
+      const number = Number(value);
+      if (Number.isFinite(number)) return number;
+    }
+    return 0;
+  }
+
+  function clampToStep(value, step) {
+    return Math.max(0, Math.round(value / step) * step);
+  }
+
+  function formatStepNumber(value, step) {
+    if (Number.isInteger(value)) return String(value);
+    const decimals = String(step).split(".")[1]?.length || 0;
+    return value.toFixed(decimals);
   }
 
   function findTodaySession() {

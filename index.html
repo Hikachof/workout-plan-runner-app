@@ -177,14 +177,22 @@
   <template id="set-template">
     <div class="set-row">
       <div class="set-label"></div>
-      <label>
-        重量
-        <input class="set-weight" type="number" step="0.5">
-      </label>
-      <label>
-        回数
-        <input class="set-reps" type="number" step="1">
-      </label>
+      <div class="stepper-label">
+        <span>重量</span>
+        <div class="stepper-control">
+          <button class="stepper-button" data-step-target="weight" data-step-delta="0.5" type="button" aria-label="重量を0.5kg上げる">▲</button>
+          <input class="set-weight" type="number" step="0.5" inputmode="decimal">
+          <button class="stepper-button" data-step-target="weight" data-step-delta="-0.5" type="button" aria-label="重量を0.5kg下げる">▼</button>
+        </div>
+      </div>
+      <div class="stepper-label">
+        <span>回数</span>
+        <div class="stepper-control">
+          <button class="stepper-button" data-step-target="reps" data-step-delta="1" type="button" aria-label="回数を1回上げる">▲</button>
+          <input class="set-reps" type="number" step="1" inputmode="numeric">
+          <button class="stepper-button" data-step-target="reps" data-step-delta="-1" type="button" aria-label="回数を1回下げる">▼</button>
+        </div>
+      </div>
       <button class="set-complete" type="button">完了</button>
     </div>
   </template>

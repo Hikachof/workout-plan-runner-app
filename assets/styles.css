@@ -526,6 +526,43 @@ h3 {
   font-weight: 900;
 }
 
+.stepper-label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.stepper-control {
+  display: grid;
+  grid-template-rows: 34px minmax(42px, auto) 34px;
+  gap: 4px;
+}
+
+.stepper-control input {
+  min-height: 42px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper-button {
+  min-height: 34px;
+  padding: 0;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+  line-height: 1;
+}
+
+.stepper-button:active {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 .set-complete.completed {
   color: #ffffff;
   background: var(--accent);
