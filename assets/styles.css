@@ -555,6 +555,8 @@ h3 {
   background: var(--accent-soft);
   border-color: var(--accent-soft);
   line-height: 1;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .stepper-button:active {

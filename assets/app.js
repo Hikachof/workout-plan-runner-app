@@ -27,6 +27,7 @@
   let audioContext = null;
   let fileAlarmAudio = null;
   let fileAlarmSoundId = null;
+  let deferredSaveStateTimer = null;
   const questClearDelayMs = 900;
   const clearingDailyTaskKeys = new Set();
   const hiddenDailyTaskKeys = new Set();
@@ -138,11 +139,23 @@
   }
 
   function saveState() {
+    if (deferredSaveStateTimer) {
+      window.clearTimeout(deferredSaveStateTimer);
+      deferredSaveStateTimer = null;
+    }
     state.activeSession = activeSession;
     state.activeStartedAt = activeStartedAt ? activeStartedAt.toISOString() : null;
     state.timerRemaining = Math.max(0, Math.round(timerRemaining));
     state.timerStartedAt = timerId ? nowString() : null;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function deferSaveState(delayMs = 220) {
+    if (deferredSaveStateTimer) window.clearTimeout(deferredSaveStateTimer);
+    deferredSaveStateTimer = window.setTimeout(() => {
+      deferredSaveStateTimer = null;
+      saveState();
+    }, delayMs);
   }
 
   function parseStoredDate(value) {
@@ -823,7 +836,7 @@
     $(selector, root).addEventListener("input", (event) => {
       const value = event.target.value === "" ? null : Number(event.target.value);
       setter(Number.isFinite(value) ? value : null);
-      saveState();
+      deferSaveState();
     });
   }
 
@@ -831,7 +844,7 @@
     $(selector, root).addEventListener("input", (event) => {
       const value = event.target.value === "" ? null : parseInt(event.target.value, 10);
       setter(Number.isFinite(value) ? value : null);
-      saveState();
+      deferSaveState();
     });
   }
 
@@ -858,7 +871,7 @@
           input.value = String(next);
         }
 
-        saveState();
+        deferSaveState();
       });
     });
   }
