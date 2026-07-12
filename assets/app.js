@@ -12,6 +12,8 @@
   const FILE_TIMER_SOUNDS = {
     t01: "./assets/sounds/T01.mp3"
   };
+  const WEIGHT_STEP_BASE = 4;
+  const WEIGHT_STEP_SIZE = 1.5;
 
   const state = loadState();
   let activeSession = state.activeSession || null;
@@ -536,7 +538,7 @@
       completeButton.textContent = set.completed ? "済" : "完了";
       completeButton.classList.toggle("completed", set.completed);
 
-      bindNumber(row, ".set-weight", (value) => { set.actualWeight = value; });
+      bindWeightNumber(row, ".set-weight", (value) => { set.actualWeight = value; });
       bindInteger(row, ".set-reps", (value) => { set.actualReps = value; });
       bindSetSteppers(row, set, exercise);
       completeButton.addEventListener("click", () => {
@@ -840,6 +842,26 @@
     });
   }
 
+  function bindWeightNumber(root, selector, setter) {
+    const input = $(selector, root);
+    input.addEventListener("input", (event) => {
+      const value = event.target.value === "" ? null : Number(event.target.value);
+      setter(Number.isFinite(value) ? value : null);
+      deferSaveState();
+    });
+    input.addEventListener("change", (event) => {
+      if (event.target.value === "") {
+        setter(null);
+        deferSaveState();
+        return;
+      }
+      const value = snapToWeightStep(Number(event.target.value));
+      setter(value);
+      event.target.value = formatStepNumber(value, WEIGHT_STEP_SIZE);
+      deferSaveState();
+    });
+  }
+
   function bindInteger(root, selector, setter) {
     $(selector, root).addEventListener("input", (event) => {
       const value = event.target.value === "" ? null : parseInt(event.target.value, 10);
@@ -858,9 +880,10 @@
         if (target === "weight") {
           const input = $(".set-weight", root);
           const fallback = set.actualWeight ?? set.plannedWeight ?? exercise.plannedWeight ?? 0;
-          const next = clampToStep(readNumber(input.value, fallback) + delta, 0.5);
+          const current = snapToWeightStep(readNumber(input.value, fallback));
+          const next = snapToWeightStep(current + delta);
           set.actualWeight = next;
-          input.value = formatStepNumber(next, 0.5);
+          input.value = formatStepNumber(next, WEIGHT_STEP_SIZE);
         }
 
         if (target === "reps") {
@@ -889,8 +912,11 @@
     return 0;
   }
 
-  function clampToStep(value, step) {
-    return Math.max(0, Math.round(value / step) * step);
+  function snapToWeightStep(value) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return WEIGHT_STEP_BASE;
+    const stepCount = Math.max(0, Math.round((number - WEIGHT_STEP_BASE) / WEIGHT_STEP_SIZE));
+    return WEIGHT_STEP_BASE + stepCount * WEIGHT_STEP_SIZE;
   }
 
   function formatStepNumber(value, step) {

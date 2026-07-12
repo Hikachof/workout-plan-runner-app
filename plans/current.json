@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex",
+  "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex-kg-grid-1p5",
   "title": "2026/7/4-7/18 再構成プラン（通常2種目）",
-  "version": 5,
+  "version": 6,
   "createdAt": "2026-07-04T14:45:48+09:00",
   "startDate": "2026-07-04",
   "endDate": "2026-07-18",
@@ -243,24 +243,24 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 41,
+          "plannedWeight": 41.5,
           "weightType": "single_dumbbell",
           "plannedReps": "10-11",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "11"
             },
             {
               "setNumber": 2,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "10"
             },
             {
               "setNumber": 3,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "10"
             }
           ],
@@ -276,19 +276,19 @@
         {
           "exerciseId": "db-rdl",
           "name": "ダンベルRDL",
-          "plannedWeight": 62,
+          "plannedWeight": 62.5,
           "weightType": "both_hands_total",
           "plannedReps": "8-10",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 62,
+              "weight": 62.5,
               "reps": "10"
             },
             {
               "setNumber": 2,
-              "weight": 62,
+              "weight": 62.5,
               "reps": "8"
             }
           ],
@@ -648,24 +648,24 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 41,
+          "plannedWeight": 41.5,
           "weightType": "single_dumbbell",
           "plannedReps": "10-11",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "11"
             },
             {
               "setNumber": 2,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "10"
             },
             {
               "setNumber": 3,
-              "weight": 41,
+              "weight": 41.5,
               "reps": "10"
             }
           ],
@@ -681,19 +681,19 @@
         {
           "exerciseId": "bulgarian-squat",
           "name": "ブルガリアンスクワット",
-          "plannedWeight": 15,
+          "plannedWeight": 14.5,
           "weightType": "left_right_total",
           "plannedReps": "8-10",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 15,
+              "weight": 14.5,
               "reps": "10"
             },
             {
               "setNumber": 2,
-              "weight": 15,
+              "weight": 14.5,
               "reps": "8"
             }
           ],
