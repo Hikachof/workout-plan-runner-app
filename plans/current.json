@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-07-04-to-2026-07-18-rebuilt-2ex-kg-grid-1p5",
-  "title": "2026/7/4-7/18 再構成プラン（通常2種目）",
-  "version": 6,
-  "createdAt": "2026-07-04T14:45:48+09:00",
-  "startDate": "2026-07-04",
-  "endDate": "2026-07-18",
+  "planId": "plan-2026-07-14-to-2026-07-28-rebuilt-2ex-kg-grid-1p5",
+  "title": "2026/7/14-7/28 再構成プラン（通常2種目）",
+  "version": 7,
+  "createdAt": "2026-07-14T00:00:00+09:00",
+  "startDate": "2026-07-14",
+  "endDate": "2026-07-28",
   "unit": "kg",
   "dailyTaskTemplate": [
     {
@@ -56,23 +56,23 @@
   ],
   "sessions": [
     {
-      "sessionPlanId": "sp-2026-07-04-rest",
+      "sessionPlanId": "sp-2026-07-14-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-04",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-07-14",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "実行済み休息日。日課のみ。",
+      "notes": "日課のみ。次プランへの区切り。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-07-05-day1",
+      "sessionPlanId": "sp-2026-07-15-day1",
       "dayNumber": "Day1",
       "dayName": "プッシュA",
-      "scheduledDate": "2026-07-05",
-      "weekdayHint": "日曜日",
+      "scheduledDate": "2026-07-15",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -94,7 +94,7 @@
             {
               "setNumber": 2,
               "weight": 23.5,
-              "reps": "10"
+              "reps": "11"
             },
             {
               "setNumber": 3,
@@ -115,13 +115,13 @@
           "name": "ダンベルショルダープレス",
           "plannedWeight": 14.5,
           "weightType": "per_dumbbell",
-          "plannedReps": "13-14",
+          "plannedReps": "12-13",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
               "weight": 14.5,
-              "reps": "14"
+              "reps": "13"
             },
             {
               "setNumber": 2,
@@ -131,7 +131,7 @@
             {
               "setNumber": 3,
               "weight": 14.5,
-              "reps": "13"
+              "reps": "12"
             }
           ],
           "restSeconds": 120,
@@ -145,11 +145,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-06-day2",
+      "sessionPlanId": "sp-2026-07-16-day2",
       "dayNumber": "Day2",
       "dayName": "プルA",
-      "scheduledDate": "2026-07-06",
-      "weekdayHint": "月曜日",
+      "scheduledDate": "2026-07-16",
+      "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -218,23 +218,23 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-07-rest",
+      "sessionPlanId": "sp-2026-07-17-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-07",
-      "weekdayHint": "火曜日",
+      "scheduledDate": "2026-07-17",
+      "weekdayHint": "金曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。疲労が強ければ完全休養。",
+      "notes": "日課のみ。次プランへの区切り。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-07-08-day3",
+      "sessionPlanId": "sp-2026-07-18-day3",
       "dayNumber": "Day3",
       "dayName": "脚A",
-      "scheduledDate": "2026-07-08",
-      "weekdayHint": "水曜日",
+      "scheduledDate": "2026-07-18",
+      "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -304,11 +304,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-09-day4",
+      "sessionPlanId": "sp-2026-07-19-day4",
       "dayNumber": "Day4",
       "dayName": "腕A",
-      "scheduledDate": "2026-07-09",
-      "weekdayHint": "木曜日",
+      "scheduledDate": "2026-07-19",
+      "weekdayHint": "日曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -319,7 +319,7 @@
           "name": "インクラインダンベルカール",
           "plannedWeight": 10,
           "weightType": "per_dumbbell",
-          "plannedReps": "8-10",
+          "plannedReps": "9-10",
           "plannedSets": 3,
           "setTargets": [
             {
@@ -335,7 +335,7 @@
             {
               "setNumber": 3,
               "weight": 10,
-              "reps": "8-10"
+              "reps": "9"
             }
           ],
           "restSeconds": 90,
@@ -383,11 +383,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-10-day5",
+      "sessionPlanId": "sp-2026-07-20-day5",
       "dayNumber": "Day5",
       "dayName": "肩補助",
-      "scheduledDate": "2026-07-10",
-      "weekdayHint": "金曜日",
+      "scheduledDate": "2026-07-20",
+      "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -461,23 +461,23 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-11-rest",
+      "sessionPlanId": "sp-2026-07-21-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-11",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-07-21",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。疲労が強ければ完全休養。",
+      "notes": "日課のみ。次プランへの区切り。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-07-12-day6",
+      "sessionPlanId": "sp-2026-07-22-day6",
       "dayNumber": "Day6",
       "dayName": "プッシュB",
-      "scheduledDate": "2026-07-12",
-      "weekdayHint": "日曜日",
+      "scheduledDate": "2026-07-22",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -499,7 +499,7 @@
             {
               "setNumber": 2,
               "weight": 23.5,
-              "reps": "10"
+              "reps": "11"
             },
             {
               "setNumber": 3,
@@ -520,13 +520,13 @@
           "name": "ダンベルショルダープレス",
           "plannedWeight": 14.5,
           "weightType": "per_dumbbell",
-          "plannedReps": "13-14",
+          "plannedReps": "12-13",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
               "weight": 14.5,
-              "reps": "14"
+              "reps": "13"
             },
             {
               "setNumber": 2,
@@ -536,7 +536,7 @@
             {
               "setNumber": 3,
               "weight": 14.5,
-              "reps": "13"
+              "reps": "12"
             }
           ],
           "restSeconds": 120,
@@ -550,11 +550,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-13-day7",
+      "sessionPlanId": "sp-2026-07-23-day7",
       "dayNumber": "Day7",
       "dayName": "プルB",
-      "scheduledDate": "2026-07-13",
-      "weekdayHint": "月曜日",
+      "scheduledDate": "2026-07-23",
+      "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -623,23 +623,23 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-14-rest",
+      "sessionPlanId": "sp-2026-07-24-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-14",
-      "weekdayHint": "火曜日",
+      "scheduledDate": "2026-07-24",
+      "weekdayHint": "金曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。疲労が強ければ完全休養。",
+      "notes": "日課のみ。次プランへの区切り。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-07-15-day8",
+      "sessionPlanId": "sp-2026-07-25-day8",
       "dayNumber": "Day8",
       "dayName": "脚B",
-      "scheduledDate": "2026-07-15",
-      "weekdayHint": "水曜日",
+      "scheduledDate": "2026-07-25",
+      "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -709,11 +709,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-16-day9",
+      "sessionPlanId": "sp-2026-07-26-day9",
       "dayNumber": "Day9",
       "dayName": "腕B",
-      "scheduledDate": "2026-07-16",
-      "weekdayHint": "木曜日",
+      "scheduledDate": "2026-07-26",
+      "weekdayHint": "日曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -788,11 +788,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-17-day10",
+      "sessionPlanId": "sp-2026-07-27-day10",
       "dayNumber": "Day10",
       "dayName": "肩補助B",
-      "scheduledDate": "2026-07-17",
-      "weekdayHint": "金曜日",
+      "scheduledDate": "2026-07-27",
+      "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
@@ -866,11 +866,11 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-18-rest",
+      "sessionPlanId": "sp-2026-07-28-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-18",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-07-28",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
