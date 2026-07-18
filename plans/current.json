@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-07-14-to-2026-07-28-rebuilt-2ex-kg-grid-1p5",
-  "title": "2026/7/14-7/28 再構成プラン（通常2種目）",
-  "version": 7,
+  "planId": "plan-2026-07-14-to-2026-07-28-bulgarian-squat-added",
+  "title": "2026/7/14-7/28 ブルガリアンスクワット追加プラン",
+  "version": 8,
   "createdAt": "2026-07-14T00:00:00+09:00",
   "startDate": "2026-07-14",
   "endDate": "2026-07-28",
@@ -238,7 +238,7 @@
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "脚は2種目に圧縮。前回未消化のRDLは2セットで再開。",
+      "notes": "ブルガリアンスクワットを追加。ゴブレット、ブルガリアン、RDLの3種目。",
       "exercises": [
         {
           "exerciseId": "goblet-squat",
@@ -274,6 +274,34 @@
           "memo": "直近41kg×10回×3セット達成。1セット目だけ+1回。"
         },
         {
+          "exerciseId": "bulgarian-squat",
+          "name": "ブルガリアンスクワット",
+          "plannedWeight": 14.5,
+          "weightType": "left_right_total",
+          "plannedReps": "8-10",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 14.5,
+              "reps": "10"
+            },
+            {
+              "setNumber": 2,
+              "weight": 14.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "左右差を記録",
+            "膝の違和感に注意"
+          ],
+          "optional": false,
+          "shortVersionPriority": 2,
+          "memo": "前回未消化のため2セットで再開。膝に違和感があれば中止。"
+        },
+        {
           "exerciseId": "db-rdl",
           "name": "ダンベルRDL",
           "plannedWeight": 62.5,
@@ -298,7 +326,7 @@
             "腰を丸めない"
           ],
           "optional": false,
-          "shortVersionPriority": 2,
+          "shortVersionPriority": 3,
           "memo": "前回未消化のため2セットで再開。腰を丸めない。"
         }
       ]
