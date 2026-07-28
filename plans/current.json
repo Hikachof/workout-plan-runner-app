@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-07-28-to-2026-08-11-rebuilt-2ex-kg-grid-1p5",
-  "title": "2026/7/28-8/11 更新プラン（通常2種目）",
-  "version": 9,
+  "planId": "plan-2026-07-28-to-2026-08-11-rebuilt-2ex-kg-grid-1p5-daily-abs",
+  "title": "2026/7/28-8/11 更新プラン（日課に腹筋追加）",
+  "version": 10,
   "createdAt": "2026-07-28T00:00:00+09:00",
   "startDate": "2026-07-28",
   "endDate": "2026-08-11",
@@ -32,6 +32,16 @@
         "posteriorPelvicTilt"
       ],
       "memo": "回数だけでなくフォーム強度も確認"
+    },
+    {
+      "taskId": "daily-abs",
+      "name": "腹筋",
+      "target": "20〜30回 × 2〜3セット",
+      "metrics": [
+        "reps",
+        "sets"
+      ],
+      "memo": "日課として管理。反動を使わず腹筋に効かせる。"
     },
     {
       "taskId": "daily-plank",
