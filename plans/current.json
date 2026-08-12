@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-07-28-to-2026-08-11-rebuilt-2ex-kg-grid-1p5-daily-abs",
-  "title": "2026/7/28-8/11 更新プラン（日課に腹筋追加）",
-  "version": 10,
-  "createdAt": "2026-07-28T00:00:00+09:00",
-  "startDate": "2026-07-28",
-  "endDate": "2026-08-11",
+  "planId": "plan-2026-08-12-to-2026-08-26-rebuilt-2ex-kg-grid-1p5-daily-abs",
+  "title": "2026/8/12-8/26 更新プラン（日課に腹筋継続）",
+  "version": 11,
+  "createdAt": "2026-08-12T00:00:00+09:00",
+  "startDate": "2026-08-12",
+  "endDate": "2026-08-26",
   "unit": "kg",
   "dailyTaskTemplate": [
     {
@@ -66,22 +66,10 @@
   ],
   "sessions": [
     {
-      "sessionPlanId": "sp-2026-07-28-rest",
-      "dayNumber": "Rest",
-      "dayName": "休息",
-      "scheduledDate": "2026-07-28",
-      "weekdayHint": "火曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": true,
-      "dailyTasksEnabled": true,
-      "notes": "日課のみ。次プランへの区切り。",
-      "exercises": []
-    },
-    {
-      "sessionPlanId": "sp-2026-07-29-day1",
+      "sessionPlanId": "sp-2026-08-12-day1",
       "dayNumber": "Day1",
       "dayName": "プッシュA",
-      "scheduledDate": "2026-07-29",
+      "scheduledDate": "2026-08-12",
       "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -155,10 +143,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-30-day2",
+      "sessionPlanId": "sp-2026-08-13-day2",
       "dayNumber": "Day2",
       "dayName": "プルA",
-      "scheduledDate": "2026-07-30",
+      "scheduledDate": "2026-08-13",
       "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -228,10 +216,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-07-31-rest",
+      "sessionPlanId": "sp-2026-08-14-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-07-31",
+      "scheduledDate": "2026-08-14",
       "weekdayHint": "金曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
@@ -240,10 +228,10 @@
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-08-01-day3",
+      "sessionPlanId": "sp-2026-08-15-day3",
       "dayNumber": "Day3",
       "dayName": "脚A",
-      "scheduledDate": "2026-08-01",
+      "scheduledDate": "2026-08-15",
       "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -342,10 +330,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-02-day4",
+      "sessionPlanId": "sp-2026-08-16-day4",
       "dayNumber": "Day4",
       "dayName": "腕A",
-      "scheduledDate": "2026-08-02",
+      "scheduledDate": "2026-08-16",
       "weekdayHint": "日曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -421,10 +409,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-03-day5",
+      "sessionPlanId": "sp-2026-08-17-day5",
       "dayNumber": "Day5",
       "dayName": "肩補助",
-      "scheduledDate": "2026-08-03",
+      "scheduledDate": "2026-08-17",
       "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -499,10 +487,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-04-rest",
+      "sessionPlanId": "sp-2026-08-18-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-08-04",
+      "scheduledDate": "2026-08-18",
       "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
@@ -511,10 +499,10 @@
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-08-05-day6",
+      "sessionPlanId": "sp-2026-08-19-day6",
       "dayNumber": "Day6",
       "dayName": "プッシュB",
-      "scheduledDate": "2026-08-05",
+      "scheduledDate": "2026-08-19",
       "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -588,10 +576,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-06-day7",
+      "sessionPlanId": "sp-2026-08-20-day7",
       "dayNumber": "Day7",
       "dayName": "プルB",
-      "scheduledDate": "2026-08-06",
+      "scheduledDate": "2026-08-20",
       "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -661,10 +649,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-07-rest",
+      "sessionPlanId": "sp-2026-08-21-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-08-07",
+      "scheduledDate": "2026-08-21",
       "weekdayHint": "金曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
@@ -673,10 +661,10 @@
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-08-08-day8",
+      "sessionPlanId": "sp-2026-08-22-day8",
       "dayNumber": "Day8",
       "dayName": "脚B",
-      "scheduledDate": "2026-08-08",
+      "scheduledDate": "2026-08-22",
       "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -747,10 +735,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-09-day9",
+      "sessionPlanId": "sp-2026-08-23-day9",
       "dayNumber": "Day9",
       "dayName": "腕B",
-      "scheduledDate": "2026-08-09",
+      "scheduledDate": "2026-08-23",
       "weekdayHint": "日曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -826,10 +814,10 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-10-day10",
+      "sessionPlanId": "sp-2026-08-24-day10",
       "dayNumber": "Day10",
       "dayName": "肩補助B",
-      "scheduledDate": "2026-08-10",
+      "scheduledDate": "2026-08-24",
       "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
@@ -904,11 +892,23 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-11-rest",
+      "sessionPlanId": "sp-2026-08-25-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-08-11",
+      "scheduledDate": "2026-08-25",
       "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "日課のみ。次プランへの区切り。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-08-26-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-08-26",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
