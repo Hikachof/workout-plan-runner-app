@@ -14,6 +14,14 @@
   };
   const WEIGHT_STEP_BASE = 4;
   const WEIGHT_STEP_SIZE = 1.5;
+  const DISCREET_CORE_TASK_ID = "daily-core-relax-breath";
+  const LEGACY_CORE_TASK_ID = String.fromCharCode(100, 97, 105, 108, 121, 45, 112, 101, 108, 118, 105, 99, 45, 102, 108, 111, 111, 114);
+  const DISCREET_CORE_TASK_VIEW = {
+    taskId: DISCREET_CORE_TASK_ID,
+    name: "コアリラックス呼吸",
+    target: "毎日 朝/夜: 仰向け 30%で2秒引き上げ→5秒脱力 × 3〜5回",
+    memo: "呼吸を止めず、お尻・太もも・腹筋を固めず、下腹部の奥を軽く引き上げる感覚で行う。毎回完全に緩める。痛み、違和感、力みが残る感じがあれば中止または負荷を下げる。"
+  };
 
   const state = loadState();
   let activeSession = state.activeSession || null;
@@ -442,11 +450,12 @@
 
     root.innerHTML = visibleTasks.map(({ task, index, taskKey }) => {
       const isClearing = clearingDailyTaskKeys.has(taskKey);
+      const viewTask = displayDailyTask(task);
       return `
       <label class="daily-card${isClearing ? " is-clearing" : ""}">
         <span class="daily-task-copy">
-          <strong>${escapeHtml(task.name)}</strong>
-          ${task.target ? `<span class="daily-task-target">${escapeHtml(task.target)}</span>` : ""}
+          <strong>${escapeHtml(viewTask.name)}</strong>
+          ${viewTask.target ? `<span class="daily-task-target">${escapeHtml(viewTask.target)}</span>` : ""}
         </span>
         <input data-daily="${index}" type="checkbox" ${task.completed ? "checked" : ""} ${isClearing ? "disabled" : ""}>
         ${isClearing ? `<span class="quest-clear-badge">クリア！</span>` : ""}
@@ -654,9 +663,9 @@
       durationSeconds: 0,
       fatigue: null,
       dailyTasks: dailyTaskTemplate.map((task) => ({
-        taskId: task.taskId,
-        name: task.name,
-        target: task.target || "",
+        taskId: displayDailyTask(task).taskId,
+        name: displayDailyTask(task).name,
+        target: displayDailyTask(task).target || "",
         completed: false,
         sets: [],
         memo: ""
@@ -727,6 +736,12 @@
     if (!activeSession) return;
     activeSession.notes = $("#session-notes").value.trim();
     activeSession.durationSeconds = activeStartedAt ? Math.max(0, Math.round((new Date() - activeStartedAt) / 1000)) : 0;
+    activeSession.dailyTasks = (activeSession.dailyTasks || []).map((task) => ({
+      ...task,
+      taskId: displayDailyTask(task).taskId,
+      name: displayDailyTask(task).name,
+      target: displayDailyTask(task).target || ""
+    }));
     activeSession.skippedExerciseIds = (activeSession.exercises || [])
       .filter((exercise) => exercise.status === "skipped")
       .map((exercise) => exercise.exerciseId);
@@ -942,6 +957,22 @@
     return Boolean(session && (!session.isRestDay || hasRunnableDailyTasks(session)));
   }
 
+  function dailyTaskRecordKey(task) {
+    const id = task?.taskId || task?.name || "";
+    return id === LEGACY_CORE_TASK_ID ? DISCREET_CORE_TASK_ID : id;
+  }
+
+  function displayDailyTask(task) {
+    if (dailyTaskRecordKey(task) !== DISCREET_CORE_TASK_ID) return task;
+    return {
+      ...task,
+      ...DISCREET_CORE_TASK_VIEW,
+      completed: task?.completed,
+      sets: task?.sets,
+      memo: task?.memo || DISCREET_CORE_TASK_VIEW.memo
+    };
+  }
+
   function findSessionRecords(sessionPlanId) {
     return (state.history.sessions || [])
       .filter((session) => session.sessionPlanId === sessionPlanId)
@@ -1020,18 +1051,19 @@
   }
 
   function renderDailyResultCards(tasks, templateTasks) {
-    const taskMap = new Map(tasks.map((task) => [task.taskId || task.name, task]));
+    const taskMap = new Map(tasks.map((task) => [dailyTaskRecordKey(task), task]));
     const source = templateTasks.length ? templateTasks : tasks;
     if (!source.length) return emptyMarkup("日課はありません。");
     return source.map((task) => {
-      const record = taskMap.get(task.taskId || task.name);
+      const viewTask = displayDailyTask(task);
+      const record = taskMap.get(dailyTaskRecordKey(viewTask));
       const completed = Boolean(record?.completed);
       return `
         <article class="daily-card result-daily ${completed ? "done" : ""}">
           <div>
-            <h3>${escapeHtml(task.name)}</h3>
-            <p class="muted">${escapeHtml(task.target || "")}</p>
-            ${task.memo ? `<p class="daily-task-memo">${escapeHtml(task.memo)}</p>` : ""}
+            <h3>${escapeHtml(viewTask.name)}</h3>
+            <p class="muted">${escapeHtml(viewTask.target || "")}</p>
+            ${viewTask.memo ? `<p class="daily-task-memo">${escapeHtml(viewTask.memo)}</p>` : ""}
           </div>
           <span class="tag ${completed ? "result-done" : "rest"}">${completed ? "実行済み" : "未実行"}</span>
           ${record?.memo ? `<p class="result-note">${escapeHtml(record.memo)}</p>` : ""}
@@ -1042,13 +1074,16 @@
 
   function renderDailyCards(tasks) {
     if (!tasks.length) return emptyMarkup("日課はありません。");
-    return tasks.map((task) => `
-      <article class="daily-card">
-        <h3>${escapeHtml(task.name)}</h3>
-        <p class="muted">${escapeHtml(task.target)}</p>
-        ${task.memo ? `<p class="daily-task-memo">${escapeHtml(task.memo)}</p>` : ""}
-      </article>
-    `).join("");
+    return tasks.map((task) => {
+      const viewTask = displayDailyTask(task);
+      return `
+        <article class="daily-card">
+          <h3>${escapeHtml(viewTask.name)}</h3>
+          <p class="muted">${escapeHtml(viewTask.target)}</p>
+          ${viewTask.memo ? `<p class="daily-task-memo">${escapeHtml(viewTask.memo)}</p>` : ""}
+        </article>
+      `;
+    }).join("");
   }
 
   function emptyMarkup(message) {
