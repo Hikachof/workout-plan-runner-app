@@ -262,6 +262,22 @@ h3 {
   border-radius: 8px;
 }
 
+.daily-task-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.daily-task-target,
+.daily-task-memo {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.daily-task-memo {
+  margin: 0;
+}
+
 .schedule-card.today {
   border-color: var(--accent);
   background: #edf9f7;

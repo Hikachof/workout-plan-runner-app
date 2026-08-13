@@ -444,7 +444,10 @@
       const isClearing = clearingDailyTaskKeys.has(taskKey);
       return `
       <label class="daily-card${isClearing ? " is-clearing" : ""}">
-        <span>${escapeHtml(task.name)}</span>
+        <span class="daily-task-copy">
+          <strong>${escapeHtml(task.name)}</strong>
+          ${task.target ? `<span class="daily-task-target">${escapeHtml(task.target)}</span>` : ""}
+        </span>
         <input data-daily="${index}" type="checkbox" ${task.completed ? "checked" : ""} ${isClearing ? "disabled" : ""}>
         ${isClearing ? `<span class="quest-clear-badge">クリア！</span>` : ""}
       </label>
@@ -653,6 +656,7 @@
       dailyTasks: dailyTaskTemplate.map((task) => ({
         taskId: task.taskId,
         name: task.name,
+        target: task.target || "",
         completed: false,
         sets: [],
         memo: ""
@@ -1027,6 +1031,7 @@
           <div>
             <h3>${escapeHtml(task.name)}</h3>
             <p class="muted">${escapeHtml(task.target || "")}</p>
+            ${task.memo ? `<p class="daily-task-memo">${escapeHtml(task.memo)}</p>` : ""}
           </div>
           <span class="tag ${completed ? "result-done" : "rest"}">${completed ? "実行済み" : "未実行"}</span>
           ${record?.memo ? `<p class="result-note">${escapeHtml(record.memo)}</p>` : ""}
@@ -1041,6 +1046,7 @@
       <article class="daily-card">
         <h3>${escapeHtml(task.name)}</h3>
         <p class="muted">${escapeHtml(task.target)}</p>
+        ${task.memo ? `<p class="daily-task-memo">${escapeHtml(task.memo)}</p>` : ""}
       </article>
     `).join("");
   }
