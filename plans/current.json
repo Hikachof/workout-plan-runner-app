@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-08-27-to-2026-09-10-after-complete-2ex-core-control",
-  "title": "2026/8/27-9/10 更新プラン（全消化後・2種目運用）",
-  "version": 14,
-  "createdAt": "2026-08-27T00:00:00+09:00",
-  "startDate": "2026-08-27",
-  "endDate": "2026-09-10",
+  "planId": "plan-2026-09-19-to-2026-10-02-restart-1ex",
+  "title": "2026/9/19-10/2 再開プラン（週3回・1種目・各2セット）",
+  "version": 15,
+  "createdAt": "2026-09-19T00:00:00+09:00",
+  "startDate": "2026-09-19",
+  "endDate": "2026-10-02",
   "unit": "kg",
   "dailyTaskTemplate": [
     {
@@ -94,38 +94,33 @@
   ],
   "sessions": [
     {
-      "sessionPlanId": "sp-2026-08-27-day1",
+      "sessionPlanId": "sp-2026-09-19-day1",
       "dayNumber": "Day1",
-      "dayName": "プッシュA",
-      "scheduledDate": "2026-08-27",
-      "weekdayHint": "木曜日",
+      "dayName": "胸（再開1週目）",
+      "scheduledDate": "2026-09-19",
+      "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。全消化後なので重量は据え置き、回数をそろえる。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。まず8回を目安にフォームと翌日の疲れを確認。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": [
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
+          "plannedWeight": 20.5,
           "weightType": "per_dumbbell",
-          "plannedReps": "11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
-              "reps": "11"
+              "weight": 20.5,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 23.5,
-              "reps": "11"
+              "weight": 20.5,
+              "reps": "8"
             }
           ],
           "restSeconds": 120,
@@ -135,76 +130,50 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、同重量で全セット11回をそろえる。全セット余裕ありなら次プランで重量検討。"
-        },
-        {
-          "exerciseId": "db-shoulder-press",
-          "name": "ダンベルショルダープレス",
-          "plannedWeight": 14.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "13",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 14.5,
-              "reps": "13"
-            },
-            {
-              "setNumber": 2,
-              "weight": 14.5,
-              "reps": "13"
-            },
-            {
-              "setNumber": 3,
-              "weight": 14.5,
-              "reps": "13"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "腰を反らしすぎない",
-            "反動を使わない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、同重量で全セット13回をそろえる。腰反りが出る日は12回止め。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-28-day2",
+      "sessionPlanId": "sp-2026-09-20-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-09-20",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-09-21-day2",
       "dayNumber": "Day2",
-      "dayName": "プルA",
-      "scheduledDate": "2026-08-28",
-      "weekdayHint": "金曜日",
+      "dayName": "背中（再開1週目）",
+      "scheduledDate": "2026-09-21",
+      "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。背中はフォームを崩さず少しだけ前進。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。まず8回を目安にフォームと翌日の疲れを確認。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": [
         {
           "exerciseId": "one-hand-db-row",
           "name": "ワンハンドダンベルロー",
-          "plannedWeight": 31,
+          "plannedWeight": 26.5,
           "weightType": "single_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 31,
-              "reps": "11"
+              "weight": 26.5,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 31,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 31,
-              "reps": "10"
+              "weight": 26.5,
+              "reps": "8"
             }
           ],
           "restSeconds": 120,
@@ -214,83 +183,50 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。反動が出るなら10回で止める。"
-        },
-        {
-          "exerciseId": "db-pullover",
-          "name": "ダンベルプルオーバー",
-          "plannedWeight": 17.5,
-          "weightType": "single_dumbbell",
-          "plannedReps": "16",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 17.5,
-              "reps": "16"
-            },
-            {
-              "setNumber": 2,
-              "weight": 17.5,
-              "reps": "16"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "肩に違和感があれば浅くする",
-            "胸郭を広げる意識"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "2セット運用を維持。肩が安定していれば2セットとも16回。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。8回は左右それぞれの回数。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-29-rest",
+      "sessionPlanId": "sp-2026-09-22-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-08-29",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-09-22",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。前半2日分の回復を優先。",
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-08-30-day3",
+      "sessionPlanId": "sp-2026-09-23-day3",
       "dayNumber": "Day3",
-      "dayName": "脚A",
-      "scheduledDate": "2026-08-30",
-      "weekdayHint": "日曜日",
+      "dayName": "脚（再開1週目）",
+      "scheduledDate": "2026-09-23",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。ゴブレットとRDL。深いしゃがみ込みの日課は痛みがなければ軽めに。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。まず8回を目安にフォームと翌日の疲れを確認。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
       "exercises": [
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 41.5,
+          "plannedWeight": 34,
           "weightType": "single_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 41.5,
-              "reps": "11"
+              "weight": 34,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 41.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 41.5,
-              "reps": "10"
+              "weight": 34,
+              "reps": "8"
             }
           ],
           "restSeconds": 150,
@@ -300,241 +236,62 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。深さが浅くなるなら10回維持。"
-        },
-        {
-          "exerciseId": "db-rdl",
-          "name": "ダンベルRDL",
-          "plannedWeight": 62.5,
-          "weightType": "both_hands_total",
-          "plannedReps": "9-10",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 62.5,
-              "reps": "10"
-            },
-            {
-              "setNumber": 2,
-              "weight": 62.5,
-              "reps": "9"
-            }
-          ],
-          "restSeconds": 150,
-          "formCues": [
-            "ハムに乗せる",
-            "腰を丸めない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "脚Aだけに配置。腰とハムの張りが強い日は8回で止める。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-08-31-day4",
-      "dayNumber": "Day4",
-      "dayName": "腕A",
-      "scheduledDate": "2026-08-31",
-      "weekdayHint": "月曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。二頭と三頭を同重量で固める。",
-      "exercises": [
-        {
-          "exerciseId": "incline-db-curl",
-          "name": "インクラインダンベルカール",
-          "plannedWeight": 10,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 10,
-              "reps": "10"
-            },
-            {
-              "setNumber": 2,
-              "weight": 10,
-              "reps": "10"
-            },
-            {
-              "setNumber": 3,
-              "weight": 10,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "反動を使わない",
-            "肘を前に出しすぎない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、同重量で全セット10回をそろえる。"
-        },
-        {
-          "exerciseId": "lying-db-triceps-extension",
-          "name": "ライイングダンベルトライセプスエクステンション",
-          "plannedWeight": 11.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 11.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 2,
-              "weight": 11.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 11.5,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "肘の位置を固定",
-            "痛みがあれば中止"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。肘に痛みがあれば10回維持。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-09-01-day5",
-      "dayNumber": "Day5",
-      "dayName": "肩補助A",
-      "scheduledDate": "2026-09-01",
-      "weekdayHint": "火曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。肩は反動なしで回数を少し進める。",
-      "exercises": [
-        {
-          "exerciseId": "side-raise",
-          "name": "サイドレイズ",
-          "plannedWeight": 7,
-          "weightType": "per_dumbbell",
-          "plannedReps": "20-21",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 7,
-              "reps": "21"
-            },
-            {
-              "setNumber": 2,
-              "weight": 7,
-              "reps": "21"
-            },
-            {
-              "setNumber": 3,
-              "weight": 7,
-              "reps": "20"
-            }
-          ],
-          "restSeconds": 75,
-          "formCues": [
-            "反動を抑える",
-            "肩をすくめない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。反動なしを優先。"
-        },
-        {
-          "exerciseId": "lying-rear-raise",
-          "name": "ライイングリアレイズ",
-          "plannedWeight": 7,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 7,
-              "reps": "11"
-            },
-            {
-              "setNumber": 2,
-              "weight": 7,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 7,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 75,
-          "formCues": [
-            "リアに乗せる",
-            "肩甲骨で引きすぎない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-09-02-rest",
+      "sessionPlanId": "sp-2026-09-24-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-09-02",
-      "weekdayHint": "水曜日",
+      "scheduledDate": "2026-09-24",
+      "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。肩と腕の疲労を抜く。",
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-09-03-day6",
-      "dayNumber": "Day6",
-      "dayName": "プッシュB",
-      "scheduledDate": "2026-09-03",
-      "weekdayHint": "木曜日",
+      "sessionPlanId": "sp-2026-09-25-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-09-25",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-09-26-day4",
+      "dayNumber": "Day4",
+      "dayName": "胸（再開2週目）",
+      "scheduledDate": "2026-09-26",
+      "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。Aと同じ目標で再現性を確認。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。2週目も同じ重量・回数を目安に、余裕とフォームが安定したときだけ1回追加。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": [
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
+          "plannedWeight": 20.5,
           "weightType": "per_dumbbell",
-          "plannedReps": "11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
-              "reps": "11"
+              "weight": 20.5,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 23.5,
-              "reps": "11"
+              "weight": 20.5,
+              "reps": "8"
             }
           ],
           "restSeconds": 120,
@@ -544,76 +301,50 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、同重量で全セット11回をそろえる。全セット余裕ありなら次プランで重量検討。"
-        },
-        {
-          "exerciseId": "db-shoulder-press",
-          "name": "ダンベルショルダープレス",
-          "plannedWeight": 14.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "13",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 14.5,
-              "reps": "13"
-            },
-            {
-              "setNumber": 2,
-              "weight": 14.5,
-              "reps": "13"
-            },
-            {
-              "setNumber": 3,
-              "weight": 14.5,
-              "reps": "13"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "腰を反らしすぎない",
-            "反動を使わない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、同重量で全セット13回をそろえる。腰反りが出る日は12回止め。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-09-04-day7",
-      "dayNumber": "Day7",
-      "dayName": "プルB",
-      "scheduledDate": "2026-09-04",
-      "weekdayHint": "金曜日",
+      "sessionPlanId": "sp-2026-09-27-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-09-27",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-09-28-day5",
+      "dayNumber": "Day5",
+      "dayName": "背中（再開2週目）",
+      "scheduledDate": "2026-09-28",
+      "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。Aと同じ目標でフォームを安定させる。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。2週目も同じ重量・回数を目安に、余裕とフォームが安定したときだけ1回追加。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": [
         {
           "exerciseId": "one-hand-db-row",
           "name": "ワンハンドダンベルロー",
-          "plannedWeight": 31,
+          "plannedWeight": 26.5,
           "weightType": "single_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 31,
-              "reps": "11"
+              "weight": 26.5,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 31,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 31,
-              "reps": "10"
+              "weight": 26.5,
+              "reps": "8"
             }
           ],
           "restSeconds": 120,
@@ -623,83 +354,50 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。反動が出るなら10回で止める。"
-        },
-        {
-          "exerciseId": "db-pullover",
-          "name": "ダンベルプルオーバー",
-          "plannedWeight": 17.5,
-          "weightType": "single_dumbbell",
-          "plannedReps": "16",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 17.5,
-              "reps": "16"
-            },
-            {
-              "setNumber": 2,
-              "weight": 17.5,
-              "reps": "16"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "肩に違和感があれば浅くする",
-            "胸郭を広げる意識"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "2セット運用を維持。肩が安定していれば2セットとも16回。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。8回は左右それぞれの回数。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-09-05-rest",
+      "sessionPlanId": "sp-2026-09-29-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-09-05",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-09-29",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。脚Bへ向けて回復。",
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": []
     },
     {
-      "sessionPlanId": "sp-2026-09-06-day8",
-      "dayNumber": "Day8",
-      "dayName": "脚B",
-      "scheduledDate": "2026-09-06",
-      "weekdayHint": "日曜日",
+      "sessionPlanId": "sp-2026-09-30-day6",
+      "dayNumber": "Day6",
+      "dayName": "脚（再開2週目）",
+      "scheduledDate": "2026-09-30",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。ゴブレットとブルガリアン。膝に違和感があればブルガリアンは中止。",
+      "notes": "メインは1種目・2セット。軽い準備運動と軽量での動作確認後、あと3回ほどできる余裕を残す。疲れた日は1セットで終了可。2週目も同じ重量・回数を目安に、余裕とフォームが安定したときだけ1回追加。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
       "exercises": [
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 41.5,
+          "plannedWeight": 34,
           "weightType": "single_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
+          "plannedReps": "8",
+          "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 41.5,
-              "reps": "11"
+              "weight": 34,
+              "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 41.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 41.5,
-              "reps": "10"
+              "weight": 34,
+              "reps": "8"
             }
           ],
           "restSeconds": 150,
@@ -709,218 +407,32 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。深さが浅くなるなら10回維持。"
-        },
-        {
-          "exerciseId": "bulgarian-squat",
-          "name": "ブルガリアンスクワット",
-          "plannedWeight": 14.5,
-          "weightType": "left_right_total",
-          "plannedReps": "9-10",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 14.5,
-              "reps": "10"
-            },
-            {
-              "setNumber": 2,
-              "weight": 14.5,
-              "reps": "9"
-            }
-          ],
-          "restSeconds": 150,
-          "formCues": [
-            "左右差を記録",
-            "膝の違和感に注意"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "脚Bだけに配置。フォーム優先で2セット目を9回へ進める。膝に違和感があれば中止。"
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-09-07-day9",
-      "dayNumber": "Day9",
-      "dayName": "腕B",
-      "scheduledDate": "2026-09-07",
-      "weekdayHint": "月曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。ハンマーと三頭。",
-      "exercises": [
-        {
-          "exerciseId": "incline-hammer-curl",
-          "name": "インクラインハンマーカール",
-          "plannedWeight": 10,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 10,
-              "reps": "11"
-            },
-            {
-              "setNumber": 2,
-              "weight": 10,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 10,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "手首を固定",
-            "下ろしを丁寧に"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。"
-        },
-        {
-          "exerciseId": "lying-db-triceps-extension",
-          "name": "ライイングダンベルトライセプスエクステンション",
-          "plannedWeight": 11.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 11.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 2,
-              "weight": 11.5,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 11.5,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 90,
-          "formCues": [
-            "肘の位置を固定",
-            "痛みがあれば中止"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。肘に痛みがあれば10回維持。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-09-08-day10",
-      "dayNumber": "Day10",
-      "dayName": "肩補助B",
-      "scheduledDate": "2026-09-08",
-      "weekdayHint": "火曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "日課以外は2種目。Aと同じ目標で反動なしを確認。",
-      "exercises": [
-        {
-          "exerciseId": "side-raise",
-          "name": "サイドレイズ",
-          "plannedWeight": 7,
-          "weightType": "per_dumbbell",
-          "plannedReps": "20-21",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 7,
-              "reps": "21"
-            },
-            {
-              "setNumber": 2,
-              "weight": 7,
-              "reps": "21"
-            },
-            {
-              "setNumber": 3,
-              "weight": 7,
-              "reps": "20"
-            }
-          ],
-          "restSeconds": 75,
-          "formCues": [
-            "反動を抑える",
-            "肩をすくめない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。反動なしを優先。"
-        },
-        {
-          "exerciseId": "lying-rear-raise",
-          "name": "ライイングリアレイズ",
-          "plannedWeight": 7,
-          "weightType": "per_dumbbell",
-          "plannedReps": "10-11",
-          "plannedSets": 3,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 7,
-              "reps": "11"
-            },
-            {
-              "setNumber": 2,
-              "weight": 7,
-              "reps": "11"
-            },
-            {
-              "setNumber": 3,
-              "weight": 7,
-              "reps": "10"
-            }
-          ],
-          "restSeconds": 75,
-          "formCues": [
-            "リアに乗せる",
-            "肩甲骨で引きすぎない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 2,
-          "memo": "前プランを消化済みとして、2セット目だけ+1回。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-09-09-rest",
+      "sessionPlanId": "sp-2026-10-01-rest",
       "dayNumber": "Rest",
       "dayName": "休息",
-      "scheduledDate": "2026-09-09",
-      "weekdayHint": "水曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": true,
-      "dailyTasksEnabled": true,
-      "notes": "日課のみ。次プラン前の回復日。",
-      "exercises": []
-    },
-    {
-      "sessionPlanId": "sp-2026-09-10-rest",
-      "dayNumber": "Rest",
-      "dayName": "休息",
-      "scheduledDate": "2026-09-10",
+      "scheduledDate": "2026-10-01",
       "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": true,
       "dailyTasksEnabled": true,
-      "notes": "日課のみ。全体の疲労を確認して次プランへ。",
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": []
+    },
+    {
+      "sessionPlanId": "sp-2026-10-02-rest",
+      "dayNumber": "Rest",
+      "dayName": "休息",
+      "scheduledDate": "2026-10-02",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": true,
+      "dailyTasksEnabled": true,
+      "notes": "回復日。日課だけの記録も可。疲労があれば日課も休む。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
       "exercises": []
     }
   ]
