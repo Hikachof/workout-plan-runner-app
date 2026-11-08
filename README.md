@@ -1,4 +1,4 @@
-﻿# Workout Plan Runner
+# Workout Plan Runner
 
 PC/Codexが作成した `plans/current.json` を自動取得し、トレーニング実行と `workout_history.json` の書き出しを行うiPhone向けPWAです。
 
@@ -36,3 +36,11 @@ PC/Codexが作成した `plans/current.json` を自動取得し、トレーニ�
 ```
 
 このリポジトリには `github-token.example.json` だけを置きます。実token入りの `github-token.json` は `.gitignore` に入れてあります。
+
+## 2.0（2026-11-08 作り直し）
+
+- 画面：今日・記録・計画・設定の 4 つ。黒と黄緑の見た目。
+- 重さの刻み：ダンベル 1 個の刻み（既定 4kg から 1.5kg ずつ）が基準。`weightType` が `left_right_total` / `both_hands_total`（2 個の合計で記録）の種目は、その 2 倍の刻み（8kg から 3kg ずつ）。`per_dumbbell`（片手の重さ）・`single_dumbbell`（1 個）は 1 個の刻み。刻みは設定で変えられる。計画を作るときは、この刻みに乗る重さを書く。
+- 休憩タイマーは終わる時刻で数える。トレーニング中は画面を消さない（設定で切り替え）。
+- 記録の同期は、GitHub の記録と合わせてから書く（上書きで消えない）。
+- コード：`assets/js/`（役割ごとのファイル）、`assets/css/`。テストは `node --test tests/*.test.js`。

@@ -1,13 +1,30 @@
-const CACHE_NAME = "workout-plan-runner-v27";
+const CACHE_NAME = "workout-plan-runner-v28";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./assets/styles.css",
-  "./assets/app.js",
+  "./assets/css/base.css",
+  "./assets/css/parts.css",
+  "./assets/js/main.js",
+  "./assets/js/actions.js",
+  "./assets/js/store.js",
+  "./assets/js/timer.js",
+  "./assets/js/sync.js",
+  "./assets/js/ui.js",
+  "./assets/js/format.js",
+  "./assets/js/plan.js",
+  "./assets/js/history.js",
+  "./assets/js/session.js",
+  "./assets/js/weights.js",
+  "./assets/js/views/today.js",
+  "./assets/js/views/run.js",
+  "./assets/js/views/plan.js",
+  "./assets/js/views/log.js",
+  "./assets/js/views/settings.js",
   "./plans/current.json",
   "./assets/sounds/T01.mp3",
-  "./icons/icon.svg"
+  "./icons/icon.svg",
+  "./icons/icon-180.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -33,13 +50,14 @@ self.addEventListener("message", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
-  if (new URL(event.request.url).pathname.endsWith("/plans/current.json")) {
+  const path = new URL(event.request.url).pathname;
+  if (path.endsWith("/plans/current.json") || path.endsWith("/history/workout_history.json")) {
     event.respondWith(
       fetch(event.request).then((response) => {
         const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put("./plans/current.json", copy));
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request.url.split("?")[0], copy));
         return response;
-      }).catch(() => caches.match("./plans/current.json"))
+      }).catch(() => caches.match(event.request.url.split("?")[0]))
     );
     return;
   }

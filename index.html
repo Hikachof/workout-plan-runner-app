@@ -3,201 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f766e">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="color-scheme" content="dark">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="筋トレ">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>筋トレ</title>
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/parts.css">
+  <script type="module" src="./assets/js/main.js"></script>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">Workout Runner</p>
-        <h1>筋トレ</h1>
-      </div>
-      <div class="top-actions">
-        <button id="refresh-plan" class="ghost-button" type="button">更新</button>
-        <button id="export-history" class="ghost-button" type="button">記録出力</button>
-      </div>
-    </header>
+  <main id="view" class="view" aria-live="polite"></main>
 
-    <main>
-      <section id="overview-panel" class="panel active" data-panel="overview">
-        <section class="hero-card">
-          <p class="eyebrow">Current Plan</p>
-          <h2 id="overview-title">計画を確認中</h2>
-          <p id="overview-meta" class="muted">GitHub Pagesから最新計画を読み込みます。</p>
-          <div id="sync-status" class="sync-status">同期準備中</div>
-        </section>
+  <div id="timer-dock" class="timer-dock" hidden></div>
 
-        <section class="section-block">
-          <div class="section-heading">
-            <h2>GitHub同期</h2>
-            <span id="github-sync-status" class="sync-status">未設定</span>
-          </div>
-          <label class="token-control">
-            GitHub token
-            <input id="github-token-input" type="password" autocomplete="off" placeholder="fine-grained token">
-          </label>
-          <label class="inline-check">
-            <input id="auto-sync-history" type="checkbox">
-            終了保存時に自動同期
-          </label>
-          <div class="sync-actions">
-            <button id="save-github-token" class="secondary-button" type="button">トークン保存</button>
-            <label class="secondary-button file-button">
-              トークンJSON読込
-              <input id="github-token-file" type="file" accept="application/json,.json">
-            </label>
-            <button id="sync-history-now" class="primary-button" type="button">今すぐ同期</button>
-            <button id="clear-github-token" class="ghost-button" type="button">解除</button>
-          </div>
-        </section>
+  <nav class="nav" aria-label="画面の切り替え">
+    <button class="nav-btn" data-action="go" data-tab="today" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
+      <span>今日</span><i class="nav-dot" hidden></i>
+    </button>
+    <button class="nav-btn" data-action="go" data-tab="log" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6"/></svg>
+      <span>記録</span>
+    </button>
+    <button class="nav-btn" data-action="go" data-tab="plan" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+      <span>計画</span>
+    </button>
+    <button class="nav-btn" data-action="go" data-tab="settings" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+      <span>設定</span>
+    </button>
+  </nav>
 
-        <section class="section-block">
-          <div class="section-heading">
-            <h2>全体</h2>
-            <span id="plan-range" class="muted"></span>
-          </div>
-          <div id="overview-list" class="schedule-list"></div>
-        </section>
-      </section>
-
-      <section id="today-panel" class="panel" data-panel="today">
-        <section class="hero-card today-hero">
-          <p class="eyebrow">Today</p>
-          <h2 id="today-title">今日のメニュー</h2>
-          <p id="today-meta" class="muted"></p>
-          <button id="start-today" class="primary-button" type="button">今日のメニューを開始</button>
-        </section>
-
-        <section class="section-block">
-          <div class="section-heading">
-            <h2>今日やること</h2>
-          </div>
-          <div id="today-list"></div>
-        </section>
-
-        <section class="section-block">
-          <div class="section-heading">
-            <h2>日課</h2>
-          </div>
-          <div id="today-daily" class="daily-grid"></div>
-        </section>
-      </section>
-
-      <section id="run-panel" class="panel" data-panel="run">
-        <div id="run-empty" class="empty-state">
-          <h2>実行中のメニューはありません</h2>
-          <p>今日画面から開始してください。</p>
-        </div>
-
-        <div id="run-active" class="run-layout hidden">
-          <section class="run-header">
-            <div>
-              <p class="eyebrow">Running</p>
-              <h2 id="active-title"></h2>
-              <p id="active-meta" class="muted"></p>
-            </div>
-            <button id="finish-session" class="primary-button" type="button">終了して保存</button>
-          </section>
-
-          <section class="timer-card">
-            <div>
-              <p class="eyebrow">TIMER</p>
-              <div id="timer-display">00:00</div>
-            </div>
-            <div class="timer-controls">
-              <label class="timer-sound-control" for="timer-sound">
-                音
-                <select id="timer-sound">
-                  <option value="standard">標準</option>
-                  <option value="low">低音</option>
-                  <option value="double">二連</option>
-                  <option value="t01">T01</option>
-                </select>
-              </label>
-              <div class="timer-actions">
-                <button data-timer-add="10" type="button">+10秒</button>
-                <button data-timer-add="30" type="button">+30秒</button>
-                <button id="timer-reset" type="button">リセット</button>
-                <button id="timer-stop" type="button">停止</button>
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block compact">
-            <div class="section-heading">
-              <h2>日課</h2>
-            </div>
-            <div id="run-daily-tasks" class="daily-grid"></div>
-          </section>
-
-          <div id="exercise-run-list" class="exercise-run-list"></div>
-
-          <section class="section-block compact">
-            <label>
-              メモ
-              <textarea id="session-notes" rows="3" placeholder="疲労、痛み、時間不足など"></textarea>
-            </label>
-          </section>
-        </div>
-      </section>
-    </main>
-
-    <nav class="bottom-nav" aria-label="画面切り替え">
-      <button class="nav-button active" data-tab="overview" type="button">全体</button>
-      <button class="nav-button" data-tab="today" type="button">今日</button>
-      <button class="nav-button" data-tab="run" type="button">実行</button>
-    </nav>
+  <div id="sheet" class="sheet" hidden>
+    <div class="sheet-backdrop" data-action="sheet-close"></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true"><div class="sheet-body"></div></div>
   </div>
 
-  <template id="exercise-template">
-    <article class="exercise-card">
-      <div class="exercise-card-head">
-        <div>
-          <p class="exercise-weight"></p>
-          <h2 class="exercise-name"></h2>
-          <p class="exercise-target muted"></p>
-        </div>
-        <button class="ghost-button skip-exercise" type="button">スキップ</button>
-      </div>
-      <div class="form-cues"></div>
-      <div class="sets"></div>
-      <div class="exercise-actions">
-        <button class="secondary-button add-set" type="button">セット追加</button>
-        <button class="primary-button complete-exercise" type="button">種目完了</button>
-      </div>
-    </article>
-  </template>
-
-  <template id="set-template">
-    <div class="set-row">
-      <div class="set-label"></div>
-      <div class="stepper-label">
-        <span>重量</span>
-        <div class="stepper-control">
-          <button class="stepper-button" data-step-target="weight" data-step-delta="1.5" type="button" aria-label="重量を1.5kg上げる">▲</button>
-          <input class="set-weight" type="number" min="4" step="1.5" inputmode="decimal">
-          <button class="stepper-button" data-step-target="weight" data-step-delta="-1.5" type="button" aria-label="重量を1.5kg下げる">▼</button>
-        </div>
-      </div>
-      <div class="stepper-label">
-        <span>回数</span>
-        <div class="stepper-control">
-          <button class="stepper-button" data-step-target="reps" data-step-delta="1" type="button" aria-label="回数を1回上げる">▲</button>
-          <input class="set-reps" type="number" step="1" inputmode="numeric">
-          <button class="stepper-button" data-step-target="reps" data-step-delta="-1" type="button" aria-label="回数を1回下げる">▼</button>
-        </div>
-      </div>
-      <button class="set-complete" type="button">完了</button>
-    </div>
-  </template>
-
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/app.js"></script>
+  <noscript>このアプリは JavaScript を使います。</noscript>
 </body>
 </html>

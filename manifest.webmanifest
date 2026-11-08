@@ -1,18 +1,15 @@
 {
   "name": "筋トレ",
   "short_name": "筋トレ",
-  "description": "PC/Codexが作成した筋トレ計画をiPhoneで実行するPWAです。",
+  "description": "PC で作った筋トレの計画を iPhone でこなして記録するアプリ。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f7f8",
-  "theme_color": "#0f766e",
+  "background_color": "#0b0b0c",
+  "theme_color": "#0b0b0c",
   "icons": [
-    {
-      "src": "./icons/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }
