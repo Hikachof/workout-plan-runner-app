@@ -33,13 +33,15 @@ export function createTimer({ state, save, onChange }) {
   const isPaused = () => !t().endAt && t().pausedRemaining > 0;
   const isVisible = () => isRunning() || isAlarming() || isPaused();
 
-  function start(seconds, label = "") {
+  // kind: "rest"（セットのあとの休憩）/ "manual"（自分で始めたタイマー）
+  function start(seconds, label = "", kind = "rest") {
     stopAlarm();
     prime();
     t().endAt = Date.now() + seconds * 1000;
     t().pausedRemaining = 0;
     t().total = seconds;
     t().label = label;
+    t().kind = kind;
     save();
     loop();
   }
@@ -76,6 +78,7 @@ export function createTimer({ state, save, onChange }) {
     t().pausedRemaining = 0;
     t().total = 0;
     t().label = "";
+    t().kind = "rest";
     save();
     stopLoop();
     onChange();

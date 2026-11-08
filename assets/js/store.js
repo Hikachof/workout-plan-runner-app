@@ -37,6 +37,7 @@ function normalizeTimer(value, now) {
       pausedRemaining: Math.max(0, Number(t.pausedRemaining) || 0),
       total: Math.max(0, Number(t.total) || 0),
       label: t.label || "",
+      kind: t.kind === "manual" ? "manual" : "rest",
     };
   }
   const remaining = Math.max(0, Number(value.timerRemaining || 0));

@@ -167,3 +167,9 @@
 .how-to { display: flex; flex-direction: column; gap: 12px; }
 .how-target { font-size: 15px; font-weight: 800; color: var(--accent); }
 .how-to ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; }
+
+.timer-card { gap: 8px; padding: 12px 14px; }
+.timer-card-head { display: flex; justify-content: space-between; align-items: baseline; }
+.timer-presets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.timer-presets .btn { padding: 0 4px; font-variant-numeric: tabular-nums; }
+.how-to > .btn { align-self: stretch; }

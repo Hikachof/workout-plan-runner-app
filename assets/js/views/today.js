@@ -5,6 +5,7 @@ import { canStartSession, findTodaySession, hasDailyTasks, planEndDate, planStat
 import { exerciseKey, isExerciseDone, lastPerformance, recordsOnDate } from "../history.js";
 import { emptyState, holdBadge, icons } from "../ui.js";
 import { lastText, targetText } from "./run.js";
+import { renderTimerCard } from "./timerCard.js";
 
 export function renderToday(app) {
   const { state } = app;
@@ -50,6 +51,7 @@ export function renderToday(app) {
     parts.push(renderSessionPreview(app, session, caption, label));
   }
 
+  parts.push(renderTimerCard(app));
   parts.push(`<button class="btn text" data-action="go" data-tab="plan" type="button">ほかの日を選ぶ</button>`);
   return parts.join("");
 }

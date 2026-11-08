@@ -76,6 +76,7 @@ export function handleAction(app, action, el) {
         <div class="how-to">
           <h2 class="summary-title">${escapeHtml(task.name)}</h2>
           ${task.target ? `<p class="how-target">${escapeHtml(task.target)}</p>` : ""}
+          ${secondsIn(task.target) ? `<button class="btn primary" data-action="timer-start" data-sec="${secondsIn(task.target)}" data-label="${escapeHtml(task.name)}" type="button">${secondsIn(task.target)}秒のタイマーを始める</button>` : ""}
           <ol>${String(task.memo || "").split("\n").filter(Boolean).map((line) => `<li>${escapeHtml(line.replace(/^\d+[.．、]\s*/, ""))}</li>`).join("")}</ol>
           <button class="btn primary big" data-action="sheet-close" type="button">閉じる</button>
         </div>`);
@@ -93,6 +94,13 @@ export function handleAction(app, action, el) {
       app.updateWakeLock();
       return app.render();
 
+    case "timer-start": {
+      closeSheet();
+      const seconds = Number(el.dataset.sec);
+      if (!(seconds > 0)) return undefined;
+      app.timer.start(seconds, el.dataset.label || "", "manual");
+      return app.render();
+    }
     case "timer-toggle":
       return app.timer.togglePause();
     case "timer-add":
@@ -171,6 +179,13 @@ export async function handleInput(app, el, kind) {
     default:
       return undefined;
   }
+}
+
+// 「100秒 × 1〜2セット」のような目標から秒数を取り出す（無ければ 0）
+function secondsIn(text) {
+  const match = String(text || "").match(/(\d+)\s*秒/);
+  const seconds = match ? Number(match[1]) : 0;
+  return seconds >= 20 ? seconds : 0; // 「2秒引き上げる」のような短い数はタイマーにしない
 }
 
 function start(app, sessionPlanId) {

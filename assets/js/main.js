@@ -47,7 +47,21 @@ const app = {
   updateWakeLock,
 };
 
-app.timer = createTimer({ state, save: () => app.save(), onChange: renderTimerDock });
+// タイマーが出た・消えたときは画面ごと描き直す（「タイマー」の欄を出し入れするため）
+let timerWasVisible = false;
+app.timer = createTimer({
+  state,
+  save: () => app.save(),
+  onChange: () => {
+    const visible = app.timer?.isVisible() ?? false;
+    if (visible !== timerWasVisible) {
+      timerWasVisible = visible;
+      render();
+    } else {
+      renderTimerDock();
+    }
+  },
+});
 
 const VIEWS = {
   today: () => (state.activeSession ? renderRun(app) : renderToday(app)),
@@ -92,7 +106,8 @@ function renderTimerDock() {
   document.body.classList.add("has-dock");
   dock.classList.toggle("alarm", t.isAlarming());
   dock.classList.toggle("paused", t.isPaused());
-  const label = t.isAlarming() ? "休憩おわり！" : t.isPaused() ? "一時停止中" : "休憩中";
+  const manual = state.timer.kind === "manual";
+  const label = t.isAlarming() ? (manual ? "時間です！" : "休憩おわり！") : t.isPaused() ? "一時停止中" : manual ? "タイマー" : "休憩中";
   const html = `
     <div class="dock-ring" aria-hidden="true">
       <svg viewBox="0 0 52 52"><circle class="bg" cx="26" cy="26" r="22"/><circle class="fg" cx="26" cy="26" r="22" stroke-dasharray="${circumference.toFixed(1)}" stroke-dashoffset="${(circumference * (1 - ratio)).toFixed(1)}"/></svg>

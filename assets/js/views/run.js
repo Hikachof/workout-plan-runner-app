@@ -5,6 +5,7 @@ import { exerciseKey, lastPerformance } from "../history.js";
 import { hasWeight, formatKg, perHandWeight, holdInfo, snapWeight } from "../weights.js";
 import { currentSetRef, displayDailyTask, setProgress } from "../session.js";
 import { holdBadge, icons } from "../ui.js";
+import { renderTimerCard } from "./timerCard.js";
 
 export function renderRun(app) {
   const { state, ui } = app;
@@ -23,6 +24,8 @@ export function renderRun(app) {
       <h1 class="title">${escapeHtml(session.dayName || "トレーニング")}</h1>
       ${progress.total ? `<div class="progress" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100"><i style="width:${percent}%"></i></div>` : ""}
     </header>
+
+    ${renderTimerCard(app)}
 
     ${allDone ? `<div class="banner good">${icons.check}<span>メインの種目はぜんぶ終わり！ 下の「終えて保存」で記録します。</span></div>` : ""}
 
