@@ -8,7 +8,8 @@ import { planStatus, suggestNextSession, createRunExercise, findTodaySession } f
 import { mergeHistory, exerciseSeries, lastPerformance, sessionHighlights, exerciseCatalog } from "../assets/js/history.js";
 
 const D = { start: 4, step: 1.5, max: 60 };
-const plan = JSON.parse(readFileSync(new URL("../plans/current.json", import.meta.url), "utf8"));
+const plan = JSON.parse(readFileSync(new URL("./fixtures/plan-2026-09-22.json", import.meta.url), "utf8"));
+const currentPlan = JSON.parse(readFileSync(new URL("../plans/current.json", import.meta.url), "utf8"));
 const history = JSON.parse(readFileSync(new URL("../history/workout_history.json", import.meta.url), "utf8"));
 
 test("片手・1 個の種目は 4kg から 1.5kg 刻み", () => {
@@ -88,4 +89,20 @@ test("種目ごとの伸びと前回、自己ベストの判定", () => {
   const highlights = sessionHighlights(h2, newSession);
   assert.equal(highlights[0].kind, "pb");
   assert.equal(highlights[0].weight, 25);
+});
+
+test("公開する計画：重さがすべて刻みに乗っていて、日付が続いている", () => {
+  const dates = currentPlan.sessions.map((s) => s.scheduledDate);
+  for (let i = 1; i < dates.length; i += 1) {
+    assert.equal((Date.parse(dates[i]) - Date.parse(dates[i - 1])) / 86400000, 1);
+  }
+  assert.equal(dates[0], currentPlan.startDate);
+  assert.equal(dates[dates.length - 1], currentPlan.endDate);
+  for (const s of currentPlan.sessions) {
+    for (const e of s.exercises) {
+      for (const t of e.setTargets) assert.equal(snapWeight(t.weight, e.weightType, D), t.weight, `${s.scheduledDate} ${e.name} ${t.weight}`);
+    }
+  }
+  assert.equal(currentPlan.dailyTaskTemplate.length, 7);
+  assert.ok(currentPlan.dailyTaskTemplate.every((t) => t.memo));
 });

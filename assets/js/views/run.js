@@ -28,7 +28,7 @@ export function renderRun(app) {
 
     ${session.exercises.map((exercise, ei) => renderExercise(app, exercise, ei, current)).join("")}
 
-    ${renderDaily(session, ui)}
+    ${renderDaily(session, ui, state.plan)}
 
     <section class="card">
       <label class="field">
@@ -130,7 +130,8 @@ function stepper(kind, ei, si, value, unit, mode) {
     </div>`;
 }
 
-function renderDaily(session, ui) {
+function renderDaily(session, ui, plan) {
+  const howTo = new Map((plan?.dailyTaskTemplate || []).map((t) => [t.taskId, t.memo]));
   const tasks = session.dailyTasks || [];
   if (!tasks.length) return "";
   const doneCount = tasks.filter((t) => t.completed).length;
@@ -143,11 +144,14 @@ function renderDaily(session, ui) {
         <span class="muted small">${doneCount} / ${tasks.length} 完了</span>
       </div>
       ${rows.length ? rows.map(({ task, index }) => `
-        <button class="daily-row ${task.completed ? "on" : ""} ${ui.clearingDaily.has(index) ? "clearing" : ""}" data-action="daily-toggle" data-i="${index}" type="button" aria-pressed="${task.completed}">
-          <span class="box">${task.completed ? icons.check : ""}</span>
-          <span class="daily-text"><b>${escapeHtml(task.name)}</b>${task.target ? `<small>${escapeHtml(task.target)}</small>` : ""}</span>
-          ${ui.clearingDaily.has(index) ? `<span class="clear-tag">クリア</span>` : ""}
-        </button>`).join("") : `<div class="banner good">${icons.check}<span>日課はぜんぶクリア！</span></div>`}
+        <div class="daily-item">
+          <button class="daily-row ${task.completed ? "on" : ""} ${ui.clearingDaily.has(index) ? "clearing" : ""}" data-action="daily-toggle" data-i="${index}" type="button" aria-pressed="${task.completed}">
+            <span class="box">${task.completed ? icons.check : ""}</span>
+            <span class="daily-text"><b>${escapeHtml(task.name)}</b>${task.target ? `<small>${escapeHtml(task.target)}</small>` : ""}</span>
+            ${ui.clearingDaily.has(index) ? `<span class="clear-tag">クリア</span>` : ""}
+          </button>
+          ${howTo.get(task.taskId) ? `<button class="how-btn" data-action="how-to" data-task="${escapeHtml(task.taskId)}" type="button" aria-label="${escapeHtml(task.name)}のやり方">やり方</button>` : ""}
+        </div>`).join("") : `<div class="banner good">${icons.check}<span>日課はぜんぶクリア！</span></div>`}
       ${doneCount ? `<button class="btn text" data-action="toggle-done-daily" type="button">${ui.showDoneDaily ? "終わった日課をかくす" : `終わった日課を見る（${doneCount}）`}</button>` : ""}
     </section>`;
 }

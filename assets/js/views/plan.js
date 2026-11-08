@@ -38,7 +38,7 @@ export function renderPlan(app) {
         <div class="section-head"><h2 class="section-title">日課</h2><span class="muted small">メインとは別。できる範囲で</span></div>
         ${plan.dailyTaskTemplate.map((task) => {
           const view = displayDailyTask(task);
-          return `<div class="daily-row static"><span class="daily-text"><b>${escapeHtml(view.name)}</b>${view.target ? `<small>${escapeHtml(view.target)}</small>` : ""}</span></div>`;
+          return `<div class="daily-item"><div class="daily-row static"><span class="daily-text"><b>${escapeHtml(view.name)}</b>${view.target ? `<small>${escapeHtml(view.target)}</small>` : ""}</span></div>${view.memo ? `<button class="how-btn" data-action="how-to" data-task="${escapeHtml(view.taskId)}" type="button" aria-label="${escapeHtml(view.name)}のやり方">やり方</button>` : ""}</div>`;
         }).join("")}
       </section>` : ""}
   `;

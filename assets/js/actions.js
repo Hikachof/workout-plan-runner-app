@@ -69,6 +69,17 @@ export function handleAction(app, action, el) {
       app.save();
       return app.render();
     }
+    case "how-to": {
+      const task = (state.plan?.dailyTaskTemplate || []).find((t) => t.taskId === el.dataset.task);
+      if (!task) return undefined;
+      return openSheet(`
+        <div class="how-to">
+          <h2 class="summary-title">${escapeHtml(task.name)}</h2>
+          ${task.target ? `<p class="how-target">${escapeHtml(task.target)}</p>` : ""}
+          <ol>${String(task.memo || "").split("\n").filter(Boolean).map((line) => `<li>${escapeHtml(line.replace(/^\d+[.．、]\s*/, ""))}</li>`).join("")}</ol>
+          <button class="btn primary big" data-action="sheet-close" type="button">閉じる</button>
+        </div>`);
+    }
     case "toggle-done-daily":
       ui.showDoneDaily = !ui.showDoneDaily;
       return app.render();

@@ -1,0 +1,548 @@
+{
+  "schemaVersion": "1.0",
+  "planId": "plan-2026-09-22-to-2026-10-02-daily-1ex",
+  "title": "2026/9/22-10/2 毎日1種目プラン（休息日なし・日課別枠）",
+  "version": 16,
+  "createdAt": "2026-09-22T18:29:54+09:00",
+  "startDate": "2026-09-22",
+  "endDate": "2026-10-02",
+  "unit": "kg",
+  "dailyTaskTemplate": [
+    {
+      "taskId": "daily-chinning",
+      "name": "チンニング",
+      "target": "10回前後 × 3セット",
+      "metrics": [
+        "reps",
+        "sets"
+      ],
+      "memo": "週間メニューとは別の日課"
+    },
+    {
+      "taskId": "daily-hanging-knee-up",
+      "name": "ハンギングニーアップ",
+      "target": "10回 × 3セット",
+      "metrics": [
+        "reps",
+        "sets",
+        "legRaiseAngle",
+        "topHoldSeconds",
+        "noSwing",
+        "loweringSpeed",
+        "posteriorPelvicTilt"
+      ],
+      "memo": "回数だけでなくフォーム強度も確認"
+    },
+    {
+      "taskId": "daily-abs",
+      "name": "腹筋",
+      "target": "20〜30回 × 2〜3セット",
+      "metrics": [
+        "reps",
+        "sets"
+      ],
+      "memo": "日課として管理。反動を使わず腹筋に効かせる。"
+    },
+    {
+      "taskId": "daily-plank",
+      "name": "プランク",
+      "target": "100秒 × 1〜2セット",
+      "metrics": [
+        "seconds",
+        "sets"
+      ],
+      "memo": "日課として管理"
+    },
+    {
+      "taskId": "daily-pushup",
+      "name": "プッシュアップ",
+      "target": "20〜30回 × 1〜2セット",
+      "metrics": [
+        "reps",
+        "sets"
+      ],
+      "memo": "日課として管理"
+    },
+    {
+      "taskId": "daily-deep-squat-hold",
+      "name": "ディープスクワット静止",
+      "target": "週3回目安: 自重 5〜8回 × 2セット / 最下部5秒静止",
+      "metrics": [
+        "reps",
+        "sets",
+        "bottomHoldSeconds",
+        "pain",
+        "heelContact",
+        "kneeTracking"
+      ],
+      "memo": "約3秒でしゃがみ、痛みなく保てる最下部で5秒静止。かかとが大きく浮かない・後方へ倒れない・膝が内側に入らない深さまで。壁や机につかまって可。鋭い痛み、引っ掛かり、腫れ、強い圧迫感があれば中止。呼吸を止めず、体幹を自然に保つ。"
+    },
+    {
+      "taskId": "daily-core-relax-breath",
+      "name": "コアリラックス呼吸",
+      "target": "毎日 朝/夜: 仰向け 30%で2秒引き上げ→5秒脱力 × 3〜5回",
+      "metrics": [
+        "slowContractions",
+        "quickContractions",
+        "holdSeconds",
+        "relaxSeconds",
+        "sets",
+        "tensionOrPain"
+      ],
+      "memo": "最初は正しい力の入れ方探し優先。呼吸を止めず、お尻・太もも・腹筋を固めず、下腹部の奥を軽く引き上げる感覚で行う。毎回完全に緩める。下へ押し出す力みは避ける。痛み、違和感、力みが残る感じがあれば中止または負荷を下げる。"
+    }
+  ],
+  "sessions": [
+    {
+      "sessionPlanId": "sp-2026-09-22-daily1ex-day1",
+      "dayNumber": "Day1",
+      "dayName": "脚",
+      "scheduledDate": "2026-09-22",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 34,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 34,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 34,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-23-daily1ex-day2",
+      "dayNumber": "Day2",
+      "dayName": "胸",
+      "scheduledDate": "2026-09-23",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 20.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 20.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 20.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-24-daily1ex-day3",
+      "dayNumber": "Day3",
+      "dayName": "背中",
+      "scheduledDate": "2026-09-24",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 26.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 26.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 26.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。8回は左右それぞれの回数。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-25-daily1ex-day4",
+      "dayNumber": "Day4",
+      "dayName": "脚",
+      "scheduledDate": "2026-09-25",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 34,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 34,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 34,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-26-daily1ex-day5",
+      "dayNumber": "Day5",
+      "dayName": "胸",
+      "scheduledDate": "2026-09-26",
+      "weekdayHint": "土曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 20.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 20.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 20.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-27-daily1ex-day6",
+      "dayNumber": "Day6",
+      "dayName": "背中",
+      "scheduledDate": "2026-09-27",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 26.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 26.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 26.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。8回は左右それぞれの回数。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-28-daily1ex-day7",
+      "dayNumber": "Day7",
+      "dayName": "脚",
+      "scheduledDate": "2026-09-28",
+      "weekdayHint": "月曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 34,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 34,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 34,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-29-daily1ex-day8",
+      "dayNumber": "Day8",
+      "dayName": "胸",
+      "scheduledDate": "2026-09-29",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 20.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 20.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 20.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-09-30-daily1ex-day9",
+      "dayNumber": "Day9",
+      "dayName": "背中",
+      "scheduledDate": "2026-09-30",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 26.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 26.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 26.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。8回は左右それぞれの回数。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-10-01-daily1ex-day10",
+      "dayNumber": "Day10",
+      "dayName": "脚",
+      "scheduledDate": "2026-10-01",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。脚を使う日なのでディープスクワット静止は省略可。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 34,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 34,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 34,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。痛みなく安定できる深さを優先。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-10-02-daily1ex-day11",
+      "dayNumber": "Day11",
+      "dayName": "胸",
+      "scheduledDate": "2026-10-02",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。休息日を設けず、脚→胸→背中の順で部位を交代する。最新の再開プランの重量を維持。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で任意。できなかった分のまとめ消化は不要。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 20.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 20.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 20.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "再開用の開始目安。前プランより重量・回数・セット数を減らして慣らす。あと3回ほどできる余裕を残し、重ければ1.5kgずつ下げる。痛みがあれば中止。"
+        }
+      ]
+    }
+  ]
+}

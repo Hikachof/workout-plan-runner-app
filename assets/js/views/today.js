@@ -46,7 +46,7 @@ export function renderToday(app) {
     const label = todaySession && session === todaySession
       ? (doneToday.length ? "もう一度やる" : "始める")
       : "この日を始める";
-    const caption = todaySession && session === todaySession ? "今日のメニュー" : "前回の続き";
+    const caption = todaySession && session === todaySession ? "今日のメニュー" : status === "before" ? "次の計画の最初の日" : "前回の続き";
     parts.push(renderSessionPreview(app, session, caption, label));
   }
 

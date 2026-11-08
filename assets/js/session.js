@@ -17,7 +17,7 @@ const DISCREET_VIEW = {
 
 export function displayDailyTask(task) {
   const id = task?.taskId || task?.name || "";
-  if (id !== DISCREET_ID && id !== LEGACY_ID) return task;
+  if (id !== LEGACY_ID) return task;
   return { ...task, ...DISCREET_VIEW, completed: task?.completed, sets: task?.sets, memo: task?.memo || DISCREET_VIEW.memo };
 }
 

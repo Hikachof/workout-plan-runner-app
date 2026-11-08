@@ -160,3 +160,10 @@
 .highlight span small { font-size: 12px; color: var(--muted); }
 .highlight em { font-style: normal; font-size: 20px; font-weight: 900; display: flex; flex-direction: column; align-items: flex-end; }
 .highlight em small { font-size: 12px; color: var(--accent); }
+
+.daily-item { display: flex; gap: 6px; align-items: stretch; }
+.daily-item .daily-row { flex: 1; min-width: 0; }
+.how-btn { flex: none; width: 58px; border-radius: 15px; border: 1px solid var(--line); background: var(--bg-2); color: var(--muted); font-size: 12px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.how-to { display: flex; flex-direction: column; gap: 12px; }
+.how-target { font-size: 15px; font-weight: 800; color: var(--accent); }
+.how-to ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; }
