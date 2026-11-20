@@ -173,3 +173,33 @@
 .timer-presets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .timer-presets .btn { padding: 0 4px; font-variant-numeric: tabular-nums; }
 .how-to > .btn { align-self: stretch; }
+
+/* 日課：終わった物もその場に残す。全部そろったら欄ごと線を引いて「日課クリア！」 */
+.daily-row.on { background: var(--bg-2); }
+.daily-row.on .daily-text small { text-decoration: line-through; }
+.daily-list { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.daily.all-clear .daily-row { opacity: 0.55; }
+.daily-stamp { position: absolute; inset: 0; pointer-events: none; display: grid; place-items: center; overflow: visible; }
+.stamp-line { position: absolute; left: -4%; right: -4%; top: 50%; height: 7px; border-radius: 4px; background: var(--accent); transform: rotate(-7deg); box-shadow: 0 0 18px rgba(198, 244, 50, 0.55); }
+.stamp-text {
+  position: relative; padding: 10px 22px; border-radius: 16px; transform: rotate(-7deg);
+  background: var(--bg); border: 4px solid var(--accent); color: var(--accent);
+  font-size: 34px; font-weight: 900; letter-spacing: 0.04em; white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.spark { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 3px; background: var(--accent); opacity: 0; }
+.daily.celebrate .stamp-line { animation: strike-in 0.4s cubic-bezier(0.6, 0, 0.3, 1) both; transform-origin: left center; }
+.daily.celebrate .stamp-text { animation: stamp-slam 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) 0.35s both; }
+.daily.celebrate .daily-row { animation: row-flash 0.5s ease 0.3s both; }
+.daily.celebrate .spark { animation: spark-fly 0.9s ease-out 0.45s both; }
+.daily.celebrate .s1 { --dx: -150px; --dy: -70px; }
+.daily.celebrate .s2 { --dx: 150px; --dy: -80px; }
+.daily.celebrate .s3 { --dx: -120px; --dy: 80px; transform: rotate(45deg); }
+.daily.celebrate .s4 { --dx: 130px; --dy: 90px; }
+.daily.celebrate .s5 { --dx: -30px; --dy: -120px; border-radius: 50%; }
+.daily.celebrate .s6 { --dx: 40px; --dy: 120px; border-radius: 50%; }
+@keyframes strike-in { from { transform: rotate(-7deg) scaleX(0); } to { transform: rotate(-7deg) scaleX(1); } }
+@keyframes stamp-slam { 0% { transform: rotate(-7deg) scale(2.6); opacity: 0; } 60% { opacity: 1; } 100% { transform: rotate(-7deg) scale(1); opacity: 1; } }
+@keyframes row-flash { 0% { opacity: 1; border-color: var(--accent); } 100% { opacity: 0.55; } }
+@keyframes spark-fly { 0% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4) rotate(180deg); } }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

@@ -103,6 +103,9 @@ test("公開する計画：重さがすべて刻みに乗っていて、日付�
       for (const t of e.setTargets) assert.equal(snapWeight(t.weight, e.weightType, D), t.weight, `${s.scheduledDate} ${e.name} ${t.weight}`);
     }
   }
-  assert.equal(currentPlan.dailyTaskTemplate.length, 7);
+  assert.deepEqual(currentPlan.dailyTaskTemplate.map((t) => t.taskId), [
+    "daily-running", "daily-plank", "daily-abs", "daily-pushup",
+    "daily-deep-squat-hold", "daily-core-relax-breath", "daily-chinning", "daily-hanging-knee-up",
+  ]);
   assert.ok(currentPlan.dailyTaskTemplate.every((t) => t.memo));
 });

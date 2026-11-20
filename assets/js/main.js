@@ -24,7 +24,7 @@ const app = {
     openExercises: new Set(),
     clearingExercise: null,
     clearingDaily: new Set(),
-    showDoneDaily: false,
+    dailyCelebrate: false,
     logKey: null,
   },
   today: () => todayString(),

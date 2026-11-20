@@ -65,6 +65,13 @@ export function handleAction(app, action, el) {
       if (S.toggleDaily(session, index)) {
         ui.clearingDaily.add(index);
         setTimeout(() => { ui.clearingDaily.delete(index); app.render(); }, CLEAR_MS);
+        // 最後の 1 つを終えたときだけ、派手な「クリア！」を 1 回流す（描き直しのたびに流さない）
+        if (session.dailyTasks.every((t) => t.completed)) {
+          ui.dailyCelebrate = true;
+          setTimeout(() => { ui.dailyCelebrate = false; }, 2200);
+        }
+      } else {
+        ui.dailyCelebrate = false;
       }
       app.save();
       return app.render();
@@ -81,9 +88,6 @@ export function handleAction(app, action, el) {
           <button class="btn primary big" data-action="sheet-close" type="button">閉じる</button>
         </div>`);
     }
-    case "toggle-done-daily":
-      ui.showDoneDaily = !ui.showDoneDaily;
-      return app.render();
     case "finish":
       return finish(app);
     case "discard":
@@ -199,7 +203,7 @@ function start(app, sessionPlanId) {
   ui.openExercises.clear();
   ui.clearingDaily.clear();
   ui.clearingExercise = null;
-  ui.showDoneDaily = false;
+  ui.dailyCelebrate = false;
   app.save();
   app.updateWakeLock();
   app.go("today");

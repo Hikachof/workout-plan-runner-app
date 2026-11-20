@@ -138,24 +138,36 @@ function renderDaily(session, ui, plan) {
   const tasks = session.dailyTasks || [];
   if (!tasks.length) return "";
   const doneCount = tasks.filter((t) => t.completed).length;
-  const rows = tasks.map((task, index) => ({ task: displayDailyTask(task), index }))
-    .filter(({ task, index }) => !task.completed || ui.showDoneDaily || ui.clearingDaily.has(index));
+  const allDone = doneCount === tasks.length;
+  // 終わった日課もその場に残し、横線を引く。全部そろったら欄ごと「クリア！」
   return `
-    <section class="daily">
+    <section class="daily ${allDone ? "all-clear" : ""} ${allDone && ui.dailyCelebrate ? "celebrate" : ""}">
       <div class="section-head">
         <h2 class="section-title">日課</h2>
-        <span class="muted small">${doneCount} / ${tasks.length} 完了</span>
+        <span class="muted small">${allDone ? "ぜんぶ完了 ✓" : `${doneCount} / ${tasks.length} 完了`}</span>
       </div>
-      ${rows.length ? rows.map(({ task, index }) => `
-        <div class="daily-item">
-          <button class="daily-row ${task.completed ? "on" : ""} ${ui.clearingDaily.has(index) ? "clearing" : ""}" data-action="daily-toggle" data-i="${index}" type="button" aria-pressed="${task.completed}">
-            <span class="box">${task.completed ? icons.check : ""}</span>
-            <span class="daily-text"><b>${escapeHtml(task.name)}</b>${task.target ? `<small>${escapeHtml(task.target)}</small>` : ""}</span>
-            ${ui.clearingDaily.has(index) ? `<span class="clear-tag">クリア</span>` : ""}
-          </button>
-          ${howTo.get(task.taskId) ? `<button class="how-btn" data-action="how-to" data-task="${escapeHtml(task.taskId)}" type="button" aria-label="${escapeHtml(task.name)}のやり方">やり方</button>` : ""}
-        </div>`).join("") : `<div class="banner good">${icons.check}<span>日課はぜんぶクリア！</span></div>`}
-      ${doneCount ? `<button class="btn text" data-action="toggle-done-daily" type="button">${ui.showDoneDaily ? "終わった日課をかくす" : `終わった日課を見る（${doneCount}）`}</button>` : ""}
+      <div class="daily-list">
+        ${tasks.map((raw, index) => {
+          const task = displayDailyTask(raw);
+          const popping = ui.clearingDaily.has(index);
+          return `
+          <div class="daily-item">
+            <button class="daily-row ${task.completed ? "on" : ""} ${popping ? "clearing" : ""}" data-action="daily-toggle" data-i="${index}" type="button" aria-pressed="${task.completed}">
+              <span class="box">${task.completed ? icons.check : ""}</span>
+              <span class="daily-text"><b>${escapeHtml(task.name)}</b>${task.target ? `<small>${escapeHtml(task.target)}</small>` : ""}</span>
+              ${popping ? `<span class="clear-tag">クリア</span>` : ""}
+            </button>
+            ${howTo.get(task.taskId) ? `<button class="how-btn" data-action="how-to" data-task="${escapeHtml(task.taskId)}" type="button" aria-label="${escapeHtml(task.name)}のやり方">やり方</button>` : ""}
+          </div>`;
+        }).join("")}
+        ${allDone ? `
+          <div class="daily-stamp" aria-hidden="true">
+            <span class="stamp-line"></span>
+            <span class="stamp-text">日課クリア！</span>
+            <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span><span class="spark s5"></span><span class="spark s6"></span>
+          </div>` : ""}
+      </div>
+      ${allDone ? `<p class="sr-only" role="status">日課をぜんぶクリアしました</p>` : ""}
     </section>`;
 }
 
