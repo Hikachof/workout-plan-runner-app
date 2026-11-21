@@ -222,6 +222,8 @@ function bindEvents() {
     updateWakeLock();
   });
   window.addEventListener("pagehide", () => app.save());
+  // 念のため：ダブルタップの拡大を止める（＋−を続けて押したときに画面が拡大されないように）
+  document.addEventListener("dblclick", (event) => event.preventDefault(), { passive: false });
 }
 
 function init() {
