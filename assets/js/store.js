@@ -2,17 +2,18 @@
 
 import { emptyHistory } from "./history.js";
 import { normalizeDumbbell } from "./weights.js";
+import { normalizeExerciseHold, normalizePlan } from "./plan.js";
 
 export const STORAGE_KEY = "workout-runner-state-v2";
 
 export function normalizeState(value = {}, now = Date.now()) {
   return {
-    plan: value.plan || null,
+    plan: value.plan ? normalizePlan(value.plan) : null,
     history: value.history?.sessions ? value.history : emptyHistory(),
     lastSyncAt: value.lastSyncAt || null,
     timerSound: value.timerSound || "standard",
     timer: normalizeTimer(value, now),
-    activeSession: value.activeSession || null,
+    activeSession: value.activeSession ? { ...value.activeSession, exercises: (value.activeSession.exercises || []).map(normalizeExerciseHold) } : null,
     activeStartedAt: value.activeStartedAt || value.activeSession?.performedAt || null,
     githubSync: {
       token: value.githubSync?.token || "",

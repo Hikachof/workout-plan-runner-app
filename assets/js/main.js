@@ -3,7 +3,7 @@
 import { loadState, saveState } from "./store.js";
 import { createTimer } from "./timer.js";
 import { todayString, formatClock, escapeHtml } from "./format.js";
-import { isNewPlan, validatePlan } from "./plan.js";
+import { isNewPlan, normalizePlan, validatePlan } from "./plan.js";
 import { mergeHistory } from "./history.js";
 import { fetchPublishedHistory } from "./sync.js";
 import { $, $$, toast } from "./ui.js";
@@ -134,7 +134,7 @@ async function refreshPlan({ silent } = { silent: false }) {
     validatePlan(plan);
     state.lastSyncAt = new Date().toISOString();
     if (isNewPlan(plan, state.plan)) {
-      state.plan = plan;
+      state.plan = normalizePlan(plan);
       if (!silent) toast("新しい計画を読み込みました。");
     } else if (!silent) {
       toast("計画は最新です。");

@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 
 import { weightGrid, snapWeight, stepWeight, perHandWeight, normalizeDumbbell } from "../assets/js/weights.js";
 import { normalizeState } from "../assets/js/store.js";
-import { planStatus, suggestNextSession, createRunExercise, findTodaySession } from "../assets/js/plan.js";
+import { planStatus, suggestNextSession, createRunExercise, findTodaySession, normalizePlan } from "../assets/js/plan.js";
 import { mergeHistory, exerciseSeries, lastPerformance, sessionHighlights, exerciseCatalog } from "../assets/js/history.js";
 
 const D = { start: 4, step: 1.5, max: 60 };
@@ -79,16 +79,38 @@ test("種目ごとの伸びと前回、自己ベストの判定", () => {
   const key = catalog.find((c) => c.name === "インクラインダンベルプレス").key;
   const series = exerciseSeries(history, key);
   assert.ok(series.length >= 2);
-  assert.ok(lastPerformance(history, key, null).best >= 22);
+  // 前の「片手に 1 個ずつ」23.5kg は、2 個の合計 47kg として読む
+  const last = lastPerformance(history, key, null);
+  assert.equal(last.weightType, "both_hands_total");
+  assert.equal(last.best, 47);
 
   const newSession = {
     sessionId: "new", performedAt: "2026-11-08T03:00:00Z",
-    exercises: [{ exerciseId: key, name: "インクラインダンベルプレス", weightType: "per_dumbbell", status: "completed", sets: [{ actualWeight: 25, actualReps: 8, completed: true }] }],
+    exercises: [{ exerciseId: key, name: "インクラインダンベルプレス", weightType: "both_hands_total", status: "completed", sets: [{ actualWeight: 50, actualReps: 8, completed: true }] }],
   };
   const h2 = mergeHistory({ sessions: [newSession] }, history);
   const highlights = sessionHighlights(h2, newSession);
   assert.equal(highlights[0].kind, "pb");
-  assert.equal(highlights[0].weight, 25);
+  assert.equal(highlights[0].weight, 50);
+  assert.equal(highlights[0].diff, 3);
+});
+
+test("1 個でやっていた種目を 2 個に変えたら、1 個の記録は「前回」に出さない", () => {
+  const h = { sessions: [
+    { sessionId: "old", performedAt: "2026-11-21T00:00:00Z", exercises: [{ exerciseId: "goblet-squat", weightType: "single_dumbbell", sets: [{ actualWeight: 35.5, actualReps: 8, completed: true }] }] },
+  ] };
+  assert.equal(lastPerformance(h, "goblet-squat", null, "both_hands_total"), null);
+  assert.equal(lastPerformance(h, "goblet-squat", null, "single_dumbbell").best, 35.5);
+});
+
+test("前の計画の「片手に 1 個ずつ」は 2 個の合計に直して読む", () => {
+  const p = normalizePlan(plan);
+  const types = new Set(p.sessions.flatMap((s) => s.exercises.map((e) => e.weightType)));
+  assert.ok(!types.has("per_dumbbell"));
+  const before = plan.sessions.flatMap((s) => s.exercises).find((e) => e.weightType === "per_dumbbell");
+  const after = p.sessions.flatMap((s) => s.exercises).find((e) => e.exerciseId === before.exerciseId);
+  assert.equal(after.plannedWeight, before.plannedWeight * 2);
+  assert.equal(after.setTargets[0].weight, before.setTargets[0].weight * 2);
 });
 
 test("公開する計画：重さがすべて刻みに乗っていて、日付が続いている", () => {
@@ -100,6 +122,7 @@ test("公開する計画：重さがすべて刻みに乗っていて、日付�
   assert.equal(dates[dates.length - 1], currentPlan.endDate);
   for (const s of currentPlan.sessions) {
     for (const e of s.exercises) {
+      assert.notEqual(e.weightType, "per_dumbbell", `${e.name} は 1 個か 2 個の合計で書く`);
       for (const t of e.setTargets) assert.equal(snapWeight(t.weight, e.weightType, D), t.weight, `${s.scheduledDate} ${e.name} ${t.weight}`);
     }
   }

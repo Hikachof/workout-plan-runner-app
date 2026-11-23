@@ -2,8 +2,8 @@
   "schemaVersion": "1.0",
   "planId": "plan-2026-11-23-to-2026-12-20-4w-1ex",
   "title": "2026/11/23-12/20 毎日1種目プラン（4週間・重さとセットを少しずつ上げる）",
-  "version": 1,
-  "createdAt": "2026-11-23T13:43:44+09:00",
+  "version": 2,
+  "createdAt": "2026-11-23T13:51:09+09:00",
   "startDate": "2026-11-23",
   "endDate": "2026-12-20",
   "unit": "kg",
@@ -140,7 +140,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -199,19 +199,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 22,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 44,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 22,
+              "weight": 44,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 22,
+              "weight": 44,
               "reps": "8"
             }
           ],
@@ -222,7 +222,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -263,7 +263,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -281,19 +281,19 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 35.5,
-          "weightType": "single_dumbbell",
+          "plannedWeight": 35,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 35.5,
+              "weight": 35,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 35.5,
+              "weight": 35,
               "reps": "8"
             }
           ],
@@ -304,7 +304,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個を左右の手に1個ずつ持つ。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -322,19 +322,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 22,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 44,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 22,
+              "weight": 44,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 22,
+              "weight": 44,
               "reps": "8"
             }
           ],
@@ -345,7 +345,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -386,7 +386,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -445,19 +445,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 47,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             }
           ],
@@ -468,7 +468,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -509,7 +509,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -527,19 +527,19 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 37,
-          "weightType": "single_dumbbell",
+          "plannedWeight": 38,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 37,
+              "weight": 38,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 37,
+              "weight": 38,
               "reps": "8"
             }
           ],
@@ -550,7 +550,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個を左右の手に1個ずつ持つ。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -568,19 +568,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 47,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             }
           ],
@@ -591,7 +591,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -632,7 +632,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -691,24 +691,24 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 47,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 3,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             }
           ],
@@ -719,7 +719,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -765,7 +765,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -783,24 +783,24 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 37,
-          "weightType": "single_dumbbell",
+          "plannedWeight": 38,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 37,
+              "weight": 38,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 37,
+              "weight": 38,
               "reps": "8"
             },
             {
               "setNumber": 3,
-              "weight": 37,
+              "weight": 38,
               "reps": "8"
             }
           ],
@@ -811,7 +811,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個を左右の手に1個ずつ持つ。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -829,24 +829,24 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 47,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 3,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             }
           ],
@@ -857,7 +857,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -903,7 +903,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -967,24 +967,24 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 23.5,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 47,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 3,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             },
             {
               "setNumber": 3,
-              "weight": 23.5,
+              "weight": 47,
               "reps": "8"
             }
           ],
@@ -995,7 +995,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -1036,7 +1036,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -1054,19 +1054,19 @@
         {
           "exerciseId": "goblet-squat",
           "name": "ゴブレットスクワット",
-          "plannedWeight": 38.5,
-          "weightType": "single_dumbbell",
+          "plannedWeight": 41,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 38.5,
+              "weight": 41,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 38.5,
+              "weight": 41,
               "reps": "8"
             }
           ],
@@ -1077,7 +1077,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個を左右の手に1個ずつ持つ。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -1095,19 +1095,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 25,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 50,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 25,
+              "weight": 50,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 25,
+              "weight": 50,
               "reps": "8"
             }
           ],
@@ -1118,7 +1118,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -1159,7 +1159,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     },
@@ -1218,19 +1218,19 @@
         {
           "exerciseId": "incline-db-press",
           "name": "インクラインダンベルプレス",
-          "plannedWeight": 25,
-          "weightType": "per_dumbbell",
+          "plannedWeight": 50,
+          "weightType": "both_hands_total",
           "plannedReps": "8",
           "plannedSets": 2,
           "setTargets": [
             {
               "setNumber": 1,
-              "weight": 25,
+              "weight": 50,
               "reps": "8"
             },
             {
               "setNumber": 2,
-              "weight": 25,
+              "weight": 50,
               "reps": "8"
             }
           ],
@@ -1241,7 +1241,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+          "memo": "ダンベル2個。重さは2個の合計（片手はその半分）。あと3回できる余裕を残す。痛みがあればやめる。"
         }
       ]
     },
@@ -1282,7 +1282,7 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+          "memo": "ダンベル1個。重さは1個ぶん。8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     }

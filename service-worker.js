@@ -1,4 +1,4 @@
-const CACHE_NAME = "workout-plan-runner-v33";
+const CACHE_NAME = "workout-plan-runner-v34";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -30,7 +30,8 @@ const APP_SHELL = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
+    // ブラウザの保存（HTTP キャッシュ）を通さず、いちばん新しいファイルを取る
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL.map((url) => new Request(url, { cache: "reload" }))))
   );
   self.skipWaiting();
 });
@@ -63,8 +64,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // 同じサイトのファイルは、毎回サーバーに新しいかを確かめる（古い保存を使い続けて、更新が遅れないように）
+  const fresh = new URL(event.request.url).origin === self.location.origin
+    ? new Request(event.request.url, { cache: "no-cache", credentials: "same-origin" })
+    : event.request;
   event.respondWith(
-    fetch(event.request).then((response) => {
+    fetch(fresh).then((response) => {
       const copy = response.clone();
       caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
       return response;

@@ -1,11 +1,32 @@
 // 計画（plans/current.json）の読み方。画面に依らない。
 
 import { timeValue } from "./format.js";
+import { normalizeHold } from "./weights.js";
 
 export function validatePlan(plan) {
   if (!plan || typeof plan !== "object") throw new Error("計画のファイルが読めません。");
   if (!plan.planId) throw new Error("計画に planId がありません。");
   if (!Array.isArray(plan.sessions) || !plan.sessions.length) throw new Error("計画に日がありません。");
+}
+
+// 種目の持ち方を今の形にそろえる（前の「片手に 1 個ずつ」→「2 個の合計」で重さを 2 倍）。
+// 計画の種目（setTargets）にも、やっている途中の種目（sets）にも使える。
+export function normalizeExerciseHold(exercise) {
+  if (!exercise || exercise.weightType !== "per_dumbbell") return exercise;
+  const type = exercise.weightType;
+  const twice = (w) => normalizeHold(type, w).weight;
+  return {
+    ...exercise,
+    weightType: "both_hands_total",
+    plannedWeight: twice(exercise.plannedWeight),
+    ...(exercise.setTargets ? { setTargets: exercise.setTargets.map((t) => ({ ...t, weight: twice(t.weight) })) } : {}),
+    ...(exercise.sets ? { sets: exercise.sets.map((set) => ({ ...set, plannedWeight: twice(set.plannedWeight), actualWeight: twice(set.actualWeight) })) } : {}),
+  };
+}
+
+export function normalizePlan(plan) {
+  if (!plan?.sessions) return plan;
+  return { ...plan, sessions: plan.sessions.map((s) => ({ ...s, exercises: (s.exercises || []).map(normalizeExerciseHold) })) };
 }
 
 export function isNewPlan(next, current) {

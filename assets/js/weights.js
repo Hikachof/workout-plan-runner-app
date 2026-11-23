@@ -1,15 +1,16 @@
 // 重さの刻み。ダンベル 1 個の刻み（例：4kg から 1.5kg ずつ）を基準にして、
 // 持ち方ごとに「何個ぶんの重さを記録するか」で刻みを掛け算する。
-//   片手に 1 個ずつ（片手の重さで記録）・1 個を両手で … 1 個ぶん
-//   2 個の合計で記録 … 2 個ぶん（8kg から 3kg ずつ）
+//   ダンベル 1 個の種目（ワンハンドローなど）… 1 個の重さ（4kg から 1.5kg ずつ）
+//   ダンベル 2 個の種目（プレス・RDL など）… 2 個の合計（8kg から 3kg ずつ）
+// 前のアプリの「片手に 1 個ずつ（片手の重さで記録）」は 2 個の種目なので、読むときに 2 個の合計へ直す。
 
 export const DEFAULT_DUMBBELL = Object.freeze({ start: 4, step: 1.5, max: 60 });
 
 const HOLDS = {
   per_dumbbell: { count: 1, label: "片手に 1 個ずつ", unitLabel: "片手の重さ", icon: "two" },
-  single_dumbbell: { count: 1, label: "1 個", unitLabel: "1 個の重さ", icon: "one" },
-  left_right_total: { count: 2, label: "2 個の合計", unitLabel: "2 個の合計", icon: "two" },
-  both_hands_total: { count: 2, label: "2 個の合計", unitLabel: "2 個の合計", icon: "two" },
+  single_dumbbell: { count: 1, label: "ダンベル 1 個", unitLabel: "1 個の重さ", icon: "one" },
+  left_right_total: { count: 2, label: "ダンベル 2 個・合計", unitLabel: "2 個の合計", icon: "two" },
+  both_hands_total: { count: 2, label: "ダンベル 2 個・合計", unitLabel: "2 個の合計", icon: "two" },
   bodyweight_plus: { count: 1, label: "自重＋おもり", unitLabel: "おもりの重さ", icon: "one" },
   bodyweight: { count: 0, label: "自重", unitLabel: "自重", icon: "body" },
   none: { count: 0, label: "重さなし", unitLabel: "", icon: "body" },
@@ -17,6 +18,14 @@ const HOLDS = {
 
 export function holdInfo(weightType) {
   return HOLDS[weightType] || { count: 1, label: weightType || "重さ", unitLabel: "重さ", icon: "one" };
+}
+
+// 前の「片手に 1 個ずつ（片手の重さ）」を「2 個の合計」に直す。ほかはそのまま
+export function normalizeHold(weightType, weight) {
+  if (weightType !== "per_dumbbell") return { weightType, weight };
+  const number = Number(weight);
+  const total = weight === null || weight === undefined || weight === "" || !Number.isFinite(number) ? weight : round2(number * 2);
+  return { weightType: "both_hands_total", weight: total };
 }
 
 export function hasWeight(weightType) {

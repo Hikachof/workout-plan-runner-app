@@ -83,7 +83,7 @@ function renderSessionPreview(app, session, caption, label) {
       <h2 class="preview-title">${escapeHtml(session.dayName || "")}</h2>
       <ul class="preview-list">
         ${exercises.map((exercise) => {
-          const last = lastPerformance(state.history, exerciseKey(exercise), null);
+          const last = lastPerformance(state.history, exerciseKey(exercise), null, exercise.weightType);
           return `
           <li>
             <div class="preview-ex">

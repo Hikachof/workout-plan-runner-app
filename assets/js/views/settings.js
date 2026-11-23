@@ -10,7 +10,7 @@ export const APP_VERSION = "2.0.0";
 export function renderSettings(app) {
   const { state } = app;
   const d = state.settings.dumbbell;
-  const one = weightGrid("per_dumbbell", d);
+  const one = weightGrid("single_dumbbell", d);
   const two = weightGrid("both_hands_total", d);
   const sync = state.githubSync;
   const syncStatus = sync.lastError
@@ -22,15 +22,15 @@ export function renderSettings(app) {
 
     <section class="card">
       <h2 class="section-title">ダンベル</h2>
-      <p class="muted small">ダンベル 1 個の重さの刻みです。2 個の合計で記録する種目は、この 2 倍の刻みになります。</p>
+      <p class="muted small">ダンベル 1 個の重さの刻みです。1 個で行う種目はこの刻み、2 個で行う種目は 2 個の合計で記録するので、この 2 倍の刻みになります。</p>
       <div class="field-grid">
         ${numberField("いちばん軽い", "start", d.start)}
         ${numberField("刻み", "step", d.step)}
         ${numberField("いちばん重い", "max", d.max)}
       </div>
       <div class="grid-preview">
-        <p><span class="hold">${icons.one}1 個・片手ずつ</span>${seq(one)}</p>
-        <p><span class="hold">${icons.two}2 個の合計</span>${seq(two)}</p>
+        <p><span class="hold">${icons.one}ダンベル 1 個</span>${seq(one)}</p>
+        <p><span class="hold">${icons.two}ダンベル 2 個・合計</span>${seq(two)}</p>
       </div>
     </section>
 

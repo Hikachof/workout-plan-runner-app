@@ -66,7 +66,7 @@ function renderExercise(app, exercise, ei, current) {
       </button>`;
   }
 
-  const last = lastPerformance(state.history, exerciseKey(exercise), state.activeSession.sessionId);
+  const last = lastPerformance(state.history, exerciseKey(exercise), state.activeSession.sessionId, exercise.weightType);
   const cues = (exercise.formCues || []).filter(Boolean);
   const target = targetText(exercise, state.settings.dumbbell);
   return `
