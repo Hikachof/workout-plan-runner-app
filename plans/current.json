@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "planId": "plan-2026-11-09-to-2026-11-22-2w-1ex",
-  "title": "2026/11/9-11/22 毎日1種目プラン（2週間・脚はスクワットとRDLを交互）",
-  "version": 2,
-  "createdAt": "2026-11-20T11:19:15+09:00",
-  "startDate": "2026-11-09",
-  "endDate": "2026-11-22",
+  "planId": "plan-2026-11-23-to-2026-12-20-4w-1ex",
+  "title": "2026/11/23-12/20 毎日1種目プラン（4週間・重さとセットを少しずつ上げる）",
+  "version": 1,
+  "createdAt": "2026-11-23T13:43:44+09:00",
+  "startDate": "2026-11-23",
+  "endDate": "2026-12-20",
   "unit": "kg",
   "dailyTaskTemplate": [
     {
@@ -104,343 +104,15 @@
   ],
   "sessions": [
     {
-      "sessionPlanId": "sp-2026-11-09-2w-day1",
+      "sessionPlanId": "sp-2026-11-23-4w-day1",
       "dayNumber": "Day1",
-      "dayName": "脚",
-      "scheduledDate": "2026-11-09",
+      "dayName": "背中",
+      "scheduledDate": "2026-11-23",
       "weekdayHint": "月曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "goblet-squat",
-          "name": "ゴブレットスクワット",
-          "plannedWeight": 34,
-          "weightType": "single_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 34,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 34,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 150,
-          "formCues": [
-            "深さを一定にする",
-            "腰が丸まりすぎない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-10-2w-day2",
-      "dayNumber": "Day2",
-      "dayName": "胸",
-      "scheduledDate": "2026-11-10",
-      "weekdayHint": "火曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "incline-db-press",
-          "name": "インクラインダンベルプレス",
-          "plannedWeight": 20.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 20.5,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 20.5,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "上胸に乗せる",
-            "肩をすくめない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-11-2w-day3",
-      "dayNumber": "Day3",
-      "dayName": "背中",
-      "scheduledDate": "2026-11-11",
-      "weekdayHint": "水曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "one-hand-db-row",
-          "name": "ワンハンドダンベルロー",
-          "plannedWeight": 26.5,
-          "weightType": "single_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 26.5,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 26.5,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "体幹を固定",
-            "引き切る"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-12-2w-day4",
-      "dayNumber": "Day4",
-      "dayName": "脚",
-      "scheduledDate": "2026-11-12",
-      "weekdayHint": "木曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "db-rdl",
-          "name": "ダンベルRDL",
-          "plannedWeight": 56,
-          "weightType": "both_hands_total",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 56,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 56,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 150,
-          "formCues": [
-            "背中を丸めない",
-            "お尻を後ろへ引く"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "重さは2個の合計（片手はその半分）。7月の62.5kgより軽めから。ももの裏が伸びる所まで下ろす。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-13-2w-day5",
-      "dayNumber": "Day5",
-      "dayName": "胸",
-      "scheduledDate": "2026-11-13",
-      "weekdayHint": "金曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "incline-db-press",
-          "name": "インクラインダンベルプレス",
-          "plannedWeight": 20.5,
-          "weightType": "per_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 20.5,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 20.5,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "上胸に乗せる",
-            "肩をすくめない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-14-2w-day6",
-      "dayNumber": "Day6",
-      "dayName": "背中",
-      "scheduledDate": "2026-11-14",
-      "weekdayHint": "土曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "one-hand-db-row",
-          "name": "ワンハンドダンベルロー",
-          "plannedWeight": 26.5,
-          "weightType": "single_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 26.5,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 26.5,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "体幹を固定",
-            "引き切る"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-15-2w-day7",
-      "dayNumber": "Day7",
-      "dayName": "脚",
-      "scheduledDate": "2026-11-15",
-      "weekdayHint": "日曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画と同じ重さで慣らす。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "goblet-squat",
-          "name": "ゴブレットスクワット",
-          "plannedWeight": 34,
-          "weightType": "single_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 34,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 34,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 150,
-          "formCues": [
-            "深さを一定にする",
-            "腰が丸まりすぎない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-16-2w-day8",
-      "dayNumber": "Day8",
-      "dayName": "胸",
-      "scheduledDate": "2026-11-16",
-      "weekdayHint": "月曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
-      "exercises": [
-        {
-          "exerciseId": "incline-db-press",
-          "name": "インクラインダンベルプレス",
-          "plannedWeight": 22,
-          "weightType": "per_dumbbell",
-          "plannedReps": "8",
-          "plannedSets": 2,
-          "setTargets": [
-            {
-              "setNumber": 1,
-              "weight": 22,
-              "reps": "8"
-            },
-            {
-              "setNumber": 2,
-              "weight": 22,
-              "reps": "8"
-            }
-          ],
-          "restSeconds": 120,
-          "formCues": [
-            "上胸に乗せる",
-            "肩をすくめない"
-          ],
-          "optional": false,
-          "shortVersionPriority": 1,
-          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
-        }
-      ]
-    },
-    {
-      "sessionPlanId": "sp-2026-11-17-2w-day9",
-      "dayNumber": "Day9",
-      "dayName": "背中",
-      "scheduledDate": "2026-11-17",
-      "weekdayHint": "火曜日",
-      "scheduleStatus": "planned",
-      "isRestDay": false,
-      "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "one-hand-db-row",
@@ -473,15 +145,15 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-11-18-2w-day10",
-      "dayNumber": "Day10",
+      "sessionPlanId": "sp-2026-11-24-4w-day2",
+      "dayNumber": "Day2",
       "dayName": "脚",
-      "scheduledDate": "2026-11-18",
-      "weekdayHint": "水曜日",
+      "scheduledDate": "2026-11-24",
+      "weekdayHint": "火曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "db-rdl",
@@ -509,20 +181,20 @@
           ],
           "optional": false,
           "shortVersionPriority": 1,
-          "memo": "重さは2個の合計（片手はその半分）。7月の62.5kgより軽めから。ももの裏が伸びる所まで下ろす。"
+          "memo": "重さは2個の合計（片手はその半分）。ももの裏が伸びる所まで下ろす。"
         }
       ]
     },
     {
-      "sessionPlanId": "sp-2026-11-19-2w-day11",
-      "dayNumber": "Day11",
+      "sessionPlanId": "sp-2026-11-25-4w-day3",
+      "dayNumber": "Day3",
       "dayName": "胸",
-      "scheduledDate": "2026-11-19",
-      "weekdayHint": "木曜日",
+      "scheduledDate": "2026-11-25",
+      "weekdayHint": "水曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "incline-db-press",
@@ -555,15 +227,15 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-11-20-2w-day12",
-      "dayNumber": "Day12",
+      "sessionPlanId": "sp-2026-11-26-4w-day4",
+      "dayNumber": "Day4",
       "dayName": "背中",
-      "scheduledDate": "2026-11-20",
-      "weekdayHint": "金曜日",
+      "scheduledDate": "2026-11-26",
+      "weekdayHint": "木曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "one-hand-db-row",
@@ -596,15 +268,15 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-11-21-2w-day13",
-      "dayNumber": "Day13",
+      "sessionPlanId": "sp-2026-11-27-4w-day5",
+      "dayNumber": "Day5",
       "dayName": "脚",
-      "scheduledDate": "2026-11-21",
-      "weekdayHint": "土曜日",
+      "scheduledDate": "2026-11-27",
+      "weekdayHint": "金曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "goblet-squat",
@@ -637,15 +309,15 @@
       ]
     },
     {
-      "sessionPlanId": "sp-2026-11-22-2w-day14",
-      "dayNumber": "Day14",
+      "sessionPlanId": "sp-2026-11-28-4w-day6",
+      "dayNumber": "Day6",
       "dayName": "胸",
-      "scheduledDate": "2026-11-22",
-      "weekdayHint": "日曜日",
+      "scheduledDate": "2026-11-28",
+      "weekdayHint": "土曜日",
       "scheduleStatus": "planned",
       "isRestDay": false,
       "dailyTasksEnabled": true,
-      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
       "exercises": [
         {
           "exerciseId": "incline-db-press",
@@ -674,6 +346,943 @@
           "optional": false,
           "shortVersionPriority": 1,
           "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-11-29-4w-day7",
+      "dayNumber": "Day7",
+      "dayName": "背中",
+      "scheduledDate": "2026-11-29",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。1週目は前の計画の2週目と同じ重さで慣らし直す。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 28,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 28,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 28,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-11-30-4w-day8",
+      "dayNumber": "Day8",
+      "dayName": "脚",
+      "scheduledDate": "2026-11-30",
+      "weekdayHint": "月曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "plannedWeight": 62,
+          "weightType": "both_hands_total",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 62,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 62,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "背中を丸めない",
+            "お尻を後ろへ引く"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは2個の合計（片手はその半分）。ももの裏が伸びる所まで下ろす。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-01-4w-day9",
+      "dayNumber": "Day9",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-01",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 23.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-02-4w-day10",
+      "dayNumber": "Day10",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-02",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 29.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 29.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-03-4w-day11",
+      "dayNumber": "Day11",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-03",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 37,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 37,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 37,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-04-4w-day12",
+      "dayNumber": "Day12",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-04",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 23.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-05-4w-day13",
+      "dayNumber": "Day13",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-05",
+      "weekdayHint": "土曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 29.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 29.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-06-4w-day14",
+      "dayNumber": "Day14",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-06",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。2週目は1刻みだけ重く。重ければ1週目の重さに戻してよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "plannedWeight": 62,
+          "weightType": "both_hands_total",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 62,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 62,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "背中を丸めない",
+            "お尻を後ろへ引く"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは2個の合計（片手はその半分）。ももの裏が伸びる所まで下ろす。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-07-4w-day15",
+      "dayNumber": "Day15",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-07",
+      "weekdayHint": "月曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 23.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-08-4w-day16",
+      "dayNumber": "Day16",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-08",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 29.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 29.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-09-4w-day17",
+      "dayNumber": "Day17",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-09",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 37,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 37,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 37,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 37,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-10-4w-day18",
+      "dayNumber": "Day18",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-10",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 23.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-11-4w-day19",
+      "dayNumber": "Day19",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-11",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 29.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 29.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 29.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-12-4w-day20",
+      "dayNumber": "Day20",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-12",
+      "weekdayHint": "土曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "plannedWeight": 62,
+          "weightType": "both_hands_total",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 62,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 62,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 62,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "背中を丸めない",
+            "お尻を後ろへ引く"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは2個の合計（片手はその半分）。ももの裏が伸びる所まで下ろす。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-13-4w-day21",
+      "dayNumber": "Day21",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-13",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×3セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。3週目は2週目と同じ重さで、セットを3つに増やす。疲れた日は2セットで終了可。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 23.5,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 3,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 23.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 3,
+              "weight": 23.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-14-4w-day22",
+      "dayNumber": "Day22",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-14",
+      "weekdayHint": "月曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 31,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 31,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 31,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-15-4w-day23",
+      "dayNumber": "Day23",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-15",
+      "weekdayHint": "火曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "goblet-squat",
+          "name": "ゴブレットスクワット",
+          "plannedWeight": 38.5,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 38.5,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 38.5,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "深さを一定にする",
+            "腰が丸まりすぎない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "ダンベル1個を胸の前で両手で持つ。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-16-4w-day24",
+      "dayNumber": "Day24",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-16",
+      "weekdayHint": "水曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 25,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 25,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 25,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-17-4w-day25",
+      "dayNumber": "Day25",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-17",
+      "weekdayHint": "木曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 31,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 31,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 31,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-18-4w-day26",
+      "dayNumber": "Day26",
+      "dayName": "脚",
+      "scheduledDate": "2026-12-18",
+      "weekdayHint": "金曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "db-rdl",
+          "name": "ダンベルRDL",
+          "plannedWeight": 65,
+          "weightType": "both_hands_total",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 65,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 65,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 150,
+          "formCues": [
+            "背中を丸めない",
+            "お尻を後ろへ引く"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは2個の合計（片手はその半分）。ももの裏が伸びる所まで下ろす。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-19-4w-day27",
+      "dayNumber": "Day27",
+      "dayName": "胸",
+      "scheduledDate": "2026-12-19",
+      "weekdayHint": "土曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "incline-db-press",
+          "name": "インクラインダンベルプレス",
+          "plannedWeight": 25,
+          "weightType": "per_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 25,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 25,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "上胸に乗せる",
+            "肩をすくめない"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "重さは片手1個ぶん。あと3回できる余裕を残す。痛みがあればやめる。"
+        }
+      ]
+    },
+    {
+      "sessionPlanId": "sp-2026-12-20-4w-day28",
+      "dayNumber": "Day28",
+      "dayName": "背中",
+      "scheduledDate": "2026-12-20",
+      "weekdayHint": "日曜日",
+      "scheduleStatus": "planned",
+      "isRestDay": false,
+      "dailyTasksEnabled": true,
+      "notes": "メイン1種目・8回×2セット。脚→胸→背中の順で毎日交代し、脚の日はゴブレットスクワットとダンベルRDLを交互に行う。4週目はさらに1刻み重く・2セット。重ければ3週目の重さでよい。あと3回ほどできる余裕を残し、疲れた日は1セットで終了可。日課は別枠・できる範囲で。",
+      "exercises": [
+        {
+          "exerciseId": "one-hand-db-row",
+          "name": "ワンハンドダンベルロー",
+          "plannedWeight": 31,
+          "weightType": "single_dumbbell",
+          "plannedReps": "8",
+          "plannedSets": 2,
+          "setTargets": [
+            {
+              "setNumber": 1,
+              "weight": 31,
+              "reps": "8"
+            },
+            {
+              "setNumber": 2,
+              "weight": 31,
+              "reps": "8"
+            }
+          ],
+          "restSeconds": 120,
+          "formCues": [
+            "体幹を固定",
+            "引き切る"
+          ],
+          "optional": false,
+          "shortVersionPriority": 1,
+          "memo": "8回は左右それぞれの回数。あと3回できる余裕を残す。"
         }
       ]
     }
